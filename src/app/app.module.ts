@@ -8,17 +8,21 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { DemoShopHttpService } from './demo-shop-http.service';
 import { AuthService } from './auth.service';
 import {Ng2Webstorage} from 'ngx-webstorage';
+import { ProductListComponent } from './product-list/product-list.component';
+import { appRoutes } from './app.routes';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2Webstorage
+    Ng2Webstorage,
+    appRoutes
   ],
   providers: [
     { provide: 'ENV_URL', useValue: 'http://localhost:3000/api' },
