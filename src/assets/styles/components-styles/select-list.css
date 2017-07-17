@@ -1,0 +1,26 @@
+.green{
+    background: #2e8879;
+    color: #ffffff;
+    background-image: url(../../images/white-select-link.png);
+}
+
+.white{
+    background: #ffffff;
+    background-image: url(../../images/green-select-link.png);
+}
+
+.select-list{
+    width: 237px;
+    height: 35px;
+    font-size: 14px;
+    font-family: PT Sans;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    padding: 0 13px;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    border: none;
+}

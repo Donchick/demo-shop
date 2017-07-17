@@ -1,0 +1,79 @@
+/* Стили модального окна */
+.modal-header{ 
+    font-size: 22px; 
+    padding: 0 40px;
+    text-align: left;
+    height: 60px;
+    line-height: 60px;
+    font-weight: bold;
+    border-bottom: #eaeaea solid 1px;
+    font-family: PT Sans Caption;
+}
+
+.modal-body{
+	background: #ecebe9 url('../../images/product-tile-background.png');
+	padding: 50px 30px 30px;
+	position: relative;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+    box-shadow: inset 0px 2px 0px rgba(0,0,0, 0.1);
+}
+
+.modal-content{
+	font-size: 24px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+/* слой затемнения */
+.modal-wrap::before {
+    content: "";
+    display: none;
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal-overlay {
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 102;
+}
+
+/* активация слоя затемнения и модального блока */
+.modal-open.checkbox-name:checked ~ .modal-wrap.checkbox-name::before {
+    display: block;
+}
+
+.modal-open:checked ~ .body{
+    filter: blur(2px);
+}
+
+.modal-open.checkbox-name:checked ~ .modal-wrap.checkbox-name .modal-dialog {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    visibility: visible;
+    opacity: 1;
+}
+/* элементы модального окна */
+.modal-dialog {
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 103;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .5s;
+}

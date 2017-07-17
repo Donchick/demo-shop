@@ -1,0 +1,33 @@
+.slider{
+	height: 2px !important;
+	border: none;
+	background: #909090;
+    margin: 10px 0;
+}
+
+.noUi-handle.noUi-handle-lower::before,
+.noUi-handle.noUi-handle-lower::after,
+.noUi-handle.noUi-handle-upper::before,
+.noUi-handle.noUi-handle-upper::after{
+	display: none;
+}
+
+.slider .noUi-handle.noUi-handle-lower,
+.slider .noUi-handle.noUi-handle-upper{
+	width: 19px;
+	height: 19px;
+	border-radius: 50%;
+	background: #2e8879;
+	box-shadow: none;;
+	outline: 0;
+	top: -8px;
+	left: 0;
+	border: none;
+}
+
+.slider .noUi-handle.noUi-handle-lower .noUi-tooltip,
+.slider .noUi-handle.noUi-handle-upper .noUi-tooltip{
+	top: 19px;
+    background: none;
+    border: none;
+}

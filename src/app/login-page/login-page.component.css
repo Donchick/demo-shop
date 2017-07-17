@@ -23,7 +23,7 @@
 }
 
 .login-block .login-form{
-  background: #ecebe9 url('assets/images/product-tile-background.png');
+  background: #ecebe9 url('../../assets/images/product-tile-background.png');
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   text-align: right;
@@ -65,12 +65,12 @@
   border: 3px solid #ff0000;
 }
 
-.username-input{
-  background-image: url(assets/images/username-icon.png);
+.username-input {
+  background-image: url(../../assets/images/username-icon.png);
 }
 
 .password-input{
-  background-image: url(assets/images/password-icon.png);
+  background-image: url(../../assets/images/password-icon.png);
 }
 
 .username-input:focus,
@@ -79,20 +79,20 @@
 }
 
 .username-input:focus{
-  background-image: url(assets/images/focused-username-icon.png);
+  background-image: url(../../assets/images/focused-username-icon.png);
 }
 
 .password-input:focus{
-  background-image: url(ssets/images/focused-password-icon.png);
+  background-image: url(../../assets/images/focused-password-icon.png);
 }
 
-.username-input::clear,
-.password-input::clear {
+.username-input:clear,
+.password-input:clear {
   display: none;
 }
 
-.username-input::placeholder,
-.password-input::placeholder {
+.username-input:placeholder,
+.password-input:placeholder {
   font-style: italic;
   font-family: PT Sans;
 }

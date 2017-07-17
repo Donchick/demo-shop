@@ -1,0 +1,47 @@
+.radio {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio + label {
+  cursor: pointer;
+  display: inline-block;
+  line-height: 26px;
+  position: relative;
+  padding-left: 30px;
+  padding-right: 10px;
+  color: #000000;
+  vertical-align: middle;
+}
+
+.radio + label::before,
+.radio + label::after{
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.radio + label::before {
+  left: 0;
+  padding: 1px;
+  border: 1px solid #2f897a;
+  background: #ffffff;
+}
+
+.radio + label::after {
+  top: 2px;
+  left: 2px;
+  background: #2f897a;
+  opacity: 0;
+  transition: all .2s;
+}
+
+.radio:checked + label {
+  color: #2e8879;
+}
+
+.radio:checked + label::after {
+  opacity: 1;
+}
