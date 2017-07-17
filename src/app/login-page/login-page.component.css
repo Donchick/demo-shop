@@ -1,0 +1,105 @@
+.body{
+  filter: blur(2px);
+}
+
+.login-block{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 570px;
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0,0,0, 0.3);
+}
+
+.login-block .login-header{
+  line-height: 70px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  vertical-align: middle;
+  font-family: PT Sans Caption;
+}
+
+.login-block .login-form{
+  background: #ecebe9 url('assets/images/product-tile-background.png');
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-align: right;
+  padding: 0 60px;
+  box-shadow: inset 0px 2px 0px rgba(0,0,0, 0.1);
+}
+
+.password-block,
+.username-block{
+  text-align: left;
+  padding-top: 30px;
+}
+
+.input-title{
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.username-input,
+.password-input{
+  height: 60px;
+  width: calc(100% - 69px);
+  border-radius: 5px;
+  border: none;
+  outline: 0;
+  font-size: 24px;
+  padding: 0 60px 0 10px;
+  background-repeat: no-repeat;
+  background-position: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: PT Sans;
+  background-size: 32px 32px;
+  border: 3px solid rgba(0,0,0,0);
+}
+
+.username-input:invalid{
+  border: 3px solid #ff0000;
+}
+
+.username-input{
+  background-image: url(assets/images/username-icon.png);
+}
+
+.password-input{
+  background-image: url(assets/images/password-icon.png);
+}
+
+.username-input:focus,
+.password-input:focus{
+  border: 3px solid rgba(41, 136, 121, 0.4);
+}
+
+.username-input:focus{
+  background-image: url(assets/images/focused-username-icon.png);
+}
+
+.password-input:focus{
+  background-image: url(ssets/images/focused-password-icon.png);
+}
+
+.username-input::clear,
+.password-input::clear {
+  display: none;
+}
+
+.username-input::placeholder,
+.password-input::placeholder {
+  font-style: italic;
+  font-family: PT Sans;
+}
+
+.login-btn{
+  margin: 25px 0 30px 0;
+  font-size: 18px;
+  width: 170px;
+  height: 50px;
+}
