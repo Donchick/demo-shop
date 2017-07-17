@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 import {Ng2Webstorage} from 'ngx-webstorage';
 import { ProductListComponent } from './product-list/product-list.component';
 import { appRoutes } from './app.routes';
+import {ProductService} from "./product.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { appRoutes } from './app.routes';
     { provide: 'ENV_URL', useValue: 'http://localhost:3000/api' },
     { provide: 'SESSION_TOKEN_KEY', useValue: 'session-token' },
     DemoShopHttpService,
-    AuthService
+    AuthService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

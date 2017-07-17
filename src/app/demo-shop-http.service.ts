@@ -18,9 +18,9 @@ export class DemoShopHttpService {
     this.sessionTokenName = sessionTokenKey;
   }
 
-  get (path: string, query: string) {
+  get (path: string, query?: string): Observable<Response> {
     var reqOpts = this.getReqOptions();
-    console.log('get request');
+    return this.http.get(`${this.envUrl}${path}`, reqOpts);
   }
 
   post (path: string, body: any): Observable<Response> {
