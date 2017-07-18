@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Product} from "../product.model";
 import {ProductService} from "../product.service";
 import {Filter} from '../filter.model';
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,8 @@ export class ProductListComponent implements OnInit {
   productsFilter: Filter;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private userService: UserService
   ) {
     this.products = this.productService.filteredProducts;
     this.productsFilter = new Filter();

@@ -12,6 +12,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { appRoutes } from './app.routes';
 import {ProductService} from "./product.service";
 import { ProductTileComponent } from './product-tile/product-tile.component';
+import {UserService} from "./user.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProductTileComponent } from './product-tile/product-tile.component';
     { provide: 'SESSION_TOKEN_KEY', useValue: 'session-token' },
     DemoShopHttpService,
     AuthService,
-    ProductService
+    ProductService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
