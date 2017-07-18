@@ -4,6 +4,8 @@ import {DemoShopHttpService} from "./demo-shop-http.service";
 import {Response} from "@angular/http";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/share';
+import {Subscription, Observable} from "rxjs";
 
 @Injectable()
 export class UserService {
@@ -13,8 +15,8 @@ export class UserService {
     private demoShopHttpService: DemoShopHttpService
   ) { }
 
-  public setCurrentUser(user: UserModel) {
-    this.demoShopHttpService.get(`/users?login=${user.login}`)
+  public setCurrentUser(user: UserModel): Observable<any> {
+    const credentialsObservable = this.demoShopHttpService.get(`/users?login=${user.login}`)
       .map((response: Response) => {
         return response.text()
       })
@@ -32,9 +34,13 @@ export class UserService {
       })
       .map(response => response.text())
       .map(jsonRole => JSON.parse(jsonRole))
-      .subscribe(([role]) => {
-        this.currentUser.isAdministrator = role['name'] === 'Admin';
-      })
+      .share();
+
+    credentialsObservable.subscribe(([role]) => {
+      this.currentUser.isAdministrator = role['name'] === 'Admin';
+    });
+
+    return credentialsObservable;
   }
 
   public isUserAdmin() {

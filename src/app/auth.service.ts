@@ -3,8 +3,9 @@ import { DemoShopHttpService } from './demo-shop-http.service';
 import { UserModel } from './user.model';
 import { LocalStorageService } from 'ngx-webstorage';
 import {Response} from "@angular/http";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 import {UserService} from "./user.service";
 
 @Injectable()
@@ -18,16 +19,14 @@ export class AuthService {
     this.sessionTokenKey = sessionTokenKey;
   }
 
-  login (user: UserModel): Observable<Response> {
+  login (user: UserModel) {
     return this.httpService.post('/login', user)
       .do(res => {
         var sessionToken = res.headers.get(this.sessionTokenKey);
         this.localSt.store(this.sessionTokenKey, sessionToken);
-        return res;
       })
-      .do(res => {
-        this.userService.setCurrentUser(user);
-        return res;
+      .mergeMap(res => {
+        return this.userService.setCurrentUser(user);
       });
   }
 
