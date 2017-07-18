@@ -1,4 +1,2 @@
-<p>
-  product-list works!
-</p>
-<p *ngFor="let product of products | async">opa</p>
+<app-product-tile *ngFor="let product of products | async" [product]="product"></app-product-tile>
+<button (click)="loadMore()"></button>

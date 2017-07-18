@@ -11,12 +11,14 @@ import {Ng2Webstorage} from 'ngx-webstorage';
 import { ProductListComponent } from './product-list/product-list.component';
 import { appRoutes } from './app.routes';
 import {ProductService} from "./product.service";
+import { ProductTileComponent } from './product-tile/product-tile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductTileComponent
   ],
   imports: [
     BrowserModule,
