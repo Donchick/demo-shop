@@ -11,14 +11,17 @@ import {BehaviorSubject, Observable} from "rxjs";
 @Injectable()
 export class AuthService {private _currentUser: UserModel;
   private _sessionTokenKey: string;
+  private _currentUserKey: string;
   private _isUserAdministrator: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  public canUserManageProducts: Observable<boolean> = this._isUserAdministrator.asObservable();
+  public canUserManageProducts: Observable<boolean> = this._isUserAdministrator.asObservable().share();
 
   constructor( private httpService: DemoShopHttpService,
               private localSt:LocalStorageService,
-              @Inject('SESSION_TOKEN_KEY') sessionTokenKey: string ) {
+              @Inject('SESSION_TOKEN_KEY') sessionTokenKey: string,
+              @Inject('CURRENT_USER_KEY') currentUserKey: string) {
     this._sessionTokenKey = sessionTokenKey;
+    this._currentUserKey = currentUserKey;
     this._currentUser = null;
   }
 
@@ -41,8 +44,13 @@ export class AuthService {private _currentUser: UserModel;
       });
   }
 
+  isLoggedIn (): boolean {
+    return this.localSt.retrieve(this._sessionTokenKey) !== null &&
+        this.localSt.retrieve(this._currentUserKey) !== null;
+  }
+
   private setCurrentUser (user: UserModel) {
-    var userCredentialsObserver = this.httpService.get(`/users?login=${user.login}`)
+    return this.httpService.get(`/users?login=${user.login}`)
       .map((response: Response) => response.text())
       .map((jsonUser: string) => JSON.parse(jsonUser))
       .do(([user]) => {
@@ -61,8 +69,9 @@ export class AuthService {private _currentUser: UserModel;
       .do(([role]) => {
         this._currentUser.isAdministrator = role['name'] === 'Admin';
         this._isUserAdministrator.next(this._currentUser.isAdministrator);
+      })
+      .do(() => {
+        this.localSt.store(this._currentUserKey, this._currentUser);
       });
-
-    return userCredentialsObserver;
   }
 }

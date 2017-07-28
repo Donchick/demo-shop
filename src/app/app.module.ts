@@ -12,6 +12,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { appRoutes } from './app.routes';
 import {ProductService} from "./product.service";
 import { ProductTileComponent } from './product-tile/product-tile.component';
+import {LoggedInGuard} from "./logged-in-guard";
+import {UnAuthGuard} from "./un-auth-guard";
 
 @NgModule({
   declarations: [
@@ -31,9 +33,12 @@ import { ProductTileComponent } from './product-tile/product-tile.component';
   providers: [
     { provide: 'ENV_URL', useValue: 'http://localhost:3000/api' },
     { provide: 'SESSION_TOKEN_KEY', useValue: 'session-token' },
+    { provide: 'CURRENT_USER_KEY', useValue: 'current-user' },
     DemoShopHttpService,
     AuthService,
-    ProductService
+    ProductService,
+    LoggedInGuard,
+    UnAuthGuard
   ],
   bootstrap: [AppComponent]
 })
