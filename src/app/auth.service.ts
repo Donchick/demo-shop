@@ -12,7 +12,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 export class AuthService {private _currentUser: UserModel;
   private _sessionTokenKey: string;
   private _isUserAdministrator: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  
+
   public canUserManageProducts: Observable<boolean> = this._isUserAdministrator.asObservable();
 
   constructor( private httpService: DemoShopHttpService,
@@ -40,7 +40,7 @@ export class AuthService {private _currentUser: UserModel;
         this._isUserAdministrator.next(false);
       });
   }
-
+/**/
   private setCurrentUser (user: UserModel) {
     var userCredentialsObserver = this.httpService.get(`/users?login=${user.login}`)
       .map((response: Response) => response.text())
