@@ -40,7 +40,7 @@ export class AuthService {private _currentUser: UserModel;
         this._isUserAdministrator.next(false);
       });
   }
-/**/
+
   private setCurrentUser (user: UserModel) {
     var userCredentialsObserver = this.httpService.get(`/users?login=${user.login}`)
       .map((response: Response) => response.text())
