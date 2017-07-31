@@ -1,27 +1,7 @@
 
 export class Product {
-  id: number;
-  categoryId: number;
-  image: string;
-  name: string;
-  description: string;
-  cost: number;
-  rating: number;
-  gender: number;
-  count: number;
-  soldCount: number;
 
-  constructor (id: number, categoryId: number, image: string, name: string, description: string,
-               cost: number, rating: number, gender: number, count: number, soldCount: number) {
-    this.categoryId = categoryId;
-    this.id = id;
-    this.image = image;
-    this.name = name;
-    this.description = description;
-    this.cost = cost;
-    this.rating = rating;
-    this.gender = gender;
-    this.count = count;
-    this.soldCount = soldCount;
+  constructor (public id: number, public categoryId: number, public imageSrc: string, public name: string, public description: string,
+               public cost: number, public rating: number, public gender: number, public count: number, public soldCount: number) {
   }
 }

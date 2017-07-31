@@ -1,3 +1,23 @@
 <p>
   {{product.name}} - productId: {{product.id}}
 </p>
+<div class="product-tile">
+  <div class="product-img">
+    <img src="{{product.imageSrc}}">
+    <div class="product-rating">
+      <i class="gold-star ating-start"></i>
+      <i class="gold-star rating-start"></i>
+      <i class="gold-star rating-start"></i>
+      <i class="star rating-start"></i>
+      <i class="star rating-start"></i>
+    </div>
+  </div>
+  <div class="product-details">
+    <p class="product-name">{{product.name}}</p>
+    <p class="product-description">
+      {{product.description}}
+    </p>
+    <span class="product-price"><i class="currency">$</i>{{product.cost}}</span>
+    <button class="btn primary-btn show-more">Show more</button>
+  </div>
+</div>

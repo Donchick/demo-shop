@@ -1,2 +1,4 @@
-<app-product-tile *ngFor="let product of products | async" [product]="product"></app-product-tile>
+<div class="products-list">
+  <app-product-tile *ngFor="let product of products | async" [product]="product"></app-product-tile>
+</div>
 <button (click)="loadMore()"></button>
