@@ -1,8 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from "./login-page/login-page.component";
-import { ProductListComponent } from "./product-list/product-list.component";
 import {LoggedInGuard} from "./logged-in-guard";
 import {UnAuthGuard} from "./un-auth-guard";
+import {MainLayoutComponent} from "./main-layout/main-layout.component";
+import { routes as childRoutes, MainLayoutModule } from './main-layout/main-layout.module';
 
 const routes: Routes = [
   {
@@ -12,13 +13,14 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'main-layout',
     pathMatch: 'full'
   },
   {
-    path: 'product-list',
-    component: ProductListComponent,
-    canActivate: [LoggedInGuard]
+    path: 'main-layout',
+    component: MainLayoutComponent,
+    canActivate: [LoggedInGuard],
+    children: childRoutes
   }
 ];
 

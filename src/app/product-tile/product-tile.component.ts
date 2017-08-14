@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, HostBinding } from '@angular/core';
 import { Product } from "../product.model";
 
 @Component({
   selector: 'app-product-tile',
   templateUrl: './product-tile.component.html',
-  styleUrls: ['./product-tile.component.css']
+  styleUrls: ['./product-tile.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProductTileComponent implements OnInit {
   @Input() product: Product;
@@ -14,4 +15,5 @@ export class ProductTileComponent implements OnInit {
   ngOnInit() {
   }
 
+  @HostBinding('attr.class') class='product-tile';
 }

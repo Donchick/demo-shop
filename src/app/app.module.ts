@@ -14,13 +14,14 @@ import {ProductService} from "./product.service";
 import { ProductTileComponent } from './product-tile/product-tile.component';
 import {LoggedInGuard} from "./logged-in-guard";
 import {UnAuthGuard} from "./un-auth-guard";
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import {MainLayoutModule} from "./main-layout/main-layout.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    ProductListComponent,
-    ProductTileComponent
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,8 @@ import {UnAuthGuard} from "./un-auth-guard";
     FormsModule,
     HttpModule,
     Ng2Webstorage,
-    appRoutes
+    appRoutes,
+    MainLayoutModule
   ],
   providers: [
     { provide: 'ENV_URL', useValue: 'http://localhost:3000/api' },

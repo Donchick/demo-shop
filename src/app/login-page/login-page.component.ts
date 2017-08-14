@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit {
     let userModel = new UserModel(loginForm.login, loginForm.password);
     this.authService.login(userModel)
       .subscribe(() => {
-        this.router.navigate(['/product-list']);
+        this.router.navigate(['/main-layout']);
       });
   }
 }

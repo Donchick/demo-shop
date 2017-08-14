@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {Observable} from "rxjs";
 import {Product} from "../product.model";
 import {ProductService} from "../product.service";
@@ -8,7 +8,8 @@ import {AuthService} from "../auth.service";
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProductListComponent implements OnInit {
   products: Observable<Product[]>;
