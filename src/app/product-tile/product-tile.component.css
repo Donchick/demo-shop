@@ -88,3 +88,29 @@
 .star{
   background: url('../../images/star.png');
 }
+@media (max-width: 1000px) {
+  .product-tile{
+    width: calc(50% - 30px);
+  }
+
+  .product-tile .product-details{
+    height: 180px;
+  }
+}
+
+@media (max-width: 800px) {
+  .product-tile .product-description {
+    height: auto;
+  }
+
+  .product-tile {
+    width: 100%;
+    display: block;
+    height: auto;
+  }
+
+  .product-tile .product-details {
+    height: auto;
+    padding-bottom: 55px;
+  }
+}

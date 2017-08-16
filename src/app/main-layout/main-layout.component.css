@@ -247,6 +247,7 @@
   padding: 0;
   vertical-align: middle;
 }
+
 /**
 	subfinish
 	searchbar styles
@@ -256,32 +257,7 @@
 	Filters box styles
 **/
 
-@media (max-width: 1000px) {
-  .products-list .product-tile{
-    width: calc(50% - 30px);
-  }
-
-  .product-tile .product-details{
-    height: 180px;
-  }
-}
-
 @media (max-width: 800px) {
-  .product-tile .product-description{
-    height: auto;
-  }
-
-  .products-list .product-tile{
-    width: 100%;
-    display: block;
-    height: auto;
-  }
-
-  .product-tile .product-details{
-    height: auto;
-    padding-bottom: 55px;
-  }
-
   .filters-container .filters-btn{
     float: left;
   }

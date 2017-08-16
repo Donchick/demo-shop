@@ -9,7 +9,7 @@ import {AuthService} from "../auth.service";
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductListComponent implements OnInit {
   products: Observable<Product[]>;
