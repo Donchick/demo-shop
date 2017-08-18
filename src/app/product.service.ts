@@ -10,13 +10,21 @@ import {Filter} from "./filter.model";
 export class ProductService {
   private _products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   private _filterByProps: BehaviorSubject<Filter> = new BehaviorSubject<Filter>(new Filter());
+  private _filterByName: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public filteredProducts: Observable<Product[]>;
 
   constructor( private demoShopHttpService: DemoShopHttpService ) {
-    this.filteredProducts = Observable.combineLatest(this._products, this._filterByProps)
+    this.filteredProducts = Observable.combineLatest(this._products, this._filterByProps, this._filterByName)
       .debounce(() => Observable.timer(300))
-      .map(([products, filterProps]) => {
-        return products.reduce((filteredProducts, product) => {
+      .map(([products, filterProps, filterName]) => {
+        let filteredProducts = products;
+
+        if (filterName) {
+          filteredProducts = filteredProducts.filter(product => product.name.toLowerCase()
+            .indexOf(filterName.toLowerCase()) >= 0);
+        }
+
+        return filteredProducts.reduce((filteredProducts, product) => {
           filteredProducts.push(product);
           return filteredProducts;
         }, new Array<Product>())
@@ -37,5 +45,9 @@ export class ProductService {
 
   public filterProducts(filter: Filter) {
     this._filterByProps.next(filter);
+  }
+
+  public filterByName(name: string) {
+    this._filterByName.next(name);
   }
 }

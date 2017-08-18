@@ -6,9 +6,10 @@ import {
   Routes
 } from '@angular/router';
 
-import {ProductService} from "../product.service";
+import { ProductService } from "../product.service";
 import { ProductTileComponent } from '../product-tile/product-tile.component';
 import { ProductListComponent } from '../product-list/product-list.component';
+import { ProductListHeaderComponent } from '../product-list/header/header.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
@@ -22,11 +23,15 @@ export const routes: Routes = [
 @NgModule({
   declarations: [
     ProductListComponent,
-    ProductTileComponent
+    ProductTileComponent,
+    ProductListHeaderComponent
   ],
   imports: [
     CommonModule,
     RouterModule
+  ],
+  providers: [
+    ProductService
   ]
 })
 export class MainLayoutModule { }

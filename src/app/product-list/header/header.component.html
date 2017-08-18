@@ -1,0 +1,46 @@
+<div class="filters-container">
+  <label class="btn primary-btn filters-btn">
+    Filter options
+  </label>
+  <div class="filters-box">
+    <div class="filters">
+      <div class="product-params-filters">
+        <div class="availability-filter filter">
+          <span class="filter-title">Availability:</span><br>
+          <input type="checkbox" class="checkbox" id="checkbox" />
+          <label for="checkbox">Available only</label>
+        </div>
+        <div class="gender-filter filter">
+          <span class="filter-title">Gender:</span><br>
+          <input type="radio" class="radio" name="gender" value="male" id="male">
+          <label for="male">Man</label>
+          <input type="radio" name="gender" class="radio" value="female" id="female">
+          <label for="female">Woman</label>
+          <input type="radio" name="gender" class="radio" value="other" id="other">
+          <label for="other">Unisex</label>
+        </div>
+        <div class="category-filter filter">
+          <span class="filter-title">Category:</span><br>
+          <select class="select-list category-select-list green">
+            <option value="jeans">Jeans</option>
+            <option value="shirts">Shirts</option>
+            <option value="shoes">Shoes</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </div>
+      </div>
+      <div class="product-range-filters">
+        <div class="rating-filter filter">
+          <span class="filter-title">Rating:</span><br>
+          <div id="ratingSlider" class="slider rating-slider"></div>
+        </div>
+        <div class="price-filter filter">
+          <span class="filter-title">Price:</span><br>
+          <div id="priceSlider" class="slider price-slider"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input #input type="search" class="searchbar" placeholder="Filter by text..." (keyup)="filterByName(input)"><!--
+					--><button class="search-button" type="submit"><i class="search-icon"></i></button>
+</div>
