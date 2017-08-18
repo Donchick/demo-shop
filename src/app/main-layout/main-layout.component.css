@@ -56,7 +56,7 @@ main{
 }
 
 .bag-icon{
-  content: url('../images/bag-icon.png');
+  content: url('../../assets/images/bag-icon.png');
   float: left;
   margin: 13px 30px;
   cursor: pointer;
