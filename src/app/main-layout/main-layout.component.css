@@ -1,72 +1,99 @@
-.products-list{
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
+html{
+  height: 100%;
 }
 
-.products-list .product-tile{
-  vertical-align: top;
-  height: 534px;
-  background: #fdfdfd url('../images/product-tile-background.png');
-  text-align: right;
-  font-size: 0;
-  width: calc(33.33% - 30px);
+body{
+  margin: 0;
   position: relative;
-  margin: 15px;
+  height: 100%;
+  font-family: PT Sans;
+}
+
+.body{
+  background: url('../../assets/images/background.png');
+  margin: 0;
+  position: relative;
+  font-family: PT Sans;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
+  min-height: 100%;
 }
 
-.product-details{
-  margin: 0 20px;
-  height: 208px;
+header, footer{
+  height: 50px;
+  background-image: linear-gradient(to top, rgba(40, 133, 117, 0.13) 0%, rgba(255, 255, 255, 0.13) 100%);
+  background-color: rgb(40, 133, 117);
+  line-height: 50px;
+}
+
+header{
+  border-bottom: 3px solid #58ba96;
+  width: 100%;
+  align-self: flex-start;
+}
+
+footer{
+  width: 100%;
   text-align: center;
+  align-self: flex-end;
 }
 
-.product-description{
-  height: 135px;
-  overflow: auto;
-  font-size: 14px;
+main{
+  padding: 0 15px 50px;
   text-align: left;
-  margin: 15px 0;
-  line-height: 18px;
+  margin: 0 auto;
+  max-width: 1140px;
+  background: rgba(0,0,0, 0.4);
+  min-height: calc(100% - 153px);
+  flex-grow: 99;
 }
 
-.product-name{
-  max-height: 50px;
-  overflow: hidden;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 15px 0;
-  text-align: left;
-  border-bottom: 2px solid #2ec5cc;
+.header-menu{
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  text-align: right;
 }
 
-.product-price{
-  font-size: 24px;
-  font-weight: bold;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  line-height: 35px;
+.bag-icon{
+  content: url('../images/bag-icon.png');
+  float: left;
+  margin: 13px 30px;
+  cursor: pointer;
 }
 
-.product-price .currency{
-  color: #288575;
+.logout-icon{
+  content: url('../../assets/images/logout-icon.png');
+  vertical-align: middle;
+  margin: 0 30px 0 10px;
+  cursor: pointer;
 }
 
-.product-tile .show-more{
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+.user-greet, footer{
+  color: #FFFFFF;
+  font-size: 15px;
 }
 
-/**
-	FINISH
-	Products list and product tiles styles
-**/
-/**
-	START
-	Filters box styles
-**/
+i{
+  font-style: italic;
+}
+
+@media (max-width: 1000px) {
+  main{
+    max-width: 780px;
+  }
+
+  .header-menu{
+    max-width: 840px;
+  }
+}
+
+@media (max-width: 800px) {
+  main{
+    max-width: 480px;
+  }
+
+  .header-menu{
+    max-width: 540px;
+  }
+}
