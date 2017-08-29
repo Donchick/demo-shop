@@ -9,14 +9,16 @@ import {Filter} from "./filter.model";
 @Injectable()
 export class ProductService {
   private _products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-  private _filterByProps: BehaviorSubject<Filter> = new BehaviorSubject<Filter>(new Filter());
+  private _filterByProps: BehaviorSubject<Filter> = new BehaviorSubject<Filter>(null);
   private _filterByName: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _productsOnPageCount: BehaviorSubject<number> = new BehaviorSubject<number>(6);
   public filteredProducts: Observable<Product[]>;
 
   constructor( private demoShopHttpService: DemoShopHttpService ) {
-    this.filteredProducts = Observable.combineLatest(this._products, this._filterByProps, this._filterByName)
+    this.filteredProducts = Observable.combineLatest(this._products,
+      this._productsOnPageCount, this._filterByProps, this._filterByName)
       .debounce(() => Observable.timer(300))
-      .map(([products, filterProps, filterName]) => {
+      .map(([products, productsOnPageCount, filterProps, filterName]) => {
         let filteredProducts = products;
 
         if (filterName) {
@@ -28,7 +30,7 @@ export class ProductService {
           filteredProducts.push(product);
           return filteredProducts;
         }, new Array<Product>())
-          .slice(0, filterProps.productCount);
+          .slice(0, productsOnPageCount);
       });
   }
 
@@ -37,8 +39,10 @@ export class ProductService {
       .map(response => response.text())
       .map(jsonProducts => JSON.parse(jsonProducts))
       .subscribe(products => {
-        products = products.map(product => new Product(product.id, product.categryId, product.image,
-          product.name, product.description, product.cost, product.rating, 1, product.count, product.soldCount));
+        products = products.map(product => {
+          return new Product(product.id, product.categryId, product.image,
+            product.name, product.description, product.cost, product.rating, product.gender, product.count, product.soldCount)
+        });
         this._products.next(products);
       })
   }
@@ -49,5 +53,9 @@ export class ProductService {
 
   public filterByName(name: string) {
     this._filterByName.next(name);
+  }
+
+  public getMoreProducts(count: number) {
+    this._productsOnPageCount.next(count);
   }
 }

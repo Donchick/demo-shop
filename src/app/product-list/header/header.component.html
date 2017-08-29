@@ -1,8 +1,8 @@
 <div class="filters-container">
-  <label class="btn primary-btn filters-btn">
+  <button class="btn primary-btn filters-btn" (click)="toggleFilters()">
     Filter options
-  </label>
-  <div class="filters-box">
+  </button>
+  <div class="filters-box" *ngIf="showFilters">
     <div class="filters">
       <div class="product-params-filters">
         <div class="availability-filter filter">
@@ -32,11 +32,28 @@
       <div class="product-range-filters">
         <div class="rating-filter filter">
           <span class="filter-title">Rating:</span><br>
-          <div id="ratingSlider" class="slider rating-slider"></div>
+          <ion-range-slider #ratingRange class="slider rating-slider"
+                          type="double"
+                          [min]="0"
+                          max="5"
+                          from="0"
+                          from_shadow="true"
+                          to="100"
+                          to_shadow="true"
+                          grid_num="1"
+                          (onChange)="ratingChanged($event)"></ion-range-slider>
         </div>
         <div class="price-filter filter">
           <span class="filter-title">Price:</span><br>
-          <div id="priceSlider" class="slider price-slider"></div>
+          <ion-range-slider class="slider price-slider"
+                          type="double"
+                          [min]="0"
+                          max="100"
+                          from="0"
+                          from_shadow="true"
+                          to="100"
+                          to_shadow="true"
+                          grid_num="1"></ion-range-slider>
         </div>
       </div>
     </div>

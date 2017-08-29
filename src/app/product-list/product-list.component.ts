@@ -4,6 +4,7 @@ import {Product} from "../product.model";
 import {ProductService} from "../product.service";
 import {Filter} from '../filter.model';
 import {AuthService} from "../auth.service";
+const productsCountStep = 6;
 
 @Component({
   selector: 'app-product-list',
@@ -15,6 +16,7 @@ export class ProductListComponent implements OnInit {
   products: Observable<Product[]>;
   productsFilter: Filter;
 
+  private _productsCount: number;
   private _canManageProducts: boolean;
 
   constructor(
@@ -24,6 +26,7 @@ export class ProductListComponent implements OnInit {
     this.products = this.productService.filteredProducts;
     this.productsFilter = new Filter();
     this._canManageProducts = false;
+    this._productsCount = productsCountStep;
   }
 
   ngOnInit() {
@@ -35,7 +38,7 @@ export class ProductListComponent implements OnInit {
   }
 
   loadMore() {
-    this.productsFilter.incProductsCount();
-    this.productService.filterProducts(this.productsFilter);
+    this._productsCount += productsCountStep;
+    this.productService.getMoreProducts(this._productsCount);
   }
 }

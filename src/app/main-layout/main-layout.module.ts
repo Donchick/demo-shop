@@ -10,6 +10,7 @@ import { ProductService } from "../product.service";
 import { ProductTileComponent } from '../product-tile/product-tile.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductListHeaderComponent } from '../product-list/header/header.component';
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
@@ -28,7 +29,8 @@ export const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    IonRangeSliderModule
   ],
   providers: [
     ProductService

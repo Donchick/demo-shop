@@ -11,10 +11,10 @@
   position: relative;
   width: 140px;
   text-align: center;
+  cursor: pointer;
 }
 
-.filters-container .filters-btn:hover,
-.filters-container .filters-btn.active-filters{
+.filters-container .filters-btn.active{
   background: linear-gradient(to top, #3fc6cc 0%, #278473 100%);
 }
 
@@ -33,11 +33,11 @@
 }
 
 .filters-container .filters-btn + .filters-box {
-  visibility: hidden;
+  visibility: visible;
+  opacity: 1;
   text-align: center;
   position: absolute;
   z-index: 1;
-  opacity: 0;
   right: 0;
   top: 55px;
   transition: opacity 1s;
@@ -47,12 +47,6 @@
   box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   line-height: normal;
-}
-
-.filters-container .filters-btn:hover + .filters-box,
-.filters-container .filters-box:hover {
-  visibility: visible;
-  opacity: 1;
 }
 
 .filters{
