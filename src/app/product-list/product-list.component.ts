@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Observable} from "rxjs";
+import { Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
+import {Observable, Observer, BehaviorSubject} from "rxjs";
 import {Product} from "../product.model";
 import {ProductService} from "../product.service";
 import {Filter} from '../filter.model';
@@ -13,32 +13,34 @@ const productsCountStep = 6;
   encapsulation: ViewEncapsulation.None
 })
 export class ProductListComponent implements OnInit {
+  @Output() productsFilter: BehaviorSubject<Filter> = new BehaviorSubject<Filter>(new Filter());
   products: Observable<Product[]>;
-  productsFilter: Filter;
 
   private _productsCount: number;
   private _canManageProducts: boolean;
 
   constructor(
-    private productService: ProductService,
-    private authService: AuthService
+    private _productService: ProductService,
+    private _authService: AuthService
   ) {
-    this.products = this.productService.filteredProducts;
-    this.productsFilter = new Filter();
+    this.products = this._productService.filteredProducts;
     this._canManageProducts = false;
     this._productsCount = productsCountStep;
   }
 
   ngOnInit() {
-    this.authService.canUserManageProducts
+    this._authService.canUserManageProducts
       .subscribe(value => {
         this._canManageProducts = value;
       });
-    this.productService.getProducts();
+
+    this.productsFilter.subscribe(filter => {});
+
+    this._productService.getProducts();
   }
 
   loadMore() {
     this._productsCount += productsCountStep;
-    this.productService.getMoreProducts(this._productsCount);
+    this._productService.getMoreProducts(this._productsCount);
   }
 }

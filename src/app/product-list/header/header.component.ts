@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {ProductService} from "../../product.service";
+import {BehaviorSubject} from "rxjs";
+import {Filter} from '../../filter.model';
 
 @Component({
   selector: 'app-product-list-header',
@@ -9,6 +11,7 @@ import {ProductService} from "../../product.service";
     '../../../assets/styles/components-styles/checkbox-styles.css']
 })
 export class ProductListHeaderComponent implements OnInit {
+  @Input() filter: BehaviorSubject<Filter>;
   private showFilters: boolean;
 
   constructor(private _productService: ProductService) {

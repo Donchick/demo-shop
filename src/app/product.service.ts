@@ -44,7 +44,7 @@ export class ProductService {
             product.name, product.description, product.cost, product.rating, product.gender, product.count, product.soldCount)
         });
         this._products.next(products);
-      })
+      });
   }
 
   public filterProducts(filter: Filter) {
