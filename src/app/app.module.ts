@@ -14,7 +14,6 @@ import {LoggedInGuard} from "./logged-in-guard";
 import {UnAuthGuard} from "./un-auth-guard";
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import {MainLayoutModule} from "./main-layout/main-layout.module";
-import { IonRangeSliderModule } from "ng2-ion-range-slider";
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { IonRangeSliderModule } from "ng2-ion-range-slider";
     HttpModule,
     Ng2Webstorage,
     appRoutes,
-    MainLayoutModule,
-    IonRangeSliderModule
+    MainLayoutModule
   ],
   providers: [
     { provide: 'ENV_URL', useValue: 'http://localhost:3000/api' },

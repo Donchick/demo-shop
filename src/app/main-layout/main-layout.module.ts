@@ -5,6 +5,8 @@ import {
   RouterModule,
   Routes
 } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { ProductService } from "../product.service";
 import { ProductTileComponent } from '../product-tile/product-tile.component';
@@ -30,7 +32,9 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule,
-    IonRangeSliderModule
+    IonRangeSliderModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ProductService

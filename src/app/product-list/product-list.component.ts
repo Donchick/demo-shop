@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
-import {Observable, Observer, BehaviorSubject} from "rxjs";
+import {Observable, Observer, Subject} from "rxjs";
 import {Product} from "../product.model";
 import {ProductService} from "../product.service";
 import {Filter} from '../filter.model';
+import { IProductsFilter } from '../models/products-filter.interface';
 import {AuthService} from "../auth.service";
 const productsCountStep = 6;
 
@@ -13,7 +14,7 @@ const productsCountStep = 6;
   encapsulation: ViewEncapsulation.None
 })
 export class ProductListComponent implements OnInit {
-  @Output() productsFilter: BehaviorSubject<Filter> = new BehaviorSubject<Filter>(new Filter());
+  @Output() productsFilter: Subject<IProductsFilter> = new Subject<IProductsFilter>();
   products: Observable<Product[]>;
 
   private _productsCount: number;
@@ -34,7 +35,9 @@ export class ProductListComponent implements OnInit {
         this._canManageProducts = value;
       });
 
-    this.productsFilter.subscribe(filter => {});
+    this.productsFilter.subscribe(filter => {
+      console.log(filter);
+    });
 
     this._productService.getProducts();
   }
