@@ -13,11 +13,11 @@
           </div>
           <div class="gender-filter filter">
             <span class="filter-title">Gender:</span><br>
-            <input type="radio" class="radio" name="gender" value="male" id="male">
+            <input type="radio" class="radio" name="gender" [value]="0" id="male" [formControl]="filterForm.controls['gender']">
             <label for="male">Man</label>
-            <input type="radio" name="gender" class="radio" value="female" id="female">
+            <input type="radio" name="gender" class="radio" [value]="1" id="female" [formControl]="filterForm.controls['gender']">
             <label for="female">Woman</label>
-            <input type="radio" name="gender" class="radio" value="other" id="other">
+            <input type="radio" name="gender" class="radio" [value]="2" id="other" [formControl]="filterForm.controls['gender']">
             <label for="other">Unisex</label>
           </div>
           <div class="category-filter filter">

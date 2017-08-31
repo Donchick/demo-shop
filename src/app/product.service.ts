@@ -4,12 +4,12 @@ import {DemoShopHttpService} from "./demo-shop-http.service";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/scan';
 import {Product} from "./product.model";
-import {Filter} from "./filter.model";
+import { IProductsFilter } from "./models/products-filter.interface";
 
 @Injectable()
 export class ProductService {
   private _products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-  private _filterByProps: BehaviorSubject<Filter> = new BehaviorSubject<Filter>(null);
+  private _filterByProps: BehaviorSubject<IProductsFilter> = new BehaviorSubject<IProductsFilter>(null);
   private _filterByName: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private _productsOnPageCount: BehaviorSubject<number> = new BehaviorSubject<number>(6);
   public filteredProducts: Observable<Product[]>;
@@ -47,7 +47,7 @@ export class ProductService {
       });
   }
 
-  public filterProducts(filter: Filter) {
+  public filterProducts(filter: IProductsFilter) {
     this._filterByProps.next(filter);
   }
 

@@ -1,10 +1,9 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ProductService} from "../../product.service";
-import { Observable, Subject } from "rxjs";
-import { Gender } from '../../gender';
+import { Subject } from "rxjs";
+import { Gender } from '../../models/gender';
 import { IProductsFilter } from '../../models/products-filter.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {isBoolean} from "util";
 
 @Component({
   selector: 'app-product-list-header',
