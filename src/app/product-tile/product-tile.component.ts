@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation, HostBinding } from '@angular/core';
-import { Product } from "../product.model";
+import { IProduct } from "../models/product.interface";
 
 @Component({
   selector: 'app-product-tile',
@@ -8,7 +8,7 @@ import { Product } from "../product.model";
   encapsulation: ViewEncapsulation.None,
 })
 export class ProductTileComponent implements OnInit {
-  @Input() product: Product;
+  @Input() product: IProduct;
 
   constructor() { }
 

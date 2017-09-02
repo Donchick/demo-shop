@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
 import {Observable, Observer, Subject} from "rxjs";
-import {Product} from "../product.model";
-import {ProductService} from "../product.service";
+import { IProduct } from "../models/product.interface";
+import { ProductService } from "../product.service";
 import { IProductsFilter } from '../models/products-filter.interface';
-import {AuthService} from "../auth.service";
-import {ICategory} from "../models/category";
+import { AuthService } from "../auth.service";
+import { ICategory } from "../models/category";
 const productsCountStep = 6;
 
 @Component({
@@ -15,7 +15,7 @@ const productsCountStep = 6;
 })
 export class ProductListComponent implements OnInit {
   @Output() productsFilter: Subject<IProductsFilter> = new Subject<IProductsFilter>();
-  products: Observable<Product[]>;
+  products: Observable<IProduct[]>;
   categories: Array<ICategory> = [{
     id: -1, name: 'All'
   }, {
@@ -47,7 +47,7 @@ export class ProductListComponent implements OnInit {
       });
 
     this.productsFilter.subscribe((filter: IProductsFilter) => {
-      console.log(filter);
+      this._productService.filterProducts(filter);
     });
 
     this._productService.getProducts();

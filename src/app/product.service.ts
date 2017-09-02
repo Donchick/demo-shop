@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import {Subject, Observable, BehaviorSubject} from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import {DemoShopHttpService} from "./demo-shop-http.service";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/scan';
-import {Product} from "./product.model";
+import { IProduct } from "./models/product.interface";
 import { IProductsFilter } from "./models/products-filter.interface";
+import { Gender } from './models/gender';
+
 
 @Injectable()
 export class ProductService {
-  private _products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  private _products: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>([]);
   private _filterByProps: BehaviorSubject<IProductsFilter> = new BehaviorSubject<IProductsFilter>(null);
   private _filterByName: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private _productsOnPageCount: BehaviorSubject<number> = new BehaviorSubject<number>(6);
-  public filteredProducts: Observable<Product[]>;
+  public filteredProducts: Observable<IProduct[]>;
 
   constructor( private demoShopHttpService: DemoShopHttpService ) {
     this.filteredProducts = Observable.combineLatest(this._products,
@@ -29,7 +31,7 @@ export class ProductService {
         return filteredProducts.reduce((filteredProducts, product) => {
           filteredProducts.push(product);
           return filteredProducts;
-        }, new Array<Product>())
+        }, new Array<IProduct>())
           .slice(0, productsOnPageCount);
       });
   }
@@ -40,8 +42,17 @@ export class ProductService {
       .map(jsonProducts => JSON.parse(jsonProducts))
       .subscribe(products => {
         products = products.map(product => {
-          return new Product(product.id, product.categryId, product.image,
-            product.name, product.description, product.cost, product.rating, product.gender, product.count, product.soldCount)
+          return {
+            id: product.id,
+            categoryId: product.categryId,
+            imageSrc: product.image,
+            name: product.name,
+            description: product.description,
+            cost: product.cost,
+            rating: product.rating,
+            gender: Gender[product.gender],
+            count: product.count,
+            soldCount: product.soldCount}
         });
         this._products.next(products);
       });
