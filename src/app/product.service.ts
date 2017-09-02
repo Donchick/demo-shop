@@ -6,6 +6,7 @@ import 'rxjs/add/operator/scan';
 import { IProduct } from "./models/product.interface";
 import { IProductsFilter } from "./models/products-filter.interface";
 import { Gender } from './models/gender';
+import {ICategory} from "./models/category.interface";
 
 
 const filterSubject = function (products: Array<IProduct>, filter: IProductsFilter): Array<IProduct> {
@@ -41,7 +42,9 @@ export class ProductService {
   private _filterByProps: BehaviorSubject<IProductsFilter> = new BehaviorSubject<IProductsFilter>(null);
   private _filterByName: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private _productsOnPageCount: BehaviorSubject<number> = new BehaviorSubject<number>(6);
+  private _categories: BehaviorSubject<Array<ICategory>> = new BehaviorSubject<Array<ICategory>>([]);
   public filteredProducts: Observable<IProduct[]>;
+  public categories: Observable<Array<ICategory>> = this._categories.asObservable();
 
   constructor( private demoShopHttpService: DemoShopHttpService ) {
     this.filteredProducts = Observable.combineLatest(this._products,
@@ -71,7 +74,7 @@ export class ProductService {
         products = products.map(product => {
           return {
             id: product.id,
-            categoryId: product.categryId,
+            categoryId: product.categoryId,
             imageSrc: product.image,
             name: product.name,
             description: product.description,
@@ -83,6 +86,13 @@ export class ProductService {
         });
         this._products.next(products);
       });
+  }
+
+  loadCategories () {
+    this.demoShopHttpService.get(`/categories`)
+      .map(response => response.text())
+      .map(jsonCategories => JSON.parse(jsonCategories))
+      .subscribe(categories => this._categories.next(categories));
   }
 
   public filterProducts(filter: IProductsFilter) {

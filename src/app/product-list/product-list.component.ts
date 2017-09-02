@@ -15,18 +15,8 @@ const productsCountStep = 6;
 })
 export class ProductListComponent implements OnInit {
   @Output() productsFilter: Subject<IProductsFilter> = new Subject<IProductsFilter>();
+  @Output() categories:  Observable<Array<ICategory>>;
   products: Observable<IProduct[]>;
-  categories: Array<ICategory> = [{
-    id: -1, name: 'All'
-  }, {
-    id: 0, name: 'Jeans'
-  }, {
-    id: 1, name: 'Shirts'
-  }, {
-    id: 2, name: 'Shoes'
-  }, {
-    id: 3, name: 'Accessories'
-  }];
 
   private _productsCount: number;
   private _canManageProducts: boolean;
@@ -38,6 +28,7 @@ export class ProductListComponent implements OnInit {
     this.products = this._productService.filteredProducts;
     this._canManageProducts = false;
     this._productsCount = productsCountStep;
+    this.categories = this._productService.categories;
   }
 
   ngOnInit() {
@@ -51,6 +42,7 @@ export class ProductListComponent implements OnInit {
     });
 
     this._productService.getProducts();
+    this._productService.loadCategories();
   }
 
   loadMore() {

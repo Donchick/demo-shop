@@ -23,7 +23,8 @@
           <div class="category-filter filter">
             <span class="filter-title">Category:</span><br>
             <select class="select-list category-select-list green" [formControl]="filterForm.controls['category']">
-              <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+              <option [ngValue]="initialCategory">{{initialCategory.name}}</option>
+              <option *ngFor="let category of categories | async" [ngValue]="category">{{category.name}}</option>
             </select>
           </div>
         </div>

@@ -18,6 +18,10 @@ export class ProductListHeaderComponent implements OnInit {
   @Input() categories: Array<ICategory>;
   private showFilters: boolean;
   public filterForm: FormGroup;
+  public readonly initialCategory = {
+    id: -1,
+    name: 'All'
+  };
 
   constructor(private _productService: ProductService, private _formBuilder: FormBuilder) {
     this.showFilters = false;
@@ -29,7 +33,7 @@ export class ProductListHeaderComponent implements OnInit {
       gender: [Gender.Unisex],
       rating: {from: 0, to: 5},
       price: {from: 0, to: 1000},
-      category: [this.categories[0]]
+      category: this.initialCategory
     });
     this.filterForm.valueChanges.subscribe(filter => {
       this.productsFilter.next(filter);
