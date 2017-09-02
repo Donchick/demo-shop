@@ -7,5 +7,5 @@ export interface IProductsFilter {
   gender: Gender;
   rating: IRange,
   price: IRange,
-  categoryId?: ICategory;
+  category: ICategory;
 }

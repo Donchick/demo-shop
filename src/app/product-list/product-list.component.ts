@@ -4,7 +4,7 @@ import { IProduct } from "../models/product.interface";
 import { ProductService } from "../product.service";
 import { IProductsFilter } from '../models/products-filter.interface';
 import { AuthService } from "../auth.service";
-import { ICategory } from "../models/category";
+import { ICategory } from "../models/category.interface";
 const productsCountStep = 6;
 
 @Component({

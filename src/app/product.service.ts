@@ -8,6 +8,33 @@ import { IProductsFilter } from "./models/products-filter.interface";
 import { Gender } from './models/gender';
 
 
+const filterSubject = function (products: Array<IProduct>, filter: IProductsFilter): Array<IProduct> {
+  return products.reduce((products: Array<IProduct>, product: IProduct) => {
+    if (filter.category.id !== -1 && product.categoryId !== filter.category.id) {
+      return products;
+    }
+
+    if (filter.availableOnly && product.count <= 0) {
+      return products;
+    }
+
+    if (filter.gender !== Gender.Unisex && filter.gender !== product.gender) {
+      return products;
+    }
+
+    if (filter.rating.from  > product.rating || filter.rating.to < product.rating) {
+      return products;
+    }
+
+    if (filter.price.from  > product.cost || filter.price.to < product.cost) {
+      return products;
+    }
+
+    products.push(product);
+    return products;
+  }, []);
+};
+
 @Injectable()
 export class ProductService {
   private _products: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>([]);
@@ -21,7 +48,7 @@ export class ProductService {
       this._productsOnPageCount, this._filterByProps, this._filterByName)
       .debounce(() => Observable.timer(300))
       .map(([products, productsOnPageCount, filterProps, filterName]) => {
-        let filteredProducts = products;
+        let filteredProducts = filterProps ? filterSubject(products, filterProps) : products;
 
         if (filterName) {
           filteredProducts = filteredProducts.filter(product => product.name.toLowerCase()
