@@ -1,11 +1,11 @@
 import { Gender } from './gender';
+import { ICategory } from './category.interface';
+import { IRange } from './range.interface';
 
 export interface IProductsFilter {
   availableOnly: boolean;
   gender: Gender;
-  ratingFrom: number;
-  ratingTo: number;
-  priceFrom: number;
-  priceTo: number;
-  categoryId?: number;
+  rating: IRange,
+  price: IRange,
+  categoryId?: ICategory;
 }

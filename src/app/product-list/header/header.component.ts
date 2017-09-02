@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {ProductService} from "../../product.service";
 import { Subject } from "rxjs";
 import { Gender } from '../../models/gender';
+import { ICategory } from '../../models/category.interface';
 import { IProductsFilter } from '../../models/products-filter.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -14,22 +15,22 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ProductListHeaderComponent implements OnInit {
   @Input() productsFilter: Subject<IProductsFilter>;
+  @Input() categories: Array<ICategory>;
   private showFilters: boolean;
   public filterForm: FormGroup;
 
-  constructor(private _productService: ProductService, formBuilder: FormBuilder) {
+  constructor(private _productService: ProductService, private _formBuilder: FormBuilder) {
     this.showFilters = false;
-    this.filterForm = formBuilder.group({
-      availableOnly: [false],
-      gender: [Gender.Unisex],
-      ratingFrom: [0],
-      ratingTo: [5],
-      priceFrom: [0],
-      priceTo: [1000]
-    });
   }
 
   ngOnInit() {
+    this.filterForm = this._formBuilder.group({
+      availableOnly: [false],
+      gender: [Gender.Unisex],
+      rating: {from: 0, to: 5},
+      price: {from: 0, to: 1000},
+      category: [this.categories[0]]
+    });
     this.filterForm.valueChanges.subscribe(filter => {
       this.productsFilter.next(filter);
     });
@@ -45,10 +46,20 @@ export class ProductListHeaderComponent implements OnInit {
   }
 
   ratingRangeChanged (data: any) {
-    console.log('Rating', data);
+    this.filterForm.patchValue({
+      rating: {
+        from: data.from,
+        to: data.to
+      }
+    });
   }
 
   priceRangeChanged (data: any) {
-
+    this.filterForm.patchValue({
+      price: {
+        from: data.from,
+        to: data.to
+      }
+    });
   }
 }

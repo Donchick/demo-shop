@@ -4,6 +4,7 @@ import {Product} from "../product.model";
 import {ProductService} from "../product.service";
 import { IProductsFilter } from '../models/products-filter.interface';
 import {AuthService} from "../auth.service";
+import {ICategory} from "../models/category";
 const productsCountStep = 6;
 
 @Component({
@@ -15,6 +16,17 @@ const productsCountStep = 6;
 export class ProductListComponent implements OnInit {
   @Output() productsFilter: Subject<IProductsFilter> = new Subject<IProductsFilter>();
   products: Observable<Product[]>;
+  categories: Array<ICategory> = [{
+    id: -1, name: 'All'
+  }, {
+    id: 0, name: 'Jeans'
+  }, {
+    id: 1, name: 'Shirts'
+  }, {
+    id: 2, name: 'Shoes'
+  }, {
+    id: 3, name: 'Accessories'
+  }];
 
   private _productsCount: number;
   private _canManageProducts: boolean;

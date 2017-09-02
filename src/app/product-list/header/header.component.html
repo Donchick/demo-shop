@@ -22,11 +22,8 @@
           </div>
           <div class="category-filter filter">
             <span class="filter-title">Category:</span><br>
-            <select class="select-list category-select-list green">
-              <option value="jeans">Jeans</option>
-              <option value="shirts">Shirts</option>
-              <option value="shoes">Shoes</option>
-              <option value="accessories">Accessories</option>
+            <select class="select-list category-select-list green" [formControl]="filterForm.controls['category']">
+              <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
             </select>
           </div>
         </div>
@@ -37,9 +34,9 @@
                             type="int"
                             [min]="0"
                             max="5"
-                            from="0"
-                            to="100"
-                            (onFinish)="ratingRangeChanged()"></ion-range-slider>
+                            [from]="filterForm.controls['rating'].from"
+                            [to]="filterForm.controls['rating'].to"
+                            (onFinish)="ratingRangeChanged($event)"></ion-range-slider>
           </div>
           <div class="price-filter filter">
             <span class="filter-title">Price:</span><br>
@@ -47,9 +44,9 @@
                             type="int"
                             [min]="0"
                             max="1000"
-                            from="0"
-                            to="1000"
-                            (onFinish)="priceRangeChanged()"></ion-range-slider>
+                            [from]="filterForm.controls['price'].from"
+                            [to]="filterForm.controls['price'].to"
+                            (onFinish)="priceRangeChanged($event)"></ion-range-slider>
           </div>
         </div>
       </div>
