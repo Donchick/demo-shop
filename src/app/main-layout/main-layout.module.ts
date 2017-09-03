@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { ProductService } from "../product.service";
+import { ProductPageComponent } from '../product-page/product-page.component';
 import { ProductTileComponent } from '../product-tile/product-tile.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductListHeaderComponent } from '../product-list/header/header.component';
@@ -19,6 +20,11 @@ export const routes: Routes = [
   {
     path: 'product-list',
     component: ProductListComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'product-page/:id',
+    component: ProductPageComponent,
     canActivate: [LoggedInGuard]
   }
 ];

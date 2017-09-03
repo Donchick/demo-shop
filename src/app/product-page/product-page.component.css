@@ -1,0 +1,59 @@
+.manager-links{
+  margin-top: 30px;
+}
+
+.product-description a,
+.edit-product-link,
+.delete-product-link{
+  cursor: pointer;
+  text-decoration: underline;
+  color: #288575;
+}
+
+.delete-product-modal .modal-body{
+  height: 120px;
+  text-align: right;
+}
+
+.delete-product-modal {
+  width: 700px;
+}
+
+.buttons-block{
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.delete-product-modal .cancel-delete-btn,
+.delete-product-modal .delete-product-btn{
+  display: inline-block;
+  width: 170px;
+  height: 50px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 50px;
+  margin: 0 10px;
+}
+
+.edit-product-modal{
+  width: 680px;
+  height: 730px;
+}
+
+@media (max-width: 800px) {
+  .delete-product-modal{
+    max-width: 540px;
+    width: 100%;
+  }
+
+  .modal-open.edit-product:checked ~ .modal-wrap.edit-product .modal-dialog{
+    top: 50px;
+    transform: translate(-50%, 0);
+  }
+
+  .edit-product-modal{
+    height: auto;
+    width: 100%;
+  }
+}
