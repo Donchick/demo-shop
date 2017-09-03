@@ -53,6 +53,13 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
+  width: 90px;
+}
+.product-tile .delete-product {
+  position: absolute;
+  bottom: 20px;
+  width: 90px;
+  right: 120px;
 }
 
 .product-img{
