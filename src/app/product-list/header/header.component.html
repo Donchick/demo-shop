@@ -33,8 +33,8 @@
             <span class="filter-title">Rating:</span><br>
             <ion-range-slider class="slider rating-slider"
                             type="int"
-                            [min]="0"
-                            max="5"
+                            [min]="ratingRange.from"
+                            [max]="ratingRange.to"
                             [from]="filterForm.controls['rating'].from"
                             [to]="filterForm.controls['rating'].to"
                             (onFinish)="ratingRangeChanged($event)"></ion-range-slider>
@@ -43,8 +43,8 @@
             <span class="filter-title">Price:</span><br>
             <ion-range-slider class="slider price-slider"
                             type="int"
-                            [min]="0"
-                            max="1000"
+                            [min]="priceRange.from"
+                            [max]="priceRange.to"
                             [from]="filterForm.controls['price'].from"
                             [to]="filterForm.controls['price'].to"
                             (onFinish)="priceRangeChanged($event)"></ion-range-slider>

@@ -22,6 +22,14 @@ export class ProductListHeaderComponent implements OnInit {
     id: -1,
     name: 'All'
   };
+  public readonly ratingRange = {
+    from: 0,
+    to: 5
+  };
+  public readonly priceRange = {
+    from: 0,
+    to: 1000
+  };
 
   constructor(private _productService: ProductService, private _formBuilder: FormBuilder) {
     this.showFilters = false;
@@ -31,8 +39,14 @@ export class ProductListHeaderComponent implements OnInit {
     this.filterForm = this._formBuilder.group({
       availableOnly: [false],
       gender: [Gender.Unisex],
-      rating: {from: 0, to: 5},
-      price: {from: 0, to: 1000},
+      rating: {
+        from: this.ratingRange.from,
+        to: this.ratingRange.to
+      },
+      price: {
+        from: this.priceRange.from,
+        to: this.priceRange.to
+      },
       category: this.initialCategory
     });
     this.filterForm.valueChanges.subscribe(filter => {
