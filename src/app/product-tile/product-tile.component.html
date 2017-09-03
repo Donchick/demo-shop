@@ -1,11 +1,9 @@
 <div class="product-img">
   <img src="{{product.imageSrc}}">
   <div class="product-rating">
-    <i class="gold-star ating-start"></i>
-    <i class="gold-star rating-start"></i>
-    <i class="gold-star rating-start"></i>
-    <i class="star rating-start"></i>
-    <i class="star rating-start"></i>
+    <i *ngFor="let number of [1,2,3,4,5]"
+       [ngClass]="product.rating >= number ? 'gold-star' : 'star'"
+       class="rating-start"></i>
   </div>
 </div>
 <div class="product-details">

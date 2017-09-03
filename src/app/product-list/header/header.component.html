@@ -2,7 +2,7 @@
   <button class="btn primary-btn filters-btn" (click)="toggleFilters()">
     Filter options
   </button>
-  <div class="filters-box" *ngIf="showFilters">
+  <div class="filters-box" [class.open]="showFilters">
     <form [formGroup]="filterForm" novalidate>
       <div class="filters">
         <div class="product-params-filters">
