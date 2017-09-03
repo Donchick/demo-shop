@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from "rxjs";
 import {DemoShopHttpService} from "./demo-shop-http.service";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/scan';
+import 'rxjs/add/operator/toPromise';
 import { IProduct } from "./models/product.interface";
 import { IProductsFilter } from "./models/products-filter.interface";
 import { Gender } from './models/gender';
@@ -66,11 +67,12 @@ export class ProductService {
       });
   }
 
-  getProducts() {
-    this.demoShopHttpService.get(`/products`)
+  loadProducts() {
+    let productObservable = this.demoShopHttpService.get(`/products`)
       .map(response => response.text())
-      .map(jsonProducts => JSON.parse(jsonProducts))
-      .subscribe(products => {
+      .map(jsonProducts => JSON.parse(jsonProducts));
+
+      productObservable.subscribe(products => {
         products = products.map(product => {
           return {
             id: product.id,
@@ -86,6 +88,8 @@ export class ProductService {
         });
         this._products.next(products);
       });
+
+      return productObservable;
   }
 
   loadCategories () {
@@ -96,11 +100,14 @@ export class ProductService {
   }
 
   public filterProducts(filter: IProductsFilter) {
-    this._filterByProps.next(filter);
+    this.loadProducts().toPromise()
+      .then(() => this._filterByProps.next(filter));
   }
 
   public filterByName(name: string) {
-    this._filterByName.next(name);
+    this.loadProducts().toPromise()
+      .then(() => this._filterByName.next(name));
+
   }
 
   public getMoreProducts(count: number) {

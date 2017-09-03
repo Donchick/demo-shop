@@ -41,7 +41,7 @@ export class ProductListComponent implements OnInit {
       this._productService.filterProducts(filter);
     });
 
-    this._productService.getProducts();
+    this._productService.loadProducts();
     this._productService.loadCategories();
   }
 
