@@ -2,23 +2,19 @@
   <span class="back-link navigation-link"><a href="/">Back</a></span>
   <span class="category-path navigation-link">Category: <a href="/">Man / Acive wear</a></span>
 </div>
-<div class="product-block">
+<div class="product-block" *ngIf="product">
   <div class="product-img">
-    <img src="images/product-2.png">
+    <img src="{{product.imageSrc}}">
     <div class="product-rating">
-      <i class="gold-star rating-start"></i>
-      <i class="gold-star rating-start"></i>
-      <i class="star rating-start"></i>
-      <i class="star rating-start"></i>
-      <i class="star rating-start"></i>
+      <i *ngFor="let number of [1,2,3,4,5]"
+         [ngClass]="product.rating >= number ? 'gold-star' : 'star'"
+         class="rating-start"></i>
     </div>
   </div>
   <div class="product-details">
-    <p class="product-name">Active Coat Lorem 2</p>
+    <p class="product-name">{{product.name}}</p>
     <div class="product-description">
-      Lorem ipsum dolor sit amet, consectetur adipisicing
-      elit. Adipisci aperiam, libero aliquid architecto ad quis
-      maiores sit nulla officiis.
+      {{product.description}}
       <p class="manager-links">
         You can
         <a href="#">add 5 more</a>
@@ -28,7 +24,7 @@
         <label class="delete-product-link">delete</label>
         them.</p>
     </div>
-    <span class="product-price"><i class="currency">$</i>716.45<span class="product-qty">(10 items left)</span></span>
+    <span class="product-price"><i class="currency">$</i>{{product.cost}}<span class="product-qty">(10 items left)</span></span>
     <button for="success_purchased_modal" class="btn primary-btn buy-product-btn modal-open-close-button">Buy</button>
   </div>
 </div>

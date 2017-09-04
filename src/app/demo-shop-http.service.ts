@@ -20,7 +20,7 @@ export class DemoShopHttpService {
 
   get (path: string, query?: string): Observable<Response> {
     var reqOpts = this.getReqOptions();
-    return this.http.get(`${this.envUrl}${path}`, reqOpts);
+    return this.http.get(`${this.envUrl}${path}?${query}`, reqOpts);
   }
 
   post (path: string, body: any): Observable<Response> {

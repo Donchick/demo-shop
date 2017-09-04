@@ -67,32 +67,43 @@ export class ProductService {
       });
   }
 
-  loadProducts() {
+  private _buildProductModel (object): IProduct {
+    return {
+      id: object.id,
+      categoryId: object.categoryId,
+      imageSrc: object.image,
+      name: object.name,
+      description: object.description,
+      cost: object.cost,
+      rating: object.rating,
+      gender: Gender[Gender[object.gender]],
+      count: object.count,
+      soldCount: object.soldCount
+    }
+  }
+
+  public loadProducts () {
     let productObservable = this.demoShopHttpService.get(`/products`)
       .map(response => response.text())
       .map(jsonProducts => JSON.parse(jsonProducts));
 
       productObservable.subscribe(products => {
-        products = products.map(product => {
-          return {
-            id: product.id,
-            categoryId: product.categoryId,
-            imageSrc: product.image,
-            name: product.name,
-            description: product.description,
-            cost: product.cost,
-            rating: product.rating,
-            gender: Gender[product.gender],
-            count: product.count,
-            soldCount: product.soldCount}
-        });
+        products = products.map((product): IProduct => this._buildProductModel(product));
         this._products.next(products);
       });
 
       return productObservable;
   }
 
-  loadCategories () {
+  public getProduct (productId: number) {
+    return this.demoShopHttpService.get('/products', `id=${productId}`)
+      .map(response => response.text())
+      .map(jsonProducts => JSON.parse(jsonProducts))
+      .map(products => this._buildProductModel(products[0]))
+      .share();
+  }
+
+  public loadCategories () {
     this.demoShopHttpService.get(`/categories`)
       .map(response => response.text())
       .map(jsonCategories => JSON.parse(jsonCategories))
