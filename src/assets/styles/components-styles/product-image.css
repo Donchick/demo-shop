@@ -20,14 +20,14 @@
     width: 16px;
     height: 16px;
     display: inline-block;
-	margin: 0 2px;
+	  margin: 0 2px;
     margin: 7px 2px;
 }
 
 .gold-star{
-    background: url(../../images/gold-star.png);
+    background: url(../../../assets/images/gold-star.png);
 }
 
 .star{
-	background: url('../../images/star.png');
+	background: url(../../../assets/images/star.png);
 }

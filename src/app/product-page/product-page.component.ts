@@ -7,8 +7,7 @@ import {ProductService} from "../product.service";
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.css',
-    '../../assets/styles/components-styles/product-image.css'],
-  encapsulation: ViewEncapsulation.None
+    '../../assets/styles/components-styles/product-image.css']
 })
 export class ProductPageComponent implements OnInit {
   public _id: number;

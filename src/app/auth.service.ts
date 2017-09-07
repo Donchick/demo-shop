@@ -50,7 +50,7 @@ export class AuthService {private _currentUser: UserModel;
   }
 
   private setCurrentUser (user: UserModel) {
-    return this.httpService.get(`/users?login=${user.login}`)
+    return this.httpService.get(`/users`, `login=${user.login}`)
       .map((response: Response) => response.text())
       .map((jsonUser: string) => JSON.parse(jsonUser))
       .do(([user]) => {
@@ -62,7 +62,7 @@ export class AuthService {private _currentUser: UserModel;
         );
       })
       .mergeMap(([user]) => {
-        return this.httpService.get(`/roles?id=${user.roleId}`)
+        return this.httpService.get(`/roles`, `id=${user.roleId}`)
       })
       .map((response: Response) => response.text())
       .map((jsonUser: string) => JSON.parse(jsonUser))
