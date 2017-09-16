@@ -2,6 +2,10 @@
   width: 680px;
   height: 730px;
 }
+
+.edit-product-modal .edit-product-form {
+  height: 100%;
+}
 /* Modal window styles */
 .modal-header{
   font-size: 22px;
@@ -185,10 +189,17 @@
   resize: none;
 }
 
+.edit-product-modal .buttons-block{
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
 .image-preview{
   width: 100%;
   margin-top: 10px;
   border: 1px solid #ffffff;
+  max-height: 200px;
 }
 
 @media (max-width: 800px) {
