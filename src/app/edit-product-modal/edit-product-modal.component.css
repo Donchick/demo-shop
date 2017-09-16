@@ -1,0 +1,226 @@
+.edit-product-modal{
+  width: 680px;
+  height: 730px;
+}
+/* Modal window styles */
+.modal-header{
+  font-size: 22px;
+  padding: 0 40px;
+  text-align: left;
+  height: 60px;
+  line-height: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  border-bottom: #eaeaea solid 1px;
+  font-family: PT Sans Caption, serif, sans-serif;
+}
+
+.modal-body{
+  background: #ecebe9 url('../../assets/images/product-tile-background.png');
+  padding: 50px 30px 30px;
+  position: relative;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: inset 0px 2px 0px rgba(0,0,0, 0.1);
+}
+
+.modal-content{
+  font-size: 24px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* shadow layer */
+.modal-wrap::before {
+  content: "";
+  display: none;
+  background: rgba(0, 0, 0, .3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-overlay {
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 102;
+}
+
+/* activating shadow layer */
+.modal-wrap.open::before {
+  display: block;
+}
+
+.open .modal-dialog {
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-dialog {
+  background: #ffffff;
+  border: none;
+  border-radius: 10px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 103;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+.edit-product-modal .modal-header p{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edit-product-modal .modal-body{
+  height: calc(100% - 121px);
+  padding: 30px;
+  box-shadow: inset 0px 2px 0px rgba(0,0,0, 0.1);
+}
+
+.edit-product-modal .modal-content{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+  height: calc(100% - 70px);
+}
+
+.edit-product-modal .product-desc-block,
+.edit-product-modal .product-params-block{
+  width: 48%;
+}
+
+.edit-product-modal .cancel-edit-btn,
+.edit-product-modal .edit-product-btn{
+  display: inline-block;
+  width: 170px;
+  height: 50px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.edit-product-modal .cancel-edit-btn{
+  margin-right: 20px;
+}
+
+.edit-product-modal .desc-block,
+.edit-product-modal .param-block{
+  width: 100%;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.edit-product-modal .product-name-input,
+.edit-product-modal .link-to-image,
+.edit-product-modal .product-price-input{
+  height: 35px;
+  width: calc(100% - 20px);
+  border-radius: 5px;
+  border: 3px solid rgba(0,0,0,0);
+  outline: 0;
+  font-size: 14px;
+  padding: 0 10px;
+  font-family: PT Sans, serif, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edit-product-modal .product-name-input:focus,
+.edit-product-modal .link-to-image:focus,
+.edit-product-modal .product-price-input:focus,
+.edit-product-modal .product-decs-input:focus{
+  border: 3px solid rgba(41, 136, 121, 0.4);
+}
+
+.product-desc-block .title,
+.product-params-block .title{
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.product-desc-block .category-select-list,
+.product-params-block .product-rating-list{
+  height: 35px;
+  border: none;
+  width: 100%;
+}
+
+.gender-type.desc-block{
+  font-size: 14px;
+}
+
+.desc-block.product-description{
+  height: calc(100% - 253px);
+  margin-bottom: 0;
+}
+
+.product-description .product-decs-input{
+  width: calc(100% - 26px);
+  height: calc(100% - 66px);
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0);
+  outline: 0;
+  font-size: 14px;
+  padding: 15px 10px;
+  resize: none;
+}
+
+.image-preview{
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #ffffff;
+}
+
+@media (max-width: 800px) {
+  .edit-product-modal .modal-body{
+    height: auto;
+    padding: 0 30px;
+  }
+
+  .edit-product-modal .modal-content{
+    flex-flow: column nowrap;
+    justify-content: none;
+  }
+
+  .edit-product-modal .product-desc-block,
+  .edit-product-modal .product-params-block{
+    width: 100%;
+  }
+
+  .image-preview{
+    width: auto;
+    max-height: 200px;
+  }
+
+  .buttons-block{
+    position: static;;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .edit-product-modal .desc-block,
+  .edit-product-modal .param-block{
+    margin-top: 10px;
+    text-align: left;
+  }
+}

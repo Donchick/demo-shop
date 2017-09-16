@@ -1,21 +1,19 @@
-<body>
-  <div class="body">
+<div class="body">
+</div>
+<div class="login-block">
+  <div class="login-header">
+    Login to "Demo Shop"
   </div>
-  <div class="login-block">
-    <div class="login-header">
-      Login to "Demo Shop"
+  <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login(loginForm.value)">
+    <div class="username-block">
+      <p class="input-title">Your Login:</p>
+      <input type="text" name="firstname" class="username-input" [formControl]="loginForm.controls['login']">
     </div>
-    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login(loginForm.value)">
-      <div class="username-block">
-        <p class="input-title">Your Login:</p>
-        <input type="text" name="firstname" class="username-input" [formControl]="loginForm.controls['login']">
-      </div>
-      <div class="password-block">
-        <p class="input-title">Your Password:</p>
-        <input type="password" name="password" class="password-input" [formControl]="loginForm.controls['password']">
-      </div>
+    <div class="password-block">
+      <p class="input-title">Your Password:</p>
+      <input type="password" name="password" class="password-input" [formControl]="loginForm.controls['password']">
+    </div>
 
-      <input type="submit" value="Submit" class="btn primary-btn login-btn">
-    </form>
-  </div>
-</body>
+    <input type="submit" value="Submit" class="btn primary-btn login-btn">
+  </form>
+</div>

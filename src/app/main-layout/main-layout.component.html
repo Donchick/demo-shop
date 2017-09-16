@@ -1,4 +1,4 @@
-<div class="body">
+<div class="body" [class.modal-dialog-opened]="isModalOpened">
   <header>
     <div class="header-menu">
       <i class="bag-icon"></i>
@@ -12,4 +12,7 @@
   <footer>
     Copyright “Demo Shop”, 2017
   </footer>
+</div>
+<div class="modal-wrap" aria-hidden="true" role="dialog" [class.open]="isModalOpened">
+  <template #modalDialog></template>
 </div>

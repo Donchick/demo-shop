@@ -15,13 +15,15 @@ import {UnAuthGuard} from "./un-auth-guard";
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import {MainLayoutModule} from "./main-layout/main-layout.module";
 import { ProductPageComponent } from './product-page/product-page.component';
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     MainLayoutComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    ModalDialogComponent
   ],
   imports: [
     BrowserModule,

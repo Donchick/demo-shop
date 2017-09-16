@@ -13,7 +13,9 @@ import { ProductPageComponent } from '../product-page/product-page.component';
 import { ProductTileComponent } from '../product-tile/product-tile.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductListHeaderComponent } from '../product-list/header/header.component';
+import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
+import {ModalService} from "../modal.service";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
@@ -33,7 +35,8 @@ export const routes: Routes = [
   declarations: [
     ProductListComponent,
     ProductTileComponent,
-    ProductListHeaderComponent
+    ProductListHeaderComponent,
+    EditProductModalComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,11 @@ export const routes: Routes = [
     ReactiveFormsModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    ModalService
+  ],
+  entryComponents: [
+    EditProductModalComponent
   ]
 })
 export class MainLayoutModule { }

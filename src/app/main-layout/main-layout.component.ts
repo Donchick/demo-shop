@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChild
+} from '@angular/core';
+import { ModalService } from '../modal.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -6,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-layout.component.css']
 })
 export class MainLayoutComponent implements OnInit {
+  @ViewChild('modalDialog', { read: ViewContainerRef }) modalDialogContainer;
+  isModalOpened: boolean = false;
 
-  constructor() { }
+  constructor(private _modalService: ModalService,
+    private _componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
+    this._modalService.openModalObserver.subscribe(({modal, model}) => {
+      this._closeModal();
+      this._openModal({modal, model});
+    });
+  }
+
+  private _closeModal () {
+    this.isModalOpened = false;
+    this.modalDialogContainer.clear();
+  }
+
+  private _openModal ({modal, model}) {
+    let factory = this._componentFactoryResolver.resolveComponentFactory(modal);
+    let componentRef = this.modalDialogContainer.createComponent(factory);
+    componentRef.instance.product = model;
+    this.isModalOpened = true;
   }
 }
