@@ -29,9 +29,11 @@ export class DemoShopHttpService {
       body, reqOpts);
   }
 
-  put (path: string, body: any) {
+  put (path: string, body: any): Observable<Response> {
+    body = typeof body === 'string' ? body : JSON.stringify(body);
     var reqOpts = this.getReqOptions();
-    console.log('put request');
+    return this.http.put(`${this.envUrl}${path}`,
+      body, reqOpts);
   }
 
   delete (path: string, body: any) {
@@ -46,6 +48,7 @@ export class DemoShopHttpService {
     if (sessionToken) {
       headers.append(this.sessionTokenName, sessionToken);
     }
+    headers.append('Content-Type', 'application/json');
     reqOpts.headers = headers;
     return reqOpts;
   }

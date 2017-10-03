@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChild
+  Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChild, Output
 } from '@angular/core';
 import { ModalService } from '../modal.service';
 
@@ -20,6 +20,7 @@ export class MainLayoutComponent implements OnInit {
       this._closeModal();
       this._openModal({modal, model});
     });
+    this._modalService.closeModalObserver.subscribe(() => this._closeModal());
   }
 
   private _closeModal () {

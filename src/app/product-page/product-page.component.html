@@ -4,7 +4,7 @@
 </div>
 <div class="product-block" *ngIf="product">
   <div class="product-img">
-    <img src="{{product.imageSrc}}">
+    <img src="{{product.image}}">
     <div class="product-rating">
       <i *ngFor="let number of [1,2,3,4,5]"
          [ngClass]="product.rating >= number ? 'gold-star' : 'star'"

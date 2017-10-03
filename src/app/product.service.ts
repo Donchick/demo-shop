@@ -71,7 +71,7 @@ export class ProductService {
     return {
       id: object.id,
       categoryId: object.categoryId,
-      imageSrc: object.image,
+      image: object.image,
       name: object.name,
       description: object.description,
       cost: object.cost,
@@ -101,6 +101,20 @@ export class ProductService {
       .map(jsonProducts => JSON.parse(jsonProducts))
       .map(products => this._buildProductModel(products[0]))
       .share();
+  }
+
+  public updateProduct(product: IProduct) {
+    let productUpdateObserver = this.demoShopHttpService.put(`/products/${product.id}`, product)
+      .map(response => response.text())
+      .map(jsonProduct => JSON.parse(jsonProduct))
+      .map(product => this._buildProductModel(product))
+      .share();
+
+    productUpdateObserver.subscribe(updatedProduct => {
+      let products = this._products;
+    });
+
+    return productUpdateObserver;
   }
 
   public loadCategories () {

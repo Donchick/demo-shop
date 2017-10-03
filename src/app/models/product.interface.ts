@@ -3,7 +3,7 @@ import { Gender } from './gender';
 export interface IProduct {
   id: number,
   categoryId: number,
-  imageSrc: string,
+  image: string,
   name: string,
   description: string,
   cost: number,

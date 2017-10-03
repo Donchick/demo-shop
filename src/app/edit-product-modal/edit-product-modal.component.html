@@ -1,4 +1,4 @@
-<app-modal-dialog [title]="modalTitle">
+<app-modal-dialog [title]="modalTitle" [modalShouldBeClosed]=(modalShouldBeClosed)>
   <form [formGroup]="productForm" class="edit-product-form" (submit)="onSubmit(productForm.value)">
     <div class="modal-content">
       <div class="product-desc-block">
@@ -9,7 +9,7 @@
         <div class="desc-block">
           <span class="title">Category:</span>
           <select class="select-list category-select-list green" [formControl]="productForm.controls['category']">
-          <option *ngFor="let category of categories | async" [ngValue]="category">{{category.name}}</option>
+          <option *ngFor="let category of categories | async" [ngValue]="category.id">{{category.name}}</option>
         </select>
         </div>
         <div class="gender-type desc-block">
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="buttons-block">
-      <button class="btn secondary-btn cancel-edit-btn modal-open-close-button">Cancel</button>
+      <button class="btn secondary-btn cancel-edit-btn modal-open-close-button" (click)="closeDialog()">Cancel</button>
       <button type="submit" class="btn primary-btn edit-product-btn modal-open-close-button">Submit</button>
     </div>
   </form>
