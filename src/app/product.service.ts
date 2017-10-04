@@ -45,6 +45,7 @@ export class ProductService {
   private _productsOnPageCount: BehaviorSubject<number> = new BehaviorSubject<number>(6);
   private _categories: BehaviorSubject<Array<ICategory>> = new BehaviorSubject<Array<ICategory>>([]);
   public filteredProducts: Observable<IProduct[]>;
+  public products: Observable<IProduct[]> = this._products.publishReplay(1).refCount();
   public categories: Observable<Array<ICategory>> = this._categories.asObservable();
 
   constructor( private demoShopHttpService: DemoShopHttpService ) {
@@ -110,9 +111,7 @@ export class ProductService {
       .map(product => this._buildProductModel(product))
       .share();
 
-    productUpdateObserver.subscribe(updatedProduct => {
-      let products = this._products;
-    });
+    productUpdateObserver.subscribe(this.loadProducts.bind(this));
 
     return productUpdateObserver;
   }

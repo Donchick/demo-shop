@@ -20,9 +20,9 @@ export class ProductPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._productService.getProduct(this._id)
-      .subscribe((product: IProduct) => {
-        this.product = product;
+    this._productService.products
+      .subscribe(products => {
+        this.product = products.find(product => product.id === this._id * 1);
       });
   }
 
