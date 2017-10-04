@@ -26,7 +26,8 @@ export class ProductPageComponent implements OnInit {
       });
   }
 
-  openEditModal () {
+  openEditModal (e) {
+    e.stopPropagation();
     this._modalService.open(EditProductModalComponent, this.product);
   }
 }
