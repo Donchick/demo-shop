@@ -17,6 +17,7 @@ import { EditProductModalComponent } from '../edit-product-modal/edit-product-mo
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { ModalService } from "../modal.service";
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
+import { ProductFormComponent } from '../product-form/product-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
@@ -38,7 +39,8 @@ export const routes: Routes = [
     ProductTileComponent,
     ProductListHeaderComponent,
     EditProductModalComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
+    ProductFormComponent
   ],
   imports: [
     CommonModule,

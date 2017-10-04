@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ProductService} from "../../product.service";
 import { Subject } from "rxjs";
 import { Gender } from '../../models/gender';
@@ -16,6 +16,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ProductListHeaderComponent implements OnInit {
   @Input() productsFilter: Subject<IProductsFilter>;
   @Input() categories: Array<ICategory>;
+  @Output() shouldOpenAddingProductForm: EventEmitter<any> = new EventEmitter<any>();
+
   private showFilters: boolean;
   public filterForm: FormGroup;
   public readonly initialCategory = {
@@ -52,6 +54,10 @@ export class ProductListHeaderComponent implements OnInit {
     this.filterForm.valueChanges.subscribe(filter => {
       this.productsFilter.next(filter);
     });
+  }
+
+  addProduct () {
+    this.shouldOpenAddingProductForm.emit();
   }
 
   filterByName (target) {

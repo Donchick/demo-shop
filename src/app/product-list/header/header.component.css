@@ -1,4 +1,4 @@
-.filters-container{
+.product-list-header-container{
   text-align: right;
   padding: 20px 0;
   position: relative;
@@ -6,7 +6,11 @@
   line-height: 35px;
 }
 
-.filters-container .filters-btn{
+.product-list-header-container .add-product-btn{
+  float: left;
+}
+
+.product-list-header-container .filters-btn{
   display: inline-block;
   position: relative;
   width: 140px;
@@ -14,11 +18,11 @@
   cursor: pointer;
 }
 
-.filters-container .filters-btn.active{
+.product-list-header-container .filters-btn.active{
   background: linear-gradient(to top, #3fc6cc 0%, #278473 100%);
 }
 
-.filters-container:has( button){
+.product-list-header-container:has( button){
   display: none;
 }
 
@@ -32,7 +36,7 @@
   height: 16px;
 }
 
-.filters-container .filters-btn + .filters-box {
+.product-list-header-container .filters-btn + .filters-box {
   visibility: hidden;
   opacity: 0;
   text-align: center;
@@ -49,7 +53,7 @@
   line-height: normal;
 }
 
-.filters-container .filters-btn + .filters-box.open {
+.product-list-header-container .filters-btn + .filters-box.open {
   visibility: visible;
   opacity: 1;
 }
@@ -185,7 +189,7 @@
 **/
 
 @media (max-width: 800px) {
-  .filters-container .filters-btn{
+  .product-list-header-container .filters-btn{
     float: left;
   }
 

@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { IProduct } from '../models/product.interface';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProductService } from "../product.service";
-import { Gender } from '../models/gender';
 import { ICategory } from '../models/category.interface';
 import { Observable } from "rxjs";
 
@@ -18,54 +16,32 @@ import { Observable } from "rxjs";
 export class EditProductModalComponent implements OnInit {
   @Input() product: IProduct;
   @Output() modalShouldBeClosed: EventEmitter<any> = new EventEmitter<any>();
-  public productForm: FormGroup;
-  categories: Observable<Array<ICategory>>;
+  @Output() formSubmitted: EventEmitter<IProduct> = new EventEmitter<IProduct>();
+  @Output() categories: ICategory[];
+  public categoriesObserver: Observable<Array<ICategory>>;
   public modalTitle: string;
 
-  constructor (private _productService: ProductService,
-    private _formBuilder: FormBuilder) {
-    this.categories = this._productService.categories;
+  constructor (private _productService: ProductService) {
+    this.categoriesObserver = this._productService.categories;
   }
 
   ngOnInit() {
     this._productService.loadCategories();
-    this.productForm = this._formBuilder.group({
-      name: [this.product.name],
-      linkToImage: [this.product.image],
-      price: [this.product.cost],
-      rating: [this.product.rating],
-      gender: [this.product.gender],
-      description: [this.product.description],
-      category: [this.product.categoryId]
-    });
 
-    this.categories
+    this.categoriesObserver
       .debounce(() => Observable.timer(300))
       .subscribe(categories => {
-      this.productForm.controls['category'].setValue(categories.find(category => category.id === this.product.categoryId).id);
+        this.categories = categories;
     });
 
     this.modalTitle = `Edit "${this.product.name}"`;
 
-  }
-
-  onSubmit ({name, linkToImage, price, rating, gender, description, category}) {
-    let value = {
-      id: this.product.id,
-      name,
-      image: linkToImage,
-      cost: price,
-      rating,
-      gender,
-      description,
-      categoryId: category,
-      count: this.product.count,
-      soldCount: this.product.soldCount
-    };
-    this._productService.updateProduct(value)
-      .subscribe(product => {
-        this.modalShouldBeClosed.emit();
-      });
+    this.formSubmitted.subscribe((product: IProduct) => {
+      this._productService.updateProduct(product)
+        .subscribe(product => {
+          this.modalShouldBeClosed.emit();
+        });
+    });
   }
 
   closeDialog () {

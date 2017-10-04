@@ -1,4 +1,4 @@
-<app-product-list-header [productsFilter]="productsFilter" [categories]="categories"></app-product-list-header>
+<app-product-list-header [productsFilter]="productsFilter" [categories]="categories" (shouldOpenAddingProductForm)="openAddProductModal()"></app-product-list-header>
 <div class="products-list">
   <app-product-tile *ngFor="let product of products | async" [product]="product" [productShouldDelete]="productShouldDelete"></app-product-tile>
 </div>
