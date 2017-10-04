@@ -14,7 +14,7 @@ import { ICategory } from '../models/category.interface';
 export class ProductFormComponent implements OnInit {
   @Input() product: IProduct;
   @Input() categories: ICategory[];
-  @Input() formSubmitted: EventEmitter<IProduct>;
+  @Output() formSubmit: EventEmitter<IProduct> = new EventEmitter<IProduct>();
   public productForm: FormGroup;
 
   constructor (private _formBuilder: FormBuilder) { }
@@ -46,6 +46,6 @@ export class ProductFormComponent implements OnInit {
       soldCount: this.product.soldCount
     };
 
-    this.formSubmitted.emit(product);
+    this.formSubmit.next(product);
   }
 }

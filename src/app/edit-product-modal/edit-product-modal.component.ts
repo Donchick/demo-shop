@@ -16,7 +16,6 @@ import { Observable } from "rxjs";
 export class EditProductModalComponent implements OnInit {
   @Input() product: IProduct;
   @Output() modalShouldBeClosed: EventEmitter<any> = new EventEmitter<any>();
-  @Output() formSubmitted: EventEmitter<IProduct> = new EventEmitter<IProduct>();
   @Output() categories: ICategory[];
   public categoriesObserver: Observable<Array<ICategory>>;
   public modalTitle: string;
@@ -35,13 +34,13 @@ export class EditProductModalComponent implements OnInit {
     });
 
     this.modalTitle = `Edit "${this.product.name}"`;
+  }
 
-    this.formSubmitted.subscribe((product: IProduct) => {
-      this._productService.updateProduct(product)
-        .subscribe(product => {
-          this.modalShouldBeClosed.emit();
-        });
-    });
+  onFormSubmit (product: IProduct): void {
+    this._productService.updateProduct(product)
+      .subscribe(product => {
+        this.modalShouldBeClosed.emit();
+      });
   }
 
   closeDialog () {
