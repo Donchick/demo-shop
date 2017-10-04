@@ -36,9 +36,9 @@ export class DemoShopHttpService {
       body, reqOpts);
   }
 
-  delete (path: string, body: any) {
+  deleteProduct (path: string) {
     var reqOpts = this.getReqOptions();
-    console.log('delete request');
+    return this.http.delete(`${this.envUrl}${path}`, reqOpts);
   }
 
   private getReqOptions (): RequestOptions {

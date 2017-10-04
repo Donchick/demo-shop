@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import {Observable, Observer, Subject} from "rxjs";
 import { IProduct } from "../models/product.interface";
 import { ProductService } from "../product.service";
@@ -16,6 +16,7 @@ const productsCountStep = 6;
 export class ProductListComponent implements OnInit {
   @Output() productsFilter: Subject<IProductsFilter> = new Subject<IProductsFilter>();
   @Output() categories:  Observable<Array<ICategory>>;
+  @Output() productShouldDelete: EventEmitter<number> = new EventEmitter<number>();
   products: Observable<IProduct[]>;
 
   private _productsCount: number;
@@ -41,6 +42,10 @@ export class ProductListComponent implements OnInit {
       this._productService.filterProducts(filter);
     });
 
+    this.productShouldDelete.subscribe(id => {
+      this._productService.deleteProduct(id);
+    });
+
     this._productService.loadProducts();
     this._productService.loadCategories();
   }
@@ -48,5 +53,9 @@ export class ProductListComponent implements OnInit {
   loadMore() {
     this._productsCount += productsCountStep;
     this._productService.getMoreProducts(this._productsCount);
+  }
+
+  deleteProduct (id) {
+
   }
 }

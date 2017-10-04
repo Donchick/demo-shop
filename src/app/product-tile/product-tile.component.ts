@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, HostBinding } from '@angular/core';
+import {Component, OnInit, Input, ViewEncapsulation, HostBinding, EventEmitter} from '@angular/core';
 import { IProduct } from "../models/product.interface";
 
 @Component({
@@ -9,10 +9,15 @@ import { IProduct } from "../models/product.interface";
 })
 export class ProductTileComponent implements OnInit {
   @Input() product: IProduct;
+  @Input() productShouldDelete: EventEmitter<number>;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  deleteProduct () {
+    this.productShouldDelete.emit(this.product.id);
   }
 
   @HostBinding('attr.class') class='product-tile';

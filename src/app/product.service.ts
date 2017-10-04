@@ -116,6 +116,13 @@ export class ProductService {
     return productUpdateObserver;
   }
 
+  public deleteProduct(productId: number) {
+    this.demoShopHttpService.deleteProduct(`/products/${productId}`)
+      .map(response => response.text())
+      .map(resp => JSON.parse(resp))
+      .subscribe(this.loadProducts.bind(this));
+  }
+
   public loadCategories () {
     this.demoShopHttpService.get(`/categories`)
       .map(response => response.text())
