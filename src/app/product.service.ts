@@ -116,6 +116,18 @@ export class ProductService {
     return productUpdateObserver;
   }
 
+  public addProduct(product: IProduct) {
+    let productAddObserver = this.demoShopHttpService.post(`/products`, product)
+      .map(response => response.text())
+      .map(jsonProduct => JSON.parse(jsonProduct))
+      .map(product => this._buildProductModel(product))
+      .share();
+
+    productAddObserver.subscribe(this.loadProducts.bind(this));
+
+    return productAddObserver;
+  }
+
   public deleteProduct(productId: number) {
     this.demoShopHttpService.deleteProduct(`/products/${productId}`)
       .map(response => response.text())

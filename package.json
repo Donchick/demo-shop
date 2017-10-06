@@ -25,7 +25,7 @@
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2",
     "ngx-webstorage": "1.8.0",
-    "@types/jquery": "^2.0.40",
+    "@types/jquery": "^2.0.40"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^2.3.1",

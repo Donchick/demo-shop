@@ -1,7 +1,7 @@
 import { Gender } from './gender';
 
 export interface IProduct {
-  id: number,
+  id?: number,
   categoryId: number,
   image: string,
   name: string,
@@ -9,6 +9,6 @@ export interface IProduct {
   cost: number,
   rating: number,
   gender: Gender,
-  count: number,
-  soldCount: number
+  count?: number,
+  soldCount?: number
 }

@@ -14,6 +14,7 @@ import { ProductTileComponent } from '../product-tile/product-tile.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductListHeaderComponent } from '../product-list/header/header.component';
 import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
+import { AddProductModalComponent } from '../add-product-modal/add-product-modal.component';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { ModalService } from "../modal.service";
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
@@ -40,7 +41,8 @@ export const routes: Routes = [
     ProductListHeaderComponent,
     EditProductModalComponent,
     ModalDialogComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    AddProductModalComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,8 @@ export const routes: Routes = [
     ModalService
   ],
   entryComponents: [
-    EditProductModalComponent
+    EditProductModalComponent,
+    AddProductModalComponent
   ]
 })
 export class MainLayoutModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewEncapsulation, EventEmitter, Output } fro
 import { IProduct } from '../models/product.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ICategory } from '../models/category.interface';
+import { Gender } from '../models/gender';
 
 @Component({
   selector: 'app-product-form',
@@ -16,6 +17,13 @@ export class ProductFormComponent implements OnInit {
   @Input() categories: ICategory[];
   @Output() formSubmit: EventEmitter<IProduct> = new EventEmitter<IProduct>();
   public productForm: FormGroup;
+  public genderOptions = Object.keys(Gender).reduce((acc, key: any) => {
+    if (isNaN(key * 1)) {
+      acc.push(key);
+    }
+    return acc;
+  }, []);
+  public genderEnum = Gender;
 
   constructor (private _formBuilder: FormBuilder) { }
 
@@ -25,7 +33,7 @@ export class ProductFormComponent implements OnInit {
       linkToImage: [this.product.image],
       price: [this.product.cost],
       rating: [this.product.rating],
-      gender: [this.product.gender],
+      gender: [Gender[this.product.gender]],
       description: [this.product.description],
       category: [this.product.categoryId]
     });
@@ -39,13 +47,14 @@ export class ProductFormComponent implements OnInit {
       image: linkToImage,
       cost: price,
       rating,
-      gender,
+      gender: Gender[gender],
       description,
       categoryId: category,
       count: this.product.count,
       soldCount: this.product.soldCount
     };
 
-    this.formSubmit.next(product);
+    return;
+    //this.formSubmit.next(product);
   }
 }

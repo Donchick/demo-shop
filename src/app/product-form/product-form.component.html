@@ -1,4 +1,4 @@
-<form [formGroup]="productForm" class="edit-product-form" (submit)="onSubmit(productForm.value)">
+<form [formGroup]="productForm" class="edit-product-form">
   <div class="modal-content">
     <div class="product-desc-block">
       <div class="desc-block">
@@ -12,12 +12,10 @@
         </select>
       </div>
       <div class="gender-type desc-block">
-        <input type="radio" class="radio" name="gender" [value]="0" id="male" [formControl]="productForm.controls['gender']">
-        <label for="male">Man</label>
-        <input type="radio" name="gender" class="radio" [value]="1" id="female" [formControl]="productForm.controls['gender']">
-        <label for="female">Woman</label>
-        <input type="radio" name="gender" class="radio" [value]="2" id="other" [formControl]="productForm.controls['gender']">
-        <label for="other">Unisex</label>
+        <span *ngFor="let key of genderOptions">
+          <input type="radio" class="radio" name="gender" [value]="genderEnum[key]" id={{key}} [formControl]="productForm.controls['gender']">
+          <label for={{key}}>{{key}}</label>
+        </span>
       </div>
       <div class="desc-block product-description">
         <p class="title">Description:</p>
@@ -43,6 +41,6 @@
     </div>
   </div>
   <div class="buttons-block">
-    <button type="submit" class="btn primary-btn edit-product-btn modal-open-close-button">Submit</button>
+    <button type="submit" class="btn primary-btn edit-product-btn modal-open-close-button" (click)="onSubmit(productForm.value)">Submit</button>
   </div>
 </form>

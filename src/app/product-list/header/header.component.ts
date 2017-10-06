@@ -56,7 +56,8 @@ export class ProductListHeaderComponent implements OnInit {
     });
   }
 
-  addProduct () {
+  addProduct (e) {
+    e.stopPropagation();
     this.shouldOpenAddingProductForm.emit();
   }
 

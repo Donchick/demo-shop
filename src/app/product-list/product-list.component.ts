@@ -4,8 +4,10 @@ import { IProduct } from "../models/product.interface";
 import { ProductService } from "../product.service";
 import { IProductsFilter } from '../models/products-filter.interface';
 import { AuthService } from "../auth.service";
-import { ModalService } from "../modal.service";
 import { ICategory } from "../models/category.interface";
+import { ModalService } from "../modal.service";
+import { AddProductModalComponent } from '../add-product-modal/add-product-modal.component';
+
 const productsCountStep = 6;
 
 @Component({
@@ -26,6 +28,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private _productService: ProductService,
     private _authService: AuthService,
+    private _modalService: ModalService
   ) {
     this.products = this._productService.filteredProducts;
     this._canManageProducts = false;
@@ -57,6 +60,6 @@ export class ProductListComponent implements OnInit {
   }
 
   openAddProductModal () {
-    console.log('add product');
+    this._modalService.open(AddProductModalComponent, {});
   }
 }
