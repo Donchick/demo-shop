@@ -47,14 +47,13 @@ export class ProductFormComponent implements OnInit {
       image: linkToImage,
       cost: price,
       rating,
-      gender: Gender[gender],
+      gender: Gender[Gender[gender]],
       description,
       categoryId: category,
       count: this.product.count,
       soldCount: this.product.soldCount
     };
 
-    return;
-    //this.formSubmit.next(product);
+    this.formSubmit.next(product);
   }
 }

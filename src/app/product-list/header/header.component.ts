@@ -17,6 +17,13 @@ export class ProductListHeaderComponent implements OnInit {
   @Input() productsFilter: Subject<IProductsFilter>;
   @Input() categories: Array<ICategory>;
   @Output() shouldOpenAddingProductForm: EventEmitter<any> = new EventEmitter<any>();
+  public genderOptions = Object.keys(Gender).reduce((acc, key: any) => {
+    if (isNaN(key * 1)) {
+      acc.push(key);
+    }
+    return acc;
+  }, []);
+  public genderEnum = Gender;
 
   private showFilters: boolean;
   public filterForm: FormGroup;
@@ -24,6 +31,7 @@ export class ProductListHeaderComponent implements OnInit {
     id: -1,
     name: 'All'
   };
+  public readonly initialGender = "All";
   public readonly ratingRange = {
     from: 0,
     to: 5
@@ -40,7 +48,7 @@ export class ProductListHeaderComponent implements OnInit {
   ngOnInit() {
     this.filterForm = this._formBuilder.group({
       availableOnly: [false],
-      gender: [Gender.Unisex],
+      gender: [this.initialGender],
       rating: {
         from: this.ratingRange.from,
         to: this.ratingRange.to

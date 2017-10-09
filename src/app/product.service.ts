@@ -20,7 +20,7 @@ const filterSubject = function (products: Array<IProduct>, filter: IProductsFilt
       return products;
     }
 
-    if (filter.gender !== Gender.Unisex && filter.gender !== product.gender) {
+    if (Gender[filter.gender] && filter.gender !== product.gender) {
       return products;
     }
 
