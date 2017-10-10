@@ -1,0 +1,78 @@
+.modal-header{
+  font-size: 22px;
+  padding: 0 40px;
+  text-align: left;
+  height: 60px;
+  line-height: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  border-bottom: #eaeaea solid 1px;
+  font-family: PT Sans Caption, serif, sans-serif;
+  text-transform: capitalize;
+}
+
+.modal-body{
+  background: #ecebe9 url('../../assets/images/product-tile-background.png');
+  padding: 50px 30px 30px;
+  position: relative;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: inset 0px 2px 0px rgba(0,0,0, 0.1);
+}
+
+.modal-content{
+  font-size: 24px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* shadow layer */
+.modal-wrap::before {
+  content: "";
+  display: none;
+  background: rgba(0, 0, 0, .3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-overlay {
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 102;
+}
+
+/* activating shadow layer */
+.modal-wrap.open::before {
+  display: block;
+}
+
+.open .modal-dialog {
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-dialog {
+  background: #ffffff;
+  border: none;
+  border-radius: 10px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 103;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s;
+}

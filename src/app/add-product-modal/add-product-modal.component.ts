@@ -11,7 +11,7 @@ import { Observable } from "rxjs";
     '../../assets/styles/components-styles/radiobuttons-styles.css',
     '../../assets/styles/components-styles/checkbox-styles.css'],
   encapsulation: ViewEncapsulation.None,
-  host: {'class': 'edit-product-modal modal-dialog'}
+  host: {'class': 'edit-product-modal'}
 })
 export class AddProductModalComponent implements OnInit {
   @Output() modalShouldBeClosed: EventEmitter<any> = new EventEmitter<any>();

@@ -1,5 +1,7 @@
 <div class="navigation-bar">
-  <span class="back-link navigation-link"><a href="/">Back</a></span>
+  <span class="back-link navigation-link"><a
+     routerLink="/main-layout/product-list"
+     routerLinkActive="true">Back</a></span>
   <span class="category-path navigation-link">Category: <a href="/">Man / Acive wear</a></span>
 </div>
 <div class="product-block" *ngIf="product">
@@ -24,7 +26,8 @@
         <label class="delete-product-link">delete</label>
         them.</p>
     </div>
+    <p class="out-of-stock-msg" *ngIf="isProductOutOfStock">This item is out of stock.</p>
     <span class="product-price"><i class="currency">$</i>{{product.cost}}<span class="product-qty">(10 items left)</span></span>
-    <button for="success_purchased_modal" class="btn primary-btn buy-product-btn modal-open-close-button">Buy</button>
+    <button for="success_purchased_modal" class="btn primary-btn buy-product-btn modal-open-close-button" [disabled]="isProductOutOfStock" (click)="onBuyProduct($event)">Buy</button>
   </div>
 </div>

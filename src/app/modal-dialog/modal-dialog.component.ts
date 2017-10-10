@@ -1,14 +1,17 @@
-import {Component, OnInit, Input, EventEmitter, ElementRef} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, ElementRef, ViewEncapsulation} from '@angular/core';
 import { ModalService } from '../modal.service'
 
 @Component({
   selector: 'app-modal-dialog',
   templateUrl: './modal-dialog.component.html',
-  styleUrls: ['./modal-dialog.component.css']
+  styleUrls: ['./modal-dialog.component.css'],
+  host: {'class': 'modal-dialog'},
+  encapsulation: ViewEncapsulation.None
 })
 export class ModalDialogComponent implements OnInit {
   @Input() title: string;
   @Input() modalShouldBeClosed: EventEmitter<any>;
+  private clickHandler: EventListenerOrEventListenerObject;
 
   constructor(
     private _modal: ElementRef,
@@ -16,16 +19,20 @@ export class ModalDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.clickHandler = this._onClick.bind(this);
+
     this.modalShouldBeClosed.subscribe(() => {
       this._closeModal();
     });
 
-    $(document).on('click.modal-dialog', this._onClick.bind(this));
+    document.addEventListener('click', this.clickHandler);
   }
 
   private _closeModal () {
     this._modalService.closeModal();
-    $(document).off('click.modal-dialog');
+
+    document.removeEventListener('click', this.clickHandler);
+    //$(document).off('click.modal-dialog');
   }
 
   private _onClick (e) {

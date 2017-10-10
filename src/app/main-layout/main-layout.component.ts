@@ -31,7 +31,9 @@ export class MainLayoutComponent implements OnInit {
   private _openModal ({modal, model}) {
     let factory = this._componentFactoryResolver.resolveComponentFactory(modal);
     let componentRef = this.modalDialogContainer.createComponent(factory);
-    componentRef.instance.product = model;
+    if (model) {
+      componentRef.instance.model = model;
+    }
     this.isModalOpened = true;
   }
 }

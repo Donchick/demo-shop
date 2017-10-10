@@ -11,10 +11,10 @@ import { Observable } from "rxjs";
     '../../assets/styles/components-styles/radiobuttons-styles.css',
     '../../assets/styles/components-styles/checkbox-styles.css'],
   encapsulation: ViewEncapsulation.None,
-  host: {'class': 'edit-product-modal modal-dialog'}
+  host: {'class': 'edit-product-modal'}
 })
 export class EditProductModalComponent implements OnInit {
-  @Input() product: IProduct;
+  @Input() model: IProduct;
   @Output() modalShouldBeClosed: EventEmitter<any> = new EventEmitter<any>();
   @Output() categories: ICategory[];
   public categoriesObserver: Observable<Array<ICategory>>;
@@ -33,7 +33,7 @@ export class EditProductModalComponent implements OnInit {
         this.categories = categories;
     });
 
-    this.modalTitle = `Edit "${this.product.name}"`;
+    this.modalTitle = `Edit "${this.model.name}"`;
   }
 
   onFormSubmit (product: IProduct): void {
