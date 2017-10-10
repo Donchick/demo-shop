@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { IProduct } from '../models/product.interface';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ICategory } from '../models/category.interface';
 import { Gender } from '../models/gender';
 
@@ -15,6 +15,7 @@ import { Gender } from '../models/gender';
 export class ProductFormComponent implements OnInit {
   @Input() product: IProduct;
   @Input() categories: ICategory[];
+  @Input() isNewProduct: boolean = false;
   @Output() formSubmit: EventEmitter<IProduct> = new EventEmitter<IProduct>();
   public productForm: FormGroup;
   public genderOptions = Object.keys(Gender).reduce((acc, key: any) => {
@@ -29,18 +30,23 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit() {
     this.productForm = this._formBuilder.group({
-      name: [this.product.name],
-      linkToImage: [this.product.image],
-      price: [this.product.cost],
-      rating: [this.product.rating],
-      gender: [Gender[this.product.gender]],
-      description: [this.product.description],
-      category: [this.product.categoryId]
+      name: [this.product.name, Validators.required],
+      linkToImage: [this.product.image, Validators.required],
+      price: [this.product.cost, Validators.compose([Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)])],
+      rating: [this.product.rating, Validators.required],
+      gender: [Gender[this.product.gender], Validators.required],
+      description: [this.product.description, Validators.required],
+      category: [this.product.categoryId, Validators.required],
+      count: [this.product.count, Validators.compose([Validators.required, Validators.pattern(/^\d+$/)])]
     });
 
   }
 
-  onSubmit ({name, linkToImage, price, rating, gender, description, category}) {
+  onSubmit ({name, linkToImage, price, rating, gender, description, category, count}) {
+    if (!this.productForm.valid) {
+      return;
+    }
+
     let product = {
       id: this.product.id,
       name,
@@ -50,7 +56,7 @@ export class ProductFormComponent implements OnInit {
       gender: Gender[Gender[gender]],
       description,
       categoryId: category,
-      count: this.product.count,
+      count: count,
       soldCount: this.product.soldCount
     };
 

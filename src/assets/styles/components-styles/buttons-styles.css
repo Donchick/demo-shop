@@ -29,3 +29,7 @@ button{
 .secondary-btn:active{
 	background-image: linear-gradient(to top, #b1b1b1 0%, #767676 100%);
 }
+
+.primary-btn:disabled {
+  background-image: linear-gradient(to top, rgba(39, 132, 115, 0.2) 0%, rgba(63, 198, 204, 0.2) 100%);
+}

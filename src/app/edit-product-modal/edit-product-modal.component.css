@@ -133,6 +133,7 @@
 }
 
 .edit-product-modal .product-name-input,
+.edit-product-modal .product-count-input,
 .edit-product-modal .link-to-image,
 .edit-product-modal .product-price-input{
   height: 35px;
@@ -149,6 +150,7 @@
 }
 
 .edit-product-modal .product-name-input:focus,
+.edit-product-modal .product-count-input:focus,
 .edit-product-modal .link-to-image:focus,
 .edit-product-modal .product-price-input:focus,
 .edit-product-modal .product-decs-input:focus{
@@ -156,10 +158,15 @@
 }
 
 .product-desc-block .title,
-.product-params-block .title{
+.product-params-block .title,
+.edit-product-modal .error-msg{
   font-size: 16px;
   margin-bottom: 10px;
   display: block;
+}
+
+.edit-product-modal .error-msg{
+  color: #da1d1d;
 }
 
 .product-desc-block .category-select-list,
@@ -199,7 +206,7 @@
   width: 100%;
   margin-top: 10px;
   border: 1px solid #ffffff;
-  max-height: 200px;
+  max-height: 180px;
 }
 
 @media (max-width: 800px) {
@@ -220,7 +227,6 @@
 
   .image-preview{
     width: auto;
-    max-height: 200px;
   }
 
   .buttons-block{

@@ -50,6 +50,7 @@ main{
   background: rgba(0,0,0, 0.4);
   min-height: calc(100% - 153px);
   flex-grow: 99;
+  min-width: 80%;
 }
 
 .header-menu{

@@ -2,16 +2,19 @@
   <div class="modal-content">
     <div class="product-desc-block">
       <div class="desc-block">
-        <p class="title">Name</p>
+        <p class="title">Name:</p>
+        <p class="error-msg" *ngIf="productForm.controls['name'].hasError('required') && productForm.controls['name'].touched">Name is required</p>
         <input type="text" name="product-name" class="product-name-input" [formControl]="productForm.controls['name']">
       </div>
       <div class="desc-block">
         <span class="title">Category:</span>
+        <p class="error-msg" *ngIf="productForm.controls['category'].hasError('required') && productForm.controls['category'].touched">Category is required</p>
         <select class="select-list category-select-list green" [formControl]="productForm.controls['category']">
           <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
         </select>
       </div>
       <div class="gender-type desc-block">
+        <p class="error-msg" *ngIf="productForm.controls['gender'].hasError('required') && productForm.controls['gender'].touched">Gender is required</p>
         <span *ngFor="let key of genderOptions">
           <input type="radio" class="radio" name="gender" [value]="genderEnum[key]" id={{key}} [formControl]="productForm.controls['gender']">
           <label for={{key}}>{{key}}</label>
@@ -19,28 +22,39 @@
       </div>
       <div class="desc-block product-description">
         <p class="title">Description:</p>
+        <p class="error-msg" *ngIf="productForm.controls['description'].hasError('required') && productForm.controls['description'].touched">Description is required</p>
         <textarea type="text" name="description" class="product-decs-input" [formControl]="productForm.controls['description']"></textarea>
       </div>
     </div>
     <div class="product-params-block">
       <div class="param-block">
         <p class="title">Link to image:</p>
+        <p class="error-msg" *ngIf="productForm.controls['linkToImage'].hasError('required') && productForm.controls['linkToImage'].touched">Image is required</p>
         <input type="text" name="linkToImage" class="link-to-image" [formControl]="productForm.controls['linkToImage']">
         <img [src]="productForm.controls['linkToImage'].value" class="image-preview">
       </div>
       <div class="param-block">
         <p class="title">Price:</p>
+        <p class="error-msg" *ngIf="productForm.controls['price'].hasError('required') && productForm.controls['price'].touched">Price is required</p>
+        <p class="error-msg" *ngIf="productForm.controls['price'].hasError('pattern') && productForm.controls['price'].touched">Price should look like XX...X.XX, where X - digit, ... - set of X</p>
         <input type="text" name="productPrice" class="product-price-input" [formControl]="productForm.controls['price']">
       </div>
       <div class="param-block">
         <span class="title">Rating:</span>
+        <p class="error-msg" *ngIf="productForm.controls['rating'].hasError('required') && productForm.controls['rating'].touched">Rating is required</p>
         <select class="select-list product-rating-list white" [formControl]="productForm.controls['rating']">
           <option *ngFor="let number of [1,2,3,4,5]" [value]="number">{{number}}</option>
         </select>
       </div>
+      <div class="param-block">
+        <span class="title">Count:</span>
+        <p class="error-msg" *ngIf="productForm.controls['count'].hasError('required') && productForm.controls['count'].touched">Count is required</p>
+        <p class="error-msg" *ngIf="productForm.controls['count'].hasError('pattern') && productForm.controls['count'].touched">Please, use digits only</p>
+        <input type="text" name="product-count" class="product-count-input" [formControl]="productForm.controls['count']">
+      </div>
     </div>
   </div>
   <div class="buttons-block">
-    <button type="submit" class="btn primary-btn edit-product-btn modal-open-close-button" (click)="onSubmit(productForm.value)">Submit</button>
+    <button type="submit" class="btn primary-btn edit-product-btn modal-open-close-button" [disabled]="!productForm.valid" (click)="onSubmit(productForm.value)">Submit</button>
   </div>
 </form>

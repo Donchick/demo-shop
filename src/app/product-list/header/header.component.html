@@ -14,11 +14,11 @@
           </div>
           <div class="gender-filter filter">
             <span class="filter-title">Gender:</span><br>
-            <span *ngFor="let key of genderOptions">
-              <input type="radio" class="radio" name="gender" [value]="key" id={{key}} [formControl]="filterForm.controls['gender']">
-              <label for={{key}}>{{key}}</label>
+            <span *ngFor="let key of genderOptions; let i = index">
+              <input type="radio" class="radio" name="filter-gender" [value]="key" id="{{i}}" [formControl]="filterForm.controls['gender']">
+              <label for={{i}}>{{key}}</label>
             </span>
-            <input type="radio" class="radio" name="gender" value="All" id="all" [formControl]="filterForm.controls['gender']">
+            <input type="radio" class="radio" name="filter-gender" value="All" id="all" [formControl]="filterForm.controls['gender']">
             <label for="all">All</label>
           </div>
           <div class="category-filter filter">
