@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-buying-result-modal',
-  templateUrl: './buying-result-modal.component.html',
-  styleUrls: ['./buying-result-modal.component.css']
+  selector: 'app-action-result-modal',
+  templateUrl: 'action-result-modal.component.html',
+  styleUrls: ['action-result-modal.component.css']
 })
-export class BuyingResultModalComponent implements OnInit {
+export class ActionResultModalComponent implements OnInit {
   @Input() model: any;
   @Output() modalShouldBeClosed: EventEmitter<any> = new EventEmitter<any>();
 
@@ -13,7 +13,7 @@ export class BuyingResultModalComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   onClick () {
     this.modalShouldBeClosed.emit();
   }

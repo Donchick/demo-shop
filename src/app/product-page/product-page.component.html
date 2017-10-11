@@ -19,7 +19,7 @@
       {{product.description}}
       <p class="manager-links">
         You can
-        <a href="#">add 5 more</a>
+        <a href="#" (click)="increaseProductCount($event)">add 5 more</a>
         . You can also
         <label class="edit-product-link" (click)="openEditModal($event)">edit</label>
         or

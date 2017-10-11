@@ -19,7 +19,7 @@ import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { ModalService } from "../modal.service";
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
-import { BuyingResultModalComponent } from '../product-page/buying-result-modal/buying-result-modal.component';
+import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
@@ -44,7 +44,7 @@ export const routes: Routes = [
     ModalDialogComponent,
     ProductFormComponent,
     AddProductModalComponent,
-    BuyingResultModalComponent
+    ActionResultModalComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +60,7 @@ export const routes: Routes = [
   entryComponents: [
     EditProductModalComponent,
     AddProductModalComponent,
-    BuyingResultModalComponent
+    ActionResultModalComponent
   ]
 })
 export class MainLayoutModule { }

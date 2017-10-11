@@ -29,7 +29,9 @@ export class AddProductModalComponent implements OnInit {
       image: '',
       cost: null,
       rating: null,
-      gender: null
+      gender: null,
+      count: 0,
+      soldCount: 0
     }
   }
 

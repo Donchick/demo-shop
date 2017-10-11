@@ -36,13 +36,12 @@ export class ProductFormComponent implements OnInit {
       rating: [this.product.rating, Validators.required],
       gender: [Gender[this.product.gender], Validators.required],
       description: [this.product.description, Validators.required],
-      category: [this.product.categoryId, Validators.required],
-      count: [this.product.count, Validators.compose([Validators.required, Validators.pattern(/^\d+$/)])]
+      category: [this.product.categoryId, Validators.required]
     });
 
   }
 
-  onSubmit ({name, linkToImage, price, rating, gender, description, category, count}) {
+  onSubmit ({name, linkToImage, price, rating, gender, description, category}) {
     if (!this.productForm.valid) {
       return;
     }
@@ -56,7 +55,7 @@ export class ProductFormComponent implements OnInit {
       gender: Gender[Gender[gender]],
       description,
       categoryId: category,
-      count: count,
+      count: this.product.count,
       soldCount: this.product.soldCount
     };
 

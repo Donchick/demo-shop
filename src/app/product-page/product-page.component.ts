@@ -1,11 +1,12 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {IProduct} from "../models/product.interface";
 import {ProductService} from "../product.service";
 import {ModalService} from "../modal.service";
 import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
-import { BuyingResultModalComponent } from './buying-result-modal/buying-result-modal.component';
+import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
 import { Gender } from '../models/gender';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-product-page',
@@ -53,21 +54,55 @@ export class ProductPageComponent implements OnInit {
         soldCount: this.product.soldCount + 1
       };
       this._productService.updateProduct(productModel)
+        .catch((err: any) => {
+          this._modalService.open(ActionResultModalComponent, {message: 'There was some error on server, your last action has been declined'});
+          return Observable.throw(err);
+        })
         .subscribe(product => {
-          if (product.count > product.soldCount) {
+          if (product.count >= product.soldCount) {
             this.product = product;
-            this._modalService.open(BuyingResultModalComponent, {message: 'You bought product successfully'});
+            this._modalService.open(ActionResultModalComponent, {message: 'You bought product successfully'});
           } else {
             productModel.soldCount++;
             this._productService.updateProduct(productModel)
               .subscribe((rejectedProduct) => {
                 this.product = rejectedProduct;
-                this._modalService.open(BuyingResultModalComponent, {message: 'You can\'t buy this product because we don\'t have it in stock'});
+                this._modalService.open(ActionResultModalComponent, {message: 'You can\'t buy this product because we don\'t have it in stock'});
               });
           }
         });
     } else {
-      this._modalService.open(BuyingResultModalComponent, {message: 'You can\'t buy this product because we don\'t have it in stock'});
+      this._modalService.open(ActionResultModalComponent, {message: 'You can\'t buy this product because we don\'t have it in stock'});
     }
+  }
+
+  increaseProductCount (e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    let productModel = {
+      id: this.product.id,
+      categoryId: this.product.categoryId,
+      image: this.product.image,
+      name: this.product.name,
+      description: this.product.description,
+      cost: this.product.cost,
+      rating: this.product.rating,
+      gender: Gender[Gender[this.product.gender]],
+      count: this.product.count,
+      soldCount: this.product.soldCount
+    };
+
+    productModel.count = Number(productModel.count) + 5;
+
+    this._productService.updateProduct(productModel)
+      .catch((err: any) => {
+        this._modalService.open(ActionResultModalComponent, {message: 'There was some error on server, your last action has been declined'});
+        return Observable.throw(err);
+      })
+      .subscribe(product => {
+        this.product = product;
+        this._modalService.open(ActionResultModalComponent, {message: 'You increased product quantity successfully'});
+      });
   }
 }

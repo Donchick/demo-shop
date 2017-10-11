@@ -46,12 +46,6 @@
           <option *ngFor="let number of [1,2,3,4,5]" [value]="number">{{number}}</option>
         </select>
       </div>
-      <div class="param-block">
-        <span class="title">Count:</span>
-        <p class="error-msg" *ngIf="productForm.controls['count'].hasError('required') && productForm.controls['count'].touched">Count is required</p>
-        <p class="error-msg" *ngIf="productForm.controls['count'].hasError('pattern') && productForm.controls['count'].touched">Please, use digits only</p>
-        <input type="text" name="product-count" class="product-count-input" [formControl]="productForm.controls['count']">
-      </div>
     </div>
   </div>
   <div class="buttons-block">
