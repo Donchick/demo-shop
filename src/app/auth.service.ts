@@ -22,7 +22,7 @@ export class AuthService {private _currentUser: UserModel;
               @Inject('CURRENT_USER_KEY') currentUserKey: string) {
     this._sessionTokenKey = sessionTokenKey;
     this._currentUserKey = currentUserKey;
-    this._currentUser = null;
+    this._currentUser = this.localSt.retrieve(this._currentUserKey) || null;
   }
 
   login (user: UserModel) {
@@ -34,10 +34,11 @@ export class AuthService {private _currentUser: UserModel;
       .mergeMap(() => this.setCurrentUser(user));
   }
 
-  logout (user: UserModel) {
-    this.httpService.post('/logout', user)
+  logout () {
+    return this.httpService.post('/logout', this._currentUser)
       .do(res => {
         this.localSt.clear(this._sessionTokenKey);
+        this.localSt.clear(this._currentUserKey);
       })
       .do(res => {
         this._isUserAdministrator.next(false);

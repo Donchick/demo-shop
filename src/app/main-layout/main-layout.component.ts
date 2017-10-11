@@ -2,6 +2,8 @@ import {
   Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChild, Output
 } from '@angular/core';
 import { ModalService } from '../modal.service';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,7 +15,9 @@ export class MainLayoutComponent implements OnInit {
   isModalOpened: boolean = false;
 
   constructor(private _modalService: ModalService,
-    private _componentFactoryResolver: ComponentFactoryResolver) { }
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    private _authService: AuthService,
+    private _router: Router) { }
 
   ngOnInit() {
     this._modalService.openModalObserver.subscribe(({modal, model}) => {
@@ -21,6 +25,12 @@ export class MainLayoutComponent implements OnInit {
       this._openModal({modal, model});
     });
     this._modalService.closeModalObserver.subscribe(() => this._closeModal());
+  }
+
+  logout (e) {
+    e.stopPropagation();
+    this._authService.logout()
+      .subscribe(() => this._router.navigate(['/login']));
   }
 
   private _closeModal () {
