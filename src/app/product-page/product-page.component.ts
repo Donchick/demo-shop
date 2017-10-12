@@ -30,7 +30,11 @@ export class ProductPageComponent implements OnInit {
   ngOnInit() {
     this._productService.products
       .subscribe(products => {
-        this.product = products.find(product => product.id === this._id * 1);
+        if (products.length > 0) {
+          this.product = products.find(product => product.id === this._id * 1);
+        } else {
+          this._productService.loadProducts();
+        }
       });
 
     this._authService.canUserManageProducts
@@ -39,6 +43,7 @@ export class ProductPageComponent implements OnInit {
 
   openEditModal (e) {
     e.stopPropagation();
+    e.preventDefault();
     this._modalService.open(EditProductModalComponent, this.product);
   }
 

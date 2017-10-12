@@ -20,7 +20,7 @@ const filterSubject = function (products: Array<IProduct>, filter: IProductsFilt
       return products;
     }
 
-    if (Gender[filter.gender] && filter.gender !== product.gender) {
+    if (Gender[filter.gender] && Gender[filter.gender] !== product.gender) {
       return products;
     }
 
@@ -44,9 +44,11 @@ export class ProductService {
   private _filterByName: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private _productsOnPageCount: BehaviorSubject<number> = new BehaviorSubject<number>(6);
   private _categories: BehaviorSubject<Array<ICategory>> = new BehaviorSubject<Array<ICategory>>([]);
+  private _totalProductsCount: number;
   public filteredProducts: Observable<IProduct[]>;
   public products: Observable<IProduct[]> = this._products.publishReplay(1).refCount();
   public categories: Observable<Array<ICategory>> = this._categories.asObservable();
+  public allProductsLoaded: boolean = false;
 
   constructor( private demoShopHttpService: DemoShopHttpService ) {
     this.filteredProducts = Observable.combineLatest(this._products,
@@ -91,6 +93,8 @@ export class ProductService {
       productObservable.subscribe(products => {
         products = products.map((product): IProduct => this._buildProductModel(product));
         this._products.next(products);
+
+        this._totalProductsCount = products.length;
       });
 
       return productObservable;
@@ -154,6 +158,11 @@ export class ProductService {
   }
 
   public getMoreProducts(count: number) {
-    this._productsOnPageCount.next(count);
+    if (this._totalProductsCount <= count) {
+      this._productsOnPageCount.next(this._totalProductsCount);
+      this.allProductsLoaded = true;
+    } else {
+      this._productsOnPageCount.next(count);
+    }
   }
 }

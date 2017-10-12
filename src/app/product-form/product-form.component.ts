@@ -52,7 +52,7 @@ export class ProductFormComponent implements OnInit {
       image: linkToImage,
       cost: price,
       rating,
-      gender: Gender[Gender[gender]],
+      gender: Gender[gender],
       description,
       categoryId: category,
       count: this.product.count,

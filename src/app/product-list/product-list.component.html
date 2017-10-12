@@ -1,5 +1,6 @@
 <app-product-list-header [productsFilter]="productsFilter" [categories]="categories" (shouldOpenAddingProductForm)="openAddProductModal()" [canManageProducts]=(canManageProducts)></app-product-list-header>
-<div class="products-list">
-  <app-product-tile *ngFor="let product of products | async" [product]="product" [productShouldDelete]="productShouldDelete" [canManageProducts]=(canManageProducts)></app-product-tile>
-</div>
-<button (click)="loadMore()"></button>
+<app-infinite-scroll-list [loadListElements]=(loadListElements) [listElementsLoaded]="listElementsLoaded" [allListElementsLoaded]="allListElementsLoaded">
+  <div class="products-list">
+    <app-product-tile *ngFor="let product of products | async" [product]="product" [productShouldDelete]="productShouldDelete" [canManageProducts]=(canManageProducts)></app-product-tile>
+  </div>
+</app-infinite-scroll-list>

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, ViewEncapsulation, HostBinding, EventEmitter} from '@angular/core';
 import { IProduct } from "../models/product.interface";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-product-tile',
@@ -12,7 +13,9 @@ export class ProductTileComponent implements OnInit {
   @Input() productShouldDelete: EventEmitter<number>;
   @Input() canManageProducts: boolean;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }

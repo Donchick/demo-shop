@@ -20,7 +20,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
   @Output() productsFilter: Subject<IProductsFilter> = new Subject<IProductsFilter>();
   @Output() categories:  Observable<Array<ICategory>>;
   @Output() productShouldDelete: EventEmitter<number> = new EventEmitter<number>();
+  @Output() listElementsLoaded: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() allListElementsLoaded: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() canManageProducts: boolean;
+  @Output() loadListElements: Function = this.loadMore.bind(this);
   public products: Observable<IProduct[]>;
 
   private _productsCount: number;
@@ -50,6 +53,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
       this.productShouldDelete.subscribe(id => {
         this._productService.deleteProduct(id);
+      }),
+
+      this.products.subscribe(products => {
+        this.listElementsLoaded.emit(true);
+        if (this._productService.allProductsLoaded) {
+          this.allListElementsLoaded.emit(true);
+        }
       })
     ]);
 

@@ -8,7 +8,7 @@ export interface IProduct {
   description: string,
   cost: number,
   rating: number,
-  gender: Gender,
+  gender: string,
   count?: number,
   soldCount?: number
 }

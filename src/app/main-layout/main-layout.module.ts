@@ -21,6 +21,7 @@ import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { InfiniteScrollListComponent } from '../infinite-scroll-list/infinite-scroll-list.component';
 
 export const routes: Routes = [
   {
@@ -55,7 +56,8 @@ export const routes: Routes = [
     ProductFormComponent,
     AddProductModalComponent,
     ActionResultModalComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    InfiniteScrollListComponent
   ],
   imports: [
     CommonModule,
