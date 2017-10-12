@@ -17,6 +17,7 @@ export class ProductListHeaderComponent implements OnInit {
   @Input() productsFilter: Subject<IProductsFilter>;
   @Input() categories: Array<ICategory>;
   @Output() shouldOpenAddingProductForm: EventEmitter<any> = new EventEmitter<any>();
+  @Input() canManageProducts: boolean;
   public genderOptions = Object.keys(Gender).reduce((acc, key: any) => {
     if (isNaN(key * 1)) {
       acc.push(key);

@@ -10,6 +10,7 @@ import { IProduct } from "../models/product.interface";
 export class ProductTileComponent implements OnInit {
   @Input() product: IProduct;
   @Input() productShouldDelete: EventEmitter<number>;
+  @Input() canManageProducts: boolean;
 
   constructor() { }
 

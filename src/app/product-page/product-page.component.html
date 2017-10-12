@@ -17,13 +17,11 @@
     <p class="product-name">{{product.name}}</p>
     <div class="product-description">
       {{product.description}}
-      <p class="manager-links">
+      <p *ngIf="canManageProducts" class="manager-links">
         You can
         <a href="#" (click)="increaseProductCount($event)">add 5 more</a>
         . You can also
         <label class="edit-product-link" (click)="openEditModal($event)">edit</label>
-        or
-        <label class="delete-product-link">delete</label>
         them.</p>
     </div>
     <p class="out-of-stock-msg" *ngIf="isProductOutOfStock">This item is out of stock.</p>

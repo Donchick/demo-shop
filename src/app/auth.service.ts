@@ -6,23 +6,30 @@ import {Response} from "@angular/http";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/share';
-import {BehaviorSubject, Observable} from "rxjs";
+import 'rxjs/add/operator/publishReplay';
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable()
-export class AuthService {private _currentUser: UserModel;
+export class AuthService {
+  private _currentUser: UserModel;
   private _sessionTokenKey: string;
   private _currentUserKey: string;
   private _isUserAdministrator: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  public canUserManageProducts: Observable<boolean> = this._isUserAdministrator.asObservable().share();
+  public canUserManageProducts: Observable<boolean> = this._isUserAdministrator.publishReplay(1).refCount();
 
-  constructor( private httpService: DemoShopHttpService,
-              private localSt:LocalStorageService,
-              @Inject('SESSION_TOKEN_KEY') sessionTokenKey: string,
-              @Inject('CURRENT_USER_KEY') currentUserKey: string) {
-    this._sessionTokenKey = sessionTokenKey;
-    this._currentUserKey = currentUserKey;
-    this._currentUser = this.localSt.retrieve(this._currentUserKey) || null;
+  constructor (
+    private httpService: DemoShopHttpService,
+    private localSt:LocalStorageService,
+    @Inject('SESSION_TOKEN_KEY') sessionTokenKey: string,
+    @Inject('CURRENT_USER_KEY') currentUserKey: string) {
+      this._sessionTokenKey = sessionTokenKey;
+      this._currentUserKey = currentUserKey;
+      let lsUser = this.localSt.retrieve(this._currentUserKey);
+      if (lsUser) {
+        this.setCurrentUser(lsUser)
+          .subscribe();
+    }
   }
 
   login (user: UserModel) {
@@ -73,6 +80,7 @@ export class AuthService {private _currentUser: UserModel;
       })
       .do(() => {
         this.localSt.store(this._currentUserKey, this._currentUser);
-      });
+      })
+      .share();
   }
 }

@@ -12,7 +12,7 @@
     {{product.description}}
   </p>
   <span class="product-price"><i class="currency">$</i>{{product.cost}}</span>
-  <button class="btn secondary-btn delete-product" (click)="deleteProduct()">Delete</button>
+  <button *ngIf="canManageProducts" class="btn secondary-btn delete-product" (click)="deleteProduct()">Delete</button>
   <a class="btn primary-btn show-more"
     routerLink="../product-page/{{product.id}}"
     routerLinkActive="true">Show more</a>

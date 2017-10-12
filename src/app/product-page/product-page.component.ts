@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {IProduct} from "../models/product.interface";
 import {ProductService} from "../product.service";
 import {ModalService} from "../modal.service";
+import { AuthService } from "../auth.service";
 import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
 import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
 import { Gender } from '../models/gender';
@@ -17,8 +18,12 @@ import { Observable } from "rxjs";
 export class ProductPageComponent implements OnInit {
   public _id: number;
   public product: IProduct;
+  public canManageProducts: boolean = false;
 
-  constructor( private route: ActivatedRoute, private _productService: ProductService, private _modalService: ModalService) {
+  constructor( private route: ActivatedRoute,
+    private _productService: ProductService,
+    private _modalService: ModalService,
+    private _authService: AuthService) {
     route.params.subscribe(params => this._id = params['id']);
   }
 
@@ -27,6 +32,9 @@ export class ProductPageComponent implements OnInit {
       .subscribe(products => {
         this.product = products.find(product => product.id === this._id * 1);
       });
+
+    this._authService.canUserManageProducts
+      .subscribe(canManage => this.canManageProducts = canManage);
   }
 
   openEditModal (e) {

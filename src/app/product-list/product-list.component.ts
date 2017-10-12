@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import {Observable, Observer, Subject} from "rxjs";
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, OnDestroy } from '@angular/core';
+import {Observable, Subject, Subscription} from "rxjs";
 import { IProduct } from "../models/product.interface";
 import { ProductService } from "../product.service";
 import { IProductsFilter } from '../models/products-filter.interface';
@@ -16,14 +16,15 @@ const productsCountStep = 6;
   styleUrls: ['./product-list.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
   @Output() productsFilter: Subject<IProductsFilter> = new Subject<IProductsFilter>();
   @Output() categories:  Observable<Array<ICategory>>;
   @Output() productShouldDelete: EventEmitter<number> = new EventEmitter<number>();
-  products: Observable<IProduct[]>;
+  @Output() canManageProducts: boolean;
+  public products: Observable<IProduct[]>;
 
   private _productsCount: number;
-  private _canManageProducts: boolean;
+  private _subscriptions: Subscription[] = [];
 
   constructor(
     private _productService: ProductService,
@@ -31,16 +32,17 @@ export class ProductListComponent implements OnInit {
     private _modalService: ModalService
   ) {
     this.products = this._productService.filteredProducts;
-    this._canManageProducts = false;
+    this.canManageProducts = false;
     this._productsCount = productsCountStep;
     this.categories = this._productService.categories;
   }
 
   ngOnInit() {
-    this._authService.canUserManageProducts
+    this._subscriptions.push(this._authService.canUserManageProducts
       .subscribe(value => {
-        this._canManageProducts = value;
-      });
+        this.canManageProducts = value;
+      })
+    );
 
     this.productsFilter.subscribe((filter: IProductsFilter) => {
       this._productService.filterProducts(filter);
@@ -52,6 +54,10 @@ export class ProductListComponent implements OnInit {
 
     this._productService.loadProducts();
     this._productService.loadCategories();
+  }
+
+  ngOnDestroy () {
+    this._subscriptions.forEach(subsription => subsription.unsubscribe());
   }
 
   loadMore() {
