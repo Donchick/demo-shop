@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from "../auth.service";
 import { UserModel } from '../user.model';
 import { Router } from "@angular/router";
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -18,8 +18,8 @@ export class LoginPageComponent implements OnInit {
     fb: FormBuilder
   ) {
     this.loginForm = fb.group({
-      login: [''],
-      password: ['']
+      login: ['', Validators.compose([Validators.required, Validators.pattern(/[A-Za-z]{3,}/)])],
+      password: ['', Validators.required]
     });
   }
 
@@ -27,6 +27,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   login(loginForm: any) {
+    if (!this.loginForm.valid) {
+      return;
+    }
+
     let userModel = new UserModel(loginForm.login, loginForm.password);
     this.authService.login(userModel)
       .subscribe(() => {

@@ -7,13 +7,16 @@
   <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login(loginForm.value)">
     <div class="username-block">
       <p class="input-title">Your Login:</p>
+      <p class="error-msg" *ngIf="loginForm.controls['login'].hasError('required') && loginForm.controls['login'].touched">Login is required</p>
+      <p class="error-msg" *ngIf="loginForm.controls['login'].hasError('pattern') && loginForm.controls['login'].touched">Login must contain English letters only and should be more than 3-symbols length</p>
       <input type="text" name="firstname" class="username-input" [formControl]="loginForm.controls['login']">
     </div>
     <div class="password-block">
       <p class="input-title">Your Password:</p>
+      <p class="error-msg" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Login is required</p>
       <input type="password" name="password" class="password-input" [formControl]="loginForm.controls['password']">
     </div>
 
-    <input type="submit" value="Submit" class="btn primary-btn login-btn">
+    <input type="submit" value="Submit" class="btn primary-btn login-btn" [disabled]="!loginForm.valid">
   </form>
 </div>

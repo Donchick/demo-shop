@@ -103,3 +103,10 @@
   width: 170px;
   height: 50px;
 }
+
+.login-block .error-msg{
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+  color: #da1d1d;
+}
