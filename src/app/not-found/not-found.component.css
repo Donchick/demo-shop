@@ -8,8 +8,16 @@
   min-height: 100%;
 }
 
-.body.modal-dialog-opened{
-  filter: blur(2px);
+.message{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: white;
 }
 
 header, footer{
@@ -30,6 +38,8 @@ footer{
   width: 100%;
   text-align: center;
   align-self: flex-end;
+  color: #FFFFFF;
+  font-size: 15px;
 }
 
 main{
@@ -48,30 +58,6 @@ main{
   margin: 0 auto;
   height: 100%;
   text-align: right;
-}
-
-.bag-icon{
-  content: url('../../assets/images/bag-icon.png');
-  float: left;
-  margin: 13px 30px;
-  cursor: pointer;
-}
-
-.logout-icon{
-  content: url('../../assets/images/logout-icon.png');
-  vertical-align: middle;
-  margin: 0 30px 0 10px;
-  cursor: pointer;
-}
-
-.user-greet, footer{
-  color: #FFFFFF;
-  font-size: 15px;
-}
-
-i{
-  font-style: italic;
-  text-transform: capitalize;
 }
 
 @media (max-width: 1000px) {
