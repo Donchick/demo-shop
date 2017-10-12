@@ -5,7 +5,7 @@
     Login to "Demo Shop"
   </div>
   <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login(loginForm.value)">
-    <p class="error-msg" *ngIf="globalError">{{globalError}}</p>
+    <p class="global error-msg" *ngIf="globalError">{{globalError}}</p>
     <div class="username-block">
       <p class="input-title">Your Login:</p>
       <p class="error-msg" *ngIf="loginForm.controls['login'].hasError('required') && loginForm.controls['login'].touched">Login is required</p>

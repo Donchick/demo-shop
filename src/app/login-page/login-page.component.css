@@ -106,7 +106,11 @@
 
 .login-block .error-msg{
   font-size: 16px;
-  margin-bottom: 10px;
+  padding: 10px;
   display: block;
   color: #da1d1d;
+}
+
+.login-block .global{
+  text-align: center;
 }
