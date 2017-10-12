@@ -20,9 +20,14 @@ import { ModalService } from "../modal.service";
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'product-list', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'product-list',
+    pathMatch: 'full'
+  },
   {
     path: 'product-list',
     component: ProductListComponent,
@@ -32,6 +37,11 @@ export const routes: Routes = [
     path: 'product-page/:id',
     component: ProductPageComponent,
     canActivate: [LoggedInGuard]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    pathMatch: 'full'
   }
 ];
 
@@ -44,7 +54,8 @@ export const routes: Routes = [
     ModalDialogComponent,
     ProductFormComponent,
     AddProductModalComponent,
-    ActionResultModalComponent
+    ActionResultModalComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

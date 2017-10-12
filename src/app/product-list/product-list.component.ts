@@ -38,19 +38,20 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._subscriptions.push(this._authService.canUserManageProducts
+    this._subscriptions.concat([
+      this._authService.canUserManageProducts
       .subscribe(value => {
         this.canManageProducts = value;
+      }),
+
+      this.productsFilter.subscribe((filter: IProductsFilter) => {
+        this._productService.filterProducts(filter);
+      }),
+
+      this.productShouldDelete.subscribe(id => {
+        this._productService.deleteProduct(id);
       })
-    );
-
-    this.productsFilter.subscribe((filter: IProductsFilter) => {
-      this._productService.filterProducts(filter);
-    });
-
-    this.productShouldDelete.subscribe(id => {
-      this._productService.deleteProduct(id);
-    });
+    ]);
 
     this._productService.loadProducts();
     this._productService.loadCategories();

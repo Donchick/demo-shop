@@ -15,8 +15,10 @@ export class AuthService {
   private _sessionTokenKey: string;
   private _currentUserKey: string;
   private _isUserAdministrator: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _userName: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   public canUserManageProducts: Observable<boolean> = this._isUserAdministrator.publishReplay(1).refCount();
+  public userName: Observable<string> = this._userName.publishReplay(1).refCount();
 
   constructor (
     private httpService: DemoShopHttpService,
@@ -68,6 +70,9 @@ export class AuthService {
           user.id,
           user.roleId
         );
+      })
+      .do(() => {
+        this._userName.next(this._currentUser.login);
       })
       .mergeMap(([user]) => {
         return this.httpService.get(`/roles`, `id=${user.roleId}`)

@@ -1,18 +1,22 @@
 import {
-  Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChild, Output
+  Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChild, OnDestroy
 } from '@angular/core';
 import { ModalService } from '../modal.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css']
 })
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent implements OnInit, OnDestroy {
   @ViewChild('modalDialog', { read: ViewContainerRef }) modalDialogContainer;
+
+  private _subscribers: Subscription[] = [];
   isModalOpened: boolean = false;
+  userName: string = '';
 
   constructor(private _modalService: ModalService,
     private _componentFactoryResolver: ComponentFactoryResolver,
@@ -20,11 +24,20 @@ export class MainLayoutComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit() {
-    this._modalService.openModalObserver.subscribe(({modal, model}) => {
-      this._closeModal();
-      this._openModal({modal, model});
-    });
-    this._modalService.closeModalObserver.subscribe(() => this._closeModal());
+    this._subscribers.concat([
+      this._modalService.openModalObserver.subscribe(({modal, model}) => {
+        this._closeModal();
+        this._openModal({modal, model});
+      }),
+
+      this._modalService.closeModalObserver.subscribe(() => this._closeModal()),
+
+      this._authService.userName.subscribe(userName => this.userName = userName)
+    ]);
+  }
+
+  ngOnDestroy () {
+    this._subscribers.forEach(subscriber => subscriber.unsubscribe());
   }
 
   logout (e) {

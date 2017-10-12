@@ -1,9 +1,10 @@
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from "./login-page/login-page.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
 import {LoggedInGuard} from "./logged-in-guard";
 import {UnAuthGuard} from "./un-auth-guard";
 import {MainLayoutComponent} from "./main-layout/main-layout.component";
-import { routes as childRoutes, MainLayoutModule } from './main-layout/main-layout.module';
+import { routes as childRoutes } from './main-layout/main-layout.module';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [LoggedInGuard],
     children: childRoutes
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    pathMatch: 'full'
   }
 ];
 
