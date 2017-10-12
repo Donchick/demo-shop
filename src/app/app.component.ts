@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import {ActionResultPopupService} from "./action-result-popup.service";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
     '../assets/styles/reset_css.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
-  title = 'app works!';
+export class AppComponent implements OnInit{
+  actionResultMsg: string = null;
+
+  constructor(private _actionResultPopupService: ActionResultPopupService) { }
+
+  ngOnInit () {
+    this._actionResultPopupService.popupMsg.subscribe(msg => this.actionResultMsg = msg);
+  }
 }

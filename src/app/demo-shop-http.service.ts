@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import {Http, RequestOptions, Headers, Response} from "@angular/http";
 import { LocalStorageService } from 'ngx-webstorage';
+import { ActionResultPopupService } from './action-result-popup.service'
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -11,6 +12,7 @@ export class DemoShopHttpService {
   constructor(
     private http: Http,
     private localSt:LocalStorageService,
+    private _popupService: ActionResultPopupService,
     @Inject('ENV_URL') envUrl: string,
     @Inject('SESSION_TOKEN_KEY') sessionTokenKey: string
   ) {
@@ -20,20 +22,23 @@ export class DemoShopHttpService {
 
   get (path: string, query?: string): Observable<Response> {
     var reqOpts = this.getReqOptions();
-    return this.http.get(`${this.envUrl}${path}?${query}`, reqOpts);
+    return this.http.get(`${this.envUrl}${path}?${query}`, reqOpts)
+      .catch(this._handleError.bind(this));
   }
 
   post (path: string, body: any): Observable<Response> {
     var reqOpts = this.getReqOptions();
     return this.http.post(`${this.envUrl}${path}`,
-      body, reqOpts);
+      body, reqOpts)
+      .catch(this._handleError.bind(this));
   }
 
   put (path: string, body: any): Observable<Response> {
     body = typeof body === 'string' ? body : JSON.stringify(body);
     var reqOpts = this.getReqOptions();
     return this.http.put(`${this.envUrl}${path}`,
-      body, reqOpts);
+      body, reqOpts)
+      .catch(this._handleError.bind(this));
   }
 
   deleteProduct (path: string) {
@@ -51,5 +56,14 @@ export class DemoShopHttpService {
     headers.append('Content-Type', 'application/json');
     reqOpts.headers = headers;
     return reqOpts;
+  }
+
+  private _handleError (err: any, caught) {
+    if (err.status >= 500 && err.status < 600) {
+      this._popupService.actionReject(err.msg);
+      return Observable.empty();
+    } else {
+      return Observable.throw(err);
+    }
   }
 }

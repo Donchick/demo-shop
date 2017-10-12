@@ -15,6 +15,7 @@ import {UnAuthGuard} from "./un-auth-guard";
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import {MainLayoutModule} from "./main-layout/main-layout.module";
 import { ProductPageComponent } from './product-page/product-page.component';
+import { ActionResultPopupService } from './action-result-popup.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ProductPageComponent } from './product-page/product-page.component';
     AuthService,
     ProductService,
     LoggedInGuard,
-    UnAuthGuard
+    UnAuthGuard,
+    ActionResultPopupService
   ],
   bootstrap: [AppComponent]
 })

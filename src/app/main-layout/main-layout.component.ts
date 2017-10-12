@@ -16,7 +16,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
 
   private _subscribers: Subscription[] = [];
   isModalOpened: boolean = false;
-  userName: string = '';
+  userName: string = null;
 
   constructor(private _modalService: ModalService,
     private _componentFactoryResolver: ComponentFactoryResolver,
