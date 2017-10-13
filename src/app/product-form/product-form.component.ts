@@ -32,7 +32,7 @@ export class ProductFormComponent implements OnInit {
     this.productForm = this._formBuilder.group({
       name: [this.product.name, Validators.required],
       linkToImage: [this.product.image, Validators.required],
-      price: [this.product.cost, Validators.compose([Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)])],
+      price: [this.product.cost, Validators.compose([Validators.required, Validators.pattern(/^\d*(\.\d{1,2})?$/)])],
       rating: [this.product.rating, Validators.required],
       gender: [Gender[this.product.gender], Validators.required],
       description: [this.product.description, Validators.required],
