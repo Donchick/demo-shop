@@ -25,7 +25,7 @@
         them.</p>
     </div>
     <p class="out-of-stock-msg" *ngIf="isProductOutOfStock">This item is out of stock.</p>
-    <span class="product-price"><i class="currency">$</i>{{product.cost}}<span class="product-qty">(10 items left)</span></span>
-    <button for="success_purchased_modal" class="btn primary-btn buy-product-btn modal-open-close-button" [disabled]="isProductOutOfStock" (click)="onBuyProduct($event)">Buy</button>
+    <span class="product-price"><i class="currency">$</i>{{product.cost}}<span class="product-qty">({{product.count - product.soldCount}} items left)</span></span>
+    <button *ngIf="!canManageProducts" for="success_purchased_modal" class="btn primary-btn buy-product-btn modal-open-close-button" [disabled]="isProductOutOfStock" (click)="onBuyProduct($event)">Buy</button>
   </div>
 </div>
