@@ -41,6 +41,7 @@ export class LoginPageComponent implements OnInit {
       .catch((err: any) => {
         if (err.status === 400) {
           this.globalError = 'Wrong login or password';
+          return Observable.empty();
         }
 
         return Observable.throw(err);

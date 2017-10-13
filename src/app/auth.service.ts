@@ -36,10 +36,6 @@ export class AuthService {
 
   login (user: UserModel) {
     return this.httpService.post('/login', user)
-      .catch((err: any) => {
-        console.log(err);
-        return Observable.throw(err);
-      })
       .do(res => {
         var sessionToken = res.headers.get(this._sessionTokenKey);
         this.localSt.store(this._sessionTokenKey, sessionToken);

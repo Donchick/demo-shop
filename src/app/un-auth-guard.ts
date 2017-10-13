@@ -21,7 +21,7 @@ export class UnAuthGuard implements CanActivate{
     const isLoggedIn = this._authService.isLoggedIn();
 
     if (isLoggedIn) {
-      this._router.navigate(['/product-list']);
+      this._router.navigate(['/main-layout/product-list']);
     }
 
     return !isLoggedIn;

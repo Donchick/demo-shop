@@ -49,6 +49,7 @@ export class ProductService {
   public products: Observable<IProduct[]> = this._products.publishReplay(1).refCount();
   public categories: Observable<Array<ICategory>> = this._categories.asObservable();
   public allProductsLoaded: boolean = false;
+  public filterState: IProductsFilter = null;
 
   constructor( private demoShopHttpService: DemoShopHttpService ) {
     this.filteredProducts = Observable.combineLatest(this._products,
@@ -147,6 +148,7 @@ export class ProductService {
   }
 
   public filterProducts(filter: IProductsFilter) {
+    this.filterState = filter;
     this.loadProducts().toPromise()
       .then(() => this._filterByProps.next(filter));
   }
