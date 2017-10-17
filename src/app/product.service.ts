@@ -59,8 +59,10 @@ export class ProductService {
         let filteredProducts = filterProps ? filterSubject(products, filterProps) : products;
 
         if (filterName) {
-          filteredProducts = filteredProducts.filter(product => product.name.toLowerCase()
-            .indexOf(filterName.toLowerCase()) >= 0);
+          filteredProducts = filteredProducts.filter(product => {
+            return product.name.toLowerCase().indexOf(filterName.toLowerCase()) >= 0
+              || product.description.toLowerCase().indexOf(filterName.toLowerCase()) >= 0;
+          });
         }
 
         return filteredProducts.reduce((filteredProducts, product) => {
