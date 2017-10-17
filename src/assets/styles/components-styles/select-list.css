@@ -1,12 +1,12 @@
 .green{
     background: #2e8879;
     color: #ffffff;
-    background-image: url(../../assets/images/white-select-link.png);
+    background-image: url(../../../assets/images/white-select-link.png);
 }
 
 .white{
     background: #ffffff;
-    background-image: url(../../assets/images/green-select-link.png);
+    background-image: url(../../../assets/images/green-select-link.png);
 }
 
 .select-list{

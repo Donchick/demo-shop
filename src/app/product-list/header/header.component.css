@@ -29,7 +29,7 @@
 .filters:before{
   position: absolute;
   display: block;
-  content: url(../../assets/images/tooltip-triangle.png);
+  content: url(../../../assets/images/tooltip-triangle.png);
   top: 0;
   right: 310px;
   width: 16px;
@@ -157,7 +157,7 @@
 }
 
 .search-icon{
-  background: url('../../assets/images/search-icon.png');
+  background: url('../../../assets/images/search-icon.png');
   cursor: pointer;
   display: inline-block;
   height: 20px;
@@ -165,7 +165,7 @@
 }
 
 .searchbar:focus ~ .search-button .search-icon{
-  background: url('../../assets/images/focused-search-icon.png');
+  background: url('../../../assets/images/focused-search-icon.png');
 }
 
 .searchbar:focus{
