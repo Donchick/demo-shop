@@ -16,13 +16,15 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import {MainLayoutModule} from "./main-layout/main-layout.module";
 import { ProductPageComponent } from './product-page/product-page.component';
 import { ActionResultPopupService } from './action-result-popup.service';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     MainLayoutComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    LoadingOverlayComponent
   ],
   imports: [
     BrowserModule,
