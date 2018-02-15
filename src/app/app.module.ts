@@ -23,8 +23,7 @@ import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.compo
     AppComponent,
     LoginPageComponent,
     MainLayoutComponent,
-    ProductPageComponent,
-    LoadingOverlayComponent
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

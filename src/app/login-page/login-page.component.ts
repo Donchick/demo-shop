@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     this.loginForm.valueChanges.subscribe(() => {
       this.globalError = null;
-    })
+    });
   }
 
   login(loginForm: any) {

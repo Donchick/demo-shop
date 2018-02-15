@@ -32,7 +32,6 @@ export class ModalDialogComponent implements OnInit {
     this._modalService.closeModal();
 
     document.removeEventListener('click', this.clickHandler);
-    //$(document).off('click.modal-dialog');
   }
 
   private _onClick (e) {

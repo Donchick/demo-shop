@@ -22,6 +22,7 @@ import { ProductFormComponent } from '../product-form/product-form.component';
 import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { InfiniteScrollListComponent } from '../infinite-scroll-list/infinite-scroll-list.component';
+import { LoadingOverlayComponent } from '../loading-overlay/loading-overlay.component';
 
 export const routes: Routes = [
   {
@@ -57,7 +58,8 @@ export const routes: Routes = [
     AddProductModalComponent,
     ActionResultModalComponent,
     NotFoundComponent,
-    InfiniteScrollListComponent
+    InfiniteScrollListComponent,
+    LoadingOverlayComponent
   ],
   imports: [
     CommonModule,
