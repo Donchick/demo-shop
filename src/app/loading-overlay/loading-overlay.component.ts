@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-loading-overlay',
@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./loading-overlay.component.css']
 })
 export class LoadingOverlayComponent implements OnInit {
+  @Input() hideShadowOverlay: boolean;
 
   constructor() { }
 
