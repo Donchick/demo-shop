@@ -17,6 +17,7 @@ export class EditProductModalComponent implements OnInit {
   @Input() model: IProduct;
   @Output() modalShouldBeClosed: EventEmitter<any> = new EventEmitter<any>();
   @Output() categories: ICategory[];
+  @Output() showLoadingOverlay: boolean = false;
   public categoriesObserver: Observable<Array<ICategory>>;
   public modalTitle: string;
 
@@ -37,8 +38,11 @@ export class EditProductModalComponent implements OnInit {
   }
 
   onFormSubmit (product: IProduct): void {
+    this.showLoadingOverlay = true;
+
     this._productService.updateProduct(product)
-      .subscribe(product => {
+      .finally(() => this.showLoadingOverlay = false)
+      .subscribe(() => {
         this.modalShouldBeClosed.emit();
       });
   }

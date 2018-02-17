@@ -11,6 +11,7 @@ import { ModalService } from '../modal.service'
 export class ModalDialogComponent implements OnInit {
   @Input() title: string;
   @Input() modalShouldBeClosed: EventEmitter<any>;
+  @Input() showLoadingOverlay: boolean = false;
   private clickHandler: EventListenerOrEventListenerObject;
 
   constructor(

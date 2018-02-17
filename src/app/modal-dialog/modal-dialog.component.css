@@ -76,3 +76,7 @@
   opacity: 0;
   transition: opacity .5s;
 }
+
+app-loading-overlay {
+  z-index: 100000;
+}
