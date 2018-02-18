@@ -13,6 +13,7 @@ import {Observable} from "rxjs";
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   globalError: string = null;
+  showLoadingOverlay: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -36,6 +37,7 @@ export class LoginPageComponent implements OnInit {
       return;
     }
 
+    this.showLoadingOverlay = true;
     let userModel = new UserModel(loginForm.login, loginForm.password);
     this.authService.login(userModel)
       .catch((err: any) => {
@@ -46,6 +48,7 @@ export class LoginPageComponent implements OnInit {
 
         return Observable.throw(err);
       })
+      .finally(() => {this.showLoadingOverlay = false;})
       .subscribe(() => {
         this.router.navigate(['/main-layout']);
       });

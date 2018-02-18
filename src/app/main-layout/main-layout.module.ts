@@ -22,7 +22,9 @@ import { ProductFormComponent } from '../product-form/product-form.component';
 import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { InfiniteScrollListComponent } from '../infinite-scroll-list/infinite-scroll-list.component';
-import { LoadingOverlayComponent } from '../loading-overlay/loading-overlay.component';
+import {LoadingOverlayComponent} from '../loading-overlay/loading-overlay.component';
+import {AppModule} from '../app.module';
+import {SharedModule} from '../shared/shared.module';
 
 export const routes: Routes = [
   {
@@ -58,15 +60,15 @@ export const routes: Routes = [
     AddProductModalComponent,
     ActionResultModalComponent,
     NotFoundComponent,
-    InfiniteScrollListComponent,
-    LoadingOverlayComponent
+    InfiniteScrollListComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     IonRangeSliderModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [
     ProductService,

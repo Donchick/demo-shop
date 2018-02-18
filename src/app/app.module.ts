@@ -16,7 +16,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import {MainLayoutModule} from "./main-layout/main-layout.module";
 import { ProductPageComponent } from './product-page/product-page.component';
 import { ActionResultPopupService } from './action-result-popup.service';
-import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.compo
     HttpModule,
     Ng2Webstorage,
     appRoutes,
-    MainLayoutModule
+    MainLayoutModule,
+    SharedModule
   ],
   providers: [
     { provide: 'ENV_URL', useValue: 'http://localhost:3000/api' },
