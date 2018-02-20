@@ -12,6 +12,7 @@ export class ProductTileComponent implements OnInit {
   @Input() product: IProduct;
   @Input() productShouldDelete: EventEmitter<number>;
   @Input() canManageProducts: boolean;
+  public showLoadingOverlay: boolean = false;
 
   constructor(
     private router: Router
@@ -21,6 +22,7 @@ export class ProductTileComponent implements OnInit {
   }
 
   deleteProduct () {
+    this.showLoadingOverlay = true;
     this.productShouldDelete.emit(this.product.id);
   }
 

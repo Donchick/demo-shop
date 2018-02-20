@@ -19,6 +19,7 @@ export class ProductPageComponent implements OnInit {
   public _id: number;
   public product: IProduct;
   public canManageProducts: boolean = false;
+  public showLoadingOverlay: boolean = false;
 
   constructor( private route: ActivatedRoute,
     private _productService: ProductService,
@@ -54,6 +55,7 @@ export class ProductPageComponent implements OnInit {
   onBuyProduct (e) {
     e.stopPropagation();
     if (this.product.count > this.product.soldCount) {
+      this.showLoadingOverlay = true;
       var productModel = {
         id: this.product.id,
         categoryId: this.product.categoryId,
@@ -71,6 +73,7 @@ export class ProductPageComponent implements OnInit {
           this._modalService.open(ActionResultModalComponent, {message: 'There was some error on server, your last action has been declined'});
           return Observable.throw(err);
         })
+        .finally(() => this.showLoadingOverlay = false)
         .subscribe(product => {
           if (product.count >= product.soldCount) {
             this.product = product;
@@ -92,6 +95,7 @@ export class ProductPageComponent implements OnInit {
   increaseProductCount (e) {
     e.stopPropagation();
     e.preventDefault();
+    this.showLoadingOverlay = true;
 
     let productModel = {
       id: this.product.id,
@@ -113,6 +117,7 @@ export class ProductPageComponent implements OnInit {
         this._modalService.open(ActionResultModalComponent, {message: 'There was some error on server, your last action has been declined'});
         return Observable.throw(err);
       })
+      .finally(() => this.showLoadingOverlay = false)
       .subscribe(product => {
         this.product = product;
         this._modalService.open(ActionResultModalComponent, {message: 'You increased product quantity successfully'});

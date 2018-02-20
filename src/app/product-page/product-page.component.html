@@ -5,6 +5,7 @@
   <span class="category-path navigation-link">Category: <a href="/">Man / Acive wear</a></span>
 </div>
 <div class="product-block" *ngIf="product">
+  <app-loading-overlay *ngIf="showLoadingOverlay"></app-loading-overlay>
   <div class="product-img">
     <img src="{{product.image}}">
     <div class="product-rating">

@@ -42,6 +42,7 @@ main{
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  position: relative;
 }
 
 .product-block .product-img,
@@ -162,4 +163,10 @@ main{
   text-align: left;
   font-size: 16px;
   color: #da1d1d;
+}
+
+app-loading-overlay{
+  bottom: 0;
+  right: 0;
+  z-index: 10;
 }
