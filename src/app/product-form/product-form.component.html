@@ -30,6 +30,7 @@
       <div class="param-block">
         <p class="title">Link to image:</p>
         <p class="error-msg" *ngIf="productForm.controls['linkToImage'].hasError('required') && productForm.controls['linkToImage'].touched">Image is required</p>
+        <p class="error-msg" *ngIf="productForm.controls['linkToImage'].hasError('imageLinkInvalid') && productForm.controls['linkToImage'].touched">Image link is invalid</p>
         <input type="text" name="linkToImage" class="link-to-image" [formControl]="productForm.controls['linkToImage']">
         <img [src]="productForm.controls['linkToImage'].value" class="image-preview">
       </div>

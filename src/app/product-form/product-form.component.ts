@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { IProduct } from '../models/product.interface';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { ICategory } from '../models/category.interface';
 import { Gender } from '../models/gender';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-product-form',
@@ -31,7 +32,7 @@ export class ProductFormComponent implements OnInit {
   ngOnInit() {
     this.productForm = this._formBuilder.group({
       name: [this.product.name, Validators.required],
-      linkToImage: [this.product.image, Validators.required],
+      linkToImage: [this.product.image, Validators.compose([Validators.required]), imageValidator],
       price: [this.product.cost, Validators.compose([Validators.required, Validators.pattern(/^\d*(\.\d{1,2})?$/)])],
       rating: [this.product.rating, Validators.required],
       gender: [Gender[this.product.gender], Validators.required],
@@ -46,7 +47,7 @@ export class ProductFormComponent implements OnInit {
       return;
     }
 
-    let product = {
+    const product = {
       id: this.product.id,
       name,
       image: linkToImage,
@@ -61,4 +62,22 @@ export class ProductFormComponent implements OnInit {
 
     this.formSubmit.next(product);
   }
+}
+
+function imageValidator(control: FormControl): Promise<{[key: string]: any}> {
+  const img = new Image();
+
+  let promise = new Promise(resolve => {
+    img.onload = () => {
+      resolve(true);
+    };
+    img.onerror = () => {
+      resolve(false);
+    };
+  }).then(result => {
+    return result ? null : {imageLinkInvalid: true};
+  });
+
+  img.src = control.value;
+  return promise;
 }
