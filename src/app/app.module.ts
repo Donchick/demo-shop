@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -17,6 +17,8 @@ import {MainLayoutModule} from "./main-layout/main-layout.module";
 import { ProductPageComponent } from './product-page/product-page.component';
 import { ActionResultPopupService } from './action-result-popup.service';
 import {SharedModule} from './shared/shared.module';
+import { GlobalErrorHandler } from './global-error-handler';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import {SharedModule} from './shared/shared.module';
     { provide: 'ENV_URL', useValue: 'http://localhost:3000/api' },
     { provide: 'SESSION_TOKEN_KEY', useValue: 'session-token' },
     { provide: 'CURRENT_USER_KEY', useValue: 'current-user' },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
     DemoShopHttpService,
     AuthService,
     ProductService,
