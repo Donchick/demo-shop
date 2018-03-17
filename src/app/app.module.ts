@@ -18,6 +18,8 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { ActionResultPopupService } from './action-result-popup.service';
 import {SharedModule} from './shared/shared.module';
 import { GlobalErrorHandler } from './global-error-handler';
+import { environment } from '../environments/environment';
+
 
 
 @NgModule({
@@ -38,7 +40,7 @@ import { GlobalErrorHandler } from './global-error-handler';
     SharedModule
   ],
   providers: [
-    { provide: 'ENV_URL', useValue: 'http://localhost:3000/api' },
+    { provide: 'ENV_URL', useValue: environment.env_url },
     { provide: 'SESSION_TOKEN_KEY', useValue: 'session-token' },
     { provide: 'CURRENT_USER_KEY', useValue: 'current-user' },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
