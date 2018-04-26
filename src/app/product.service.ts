@@ -89,9 +89,7 @@ export class ProductService {
   }
 
   public loadProducts () {
-    let productObservable = this.demoShopHttpService.get(`/products`)
-      .map(response => response.text())
-      .map(jsonProducts => JSON.parse(jsonProducts));
+    let productObservable = this.demoShopHttpService.get(`/products`);
 
       productObservable.subscribe(products => {
         products = products.map((product): IProduct => this._buildProductModel(product));
@@ -105,16 +103,12 @@ export class ProductService {
 
   public getProduct (productId: number) {
     return this.demoShopHttpService.get('/products', `id=${productId}`)
-      .map(response => response.text())
-      .map(jsonProducts => JSON.parse(jsonProducts))
       .map(products => this._buildProductModel(products[0]))
       .share();
   }
 
   public updateProduct(product: IProduct) {
     let productUpdateObserver = this.demoShopHttpService.put(`/products/${product.id}`, product)
-      .map(response => response.text())
-      .map(jsonProduct => JSON.parse(jsonProduct))
       .map(product => this._buildProductModel(product))
       .share();
 
@@ -125,8 +119,6 @@ export class ProductService {
 
   public addProduct(product: IProduct) {
     let productAddObserver = this.demoShopHttpService.post(`/products`, product)
-      .map(response => response.text())
-      .map(jsonProduct => JSON.parse(jsonProduct))
       .map(product => this._buildProductModel(product))
       .share();
 
@@ -144,8 +136,6 @@ export class ProductService {
 
   public loadCategories () {
     this.demoShopHttpService.get(`/categories`)
-      .map(response => response.text())
-      .map(jsonCategories => JSON.parse(jsonCategories))
       .subscribe(categories => this._categories.next(categories));
   }
 

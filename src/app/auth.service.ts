@@ -61,8 +61,6 @@ export class AuthService {
 
   private setCurrentUser (user: UserModel) {
     return this.httpService.get(`/users`, `login=${user.login}`)
-      .map((response: Response) => response.text())
-      .map((jsonUser: string) => JSON.parse(jsonUser))
       .do(([user]) => {
         this._currentUser = new UserModel(
           user.login,
@@ -77,8 +75,6 @@ export class AuthService {
       .mergeMap(([user]) => {
         return this.httpService.get(`/roles`, `id=${user.roleId}`)
       })
-      .map((response: Response) => response.text())
-      .map((jsonUser: string) => JSON.parse(jsonUser))
       .do(([role]) => {
         this._currentUser.isAdministrator = role['name'] === 'Admin';
         this._isUserAdministrator.next(this._currentUser.isAdministrator);
