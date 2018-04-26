@@ -47,7 +47,7 @@ export class ProductService {
   private _totalProductsCount: number;
   public filteredProducts: Observable<IProduct[]>;
   public products: Observable<IProduct[]> = this._products.publishReplay(1).refCount();
-  public categories: Observable<Array<ICategory>> = this._categories.asObservable();
+  public categories: Observable<Array<ICategory>> = this._categories.publishReplay(1).refCount();
   public allProductsLoaded: boolean = false;
   public filterState: IProductsFilter = null;
 

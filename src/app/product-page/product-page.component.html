@@ -2,7 +2,7 @@
   <span class="back-link navigation-link"><a
      routerLink="/main-layout/product-list"
      routerLinkActive="true">Back</a></span>
-  <span class="category-path navigation-link">Category: <a href="/">Man / Acive wear</a></span>
+  <span class="category-path navigation-link">Category: <a href="/">{{product.gender}} / {{category}}</a></span>
 </div>
 <div class="product-block" *ngIf="product">
   <app-loading-overlay *ngIf="showLoadingOverlay"></app-loading-overlay>

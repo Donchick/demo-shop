@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {IProduct} from "../models/product.interface";
+import {ICategory} from "../models/category.interface";
 import {ProductService} from "../product.service";
 import {ModalService} from "../modal.service";
 import { AuthService } from "../auth.service";
@@ -16,8 +17,10 @@ import { Observable } from "rxjs";
     '../../assets/styles/components-styles/product-image.css']
 })
 export class ProductPageComponent implements OnInit {
-  public _id: number;
+  private _id: number;
+  private _categories: ICategory[];
   public product: IProduct;
+  public category: string;
   public canManageProducts: boolean = false;
   public showLoadingOverlay: boolean = false;
 
@@ -25,14 +28,18 @@ export class ProductPageComponent implements OnInit {
     private _productService: ProductService,
     private _modalService: ModalService,
     private _authService: AuthService) {
-    route.params.subscribe(params => this._id = params['id']);
+    route.params.subscribe(params => this._id = parseInt(params['id'], 10));
   }
 
   ngOnInit() {
+    this._productService.categories
+      .subscribe(categories => this._categories = categories);
+
     this._productService.products
       .subscribe(products => {
         if (products.length > 0) {
           this.product = products.find(product => product.id === this._id);
+          this.category = this._categories.find(category => category.id === this.product.categoryId).name;
         } else {
           this._productService.loadProducts();
         }
