@@ -100,7 +100,7 @@ export class ProductService {
         this._totalProductsCount = products.length;
       });
 
-      return productObservable;
+      return productObservable.toPromise();
   }
 
   public getProduct (productId: number) {
@@ -151,12 +151,12 @@ export class ProductService {
 
   public filterProducts(filter: IProductsFilter) {
     this.filterState = filter;
-    this.loadProducts().toPromise()
+    this.loadProducts()
       .then(() => this._filterByProps.next(filter));
   }
 
   public filterByName(name: string) {
-    this.loadProducts().toPromise()
+    this.loadProducts()
       .then(() => this._filterByName.next(name));
 
   }
