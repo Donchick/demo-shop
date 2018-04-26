@@ -32,7 +32,7 @@ export class ProductPageComponent implements OnInit {
     this._productService.products
       .subscribe(products => {
         if (products.length > 0) {
-          this.product = products.find(product => product.id === this._id * 1);
+          this.product = products.find(product => product.id === this._id);
         } else {
           this._productService.loadProducts();
         }
