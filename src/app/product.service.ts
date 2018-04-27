@@ -88,10 +88,13 @@ export class ProductService {
     }
   }
 
+  private _parseResponse (response): any {
+    return JSON.parse(response.text());
+  }
+
   public loadProducts () {
     let productObservable = this.demoShopHttpService.makeGetRequest(`/products`)
-      .map(response => response.text())
-      .map(jsonProducts => JSON.parse(jsonProducts));
+      .map(this._parseResponse);
 
       productObservable.subscribe(products => {
         products = products.map((product): IProduct => this._buildProductModel(product));
@@ -105,16 +108,14 @@ export class ProductService {
 
   public getProduct (productId: number) {
     return this.demoShopHttpService.makeGetRequest('/products', `id=${productId}`)
-      .map(response => response.text())
-      .map(jsonProducts => JSON.parse(jsonProducts))
+      .map(this._parseResponse)
       .map(products => this._buildProductModel(products[0]))
       .share();
   }
 
   public updateProduct(product: IProduct) {
     let productUpdateObserver = this.demoShopHttpService.makePutRequest(`/products/${product.id}`, product)
-      .map(response => response.text())
-      .map(jsonProduct => JSON.parse(jsonProduct))
+      .map(this._parseResponse)
       .map(product => this._buildProductModel(product))
       .share();
 
@@ -125,8 +126,7 @@ export class ProductService {
 
   public addProduct(product: IProduct) {
     let productAddObserver = this.demoShopHttpService.makePostRequest(`/products`, product)
-      .map(response => response.text())
-      .map(jsonProduct => JSON.parse(jsonProduct))
+      .map(this._parseResponse)
       .map(product => this._buildProductModel(product))
       .share();
 
@@ -137,15 +137,13 @@ export class ProductService {
 
   public deleteProduct(productId: number) {
     this.demoShopHttpService.deleteProduct(`/products/${productId}`)
-      .map(response => response.text())
-      .map(resp => JSON.parse(resp))
+      .map(this._parseResponse)
       .subscribe(this.loadProducts.bind(this));
   }
 
   public loadCategories () {
     this.demoShopHttpService.makeGetRequest(`/categories`)
-      .map(response => response.text())
-      .map(jsonCategories => JSON.parse(jsonCategories))
+      .map(this._parseResponse)
       .subscribe(categories => this._categories.next(categories));
   }
 
