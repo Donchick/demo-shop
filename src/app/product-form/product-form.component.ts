@@ -4,6 +4,7 @@ import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { ICategory } from '../models/category.interface';
 import { Gender } from '../models/gender';
 import { Observable } from "rxjs";
+import { imageValidator } from '../validators/image-validator';
 
 @Component({
   selector: 'app-product-form',
@@ -62,22 +63,4 @@ export class ProductFormComponent implements OnInit {
 
     this.formSubmit.next(product);
   }
-}
-
-function imageValidator(control: FormControl): Promise<{[key: string]: any}> {
-  const img = new Image();
-
-  let promise = new Promise(resolve => {
-    img.onload = () => {
-      resolve(true);
-    };
-    img.onerror = () => {
-      resolve(false);
-    };
-  }).then(result => {
-    return result ? null : {imageLinkInvalid: true};
-  });
-
-  img.src = control.value;
-  return promise;
 }
