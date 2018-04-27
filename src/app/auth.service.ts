@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   login (user: UserModel) {
-    return this.httpService.post('/login', user)
+    return this.httpService.makePostRequest('/login', user)
       .do(res => {
         var sessionToken = res.headers.get(this._sessionTokenKey);
         this.localSt.store(this._sessionTokenKey, sessionToken);
@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   logout () {
-    return this.httpService.post('/logout', this._currentUser)
+    return this.httpService.makePostRequest('/logout', this._currentUser)
       .do(res => {
         this.localSt.clear(this._sessionTokenKey);
         this.localSt.clear(this._currentUserKey);
@@ -60,7 +60,7 @@ export class AuthService {
   }
 
   private setCurrentUser (user: UserModel) {
-    return this.httpService.get(`/users`, `login=${user.login}`)
+    return this.httpService.makeGetRequest(`/users`, `login=${user.login}`)
       .map((response: Response) => response.text())
       .map((jsonUser: string) => JSON.parse(jsonUser))
       .do(([user]) => {
@@ -75,7 +75,7 @@ export class AuthService {
         this._userName.next(this._currentUser.login);
       })
       .mergeMap(([user]) => {
-        return this.httpService.get(`/roles`, `id=${user.roleId}`)
+        return this.httpService.makeGetRequest(`/roles`, `id=${user.roleId}`)
       })
       .map((response: Response) => response.text())
       .map((jsonUser: string) => JSON.parse(jsonUser))

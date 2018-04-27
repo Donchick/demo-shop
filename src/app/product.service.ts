@@ -89,7 +89,7 @@ export class ProductService {
   }
 
   public loadProducts () {
-    let productObservable = this.demoShopHttpService.get(`/products`)
+    let productObservable = this.demoShopHttpService.makeGetRequest(`/products`)
       .map(response => response.text())
       .map(jsonProducts => JSON.parse(jsonProducts));
 
@@ -104,7 +104,7 @@ export class ProductService {
   }
 
   public getProduct (productId: number) {
-    return this.demoShopHttpService.get('/products', `id=${productId}`)
+    return this.demoShopHttpService.makeGetRequest('/products', `id=${productId}`)
       .map(response => response.text())
       .map(jsonProducts => JSON.parse(jsonProducts))
       .map(products => this._buildProductModel(products[0]))
@@ -112,7 +112,7 @@ export class ProductService {
   }
 
   public updateProduct(product: IProduct) {
-    let productUpdateObserver = this.demoShopHttpService.put(`/products/${product.id}`, product)
+    let productUpdateObserver = this.demoShopHttpService.makePutRequest(`/products/${product.id}`, product)
       .map(response => response.text())
       .map(jsonProduct => JSON.parse(jsonProduct))
       .map(product => this._buildProductModel(product))
@@ -124,7 +124,7 @@ export class ProductService {
   }
 
   public addProduct(product: IProduct) {
-    let productAddObserver = this.demoShopHttpService.post(`/products`, product)
+    let productAddObserver = this.demoShopHttpService.makePostRequest(`/products`, product)
       .map(response => response.text())
       .map(jsonProduct => JSON.parse(jsonProduct))
       .map(product => this._buildProductModel(product))
@@ -143,7 +143,7 @@ export class ProductService {
   }
 
   public loadCategories () {
-    this.demoShopHttpService.get(`/categories`)
+    this.demoShopHttpService.makeGetRequest(`/categories`)
       .map(response => response.text())
       .map(jsonCategories => JSON.parse(jsonCategories))
       .subscribe(categories => this._categories.next(categories));
