@@ -63,7 +63,7 @@ export class ProductPageComponent implements OnInit {
     e.stopPropagation();
     if (this.product.count > this.product.soldCount) {
       this.showLoadingOverlay = true;
-      const productModel = {
+      var productModel = {
         id: this.product.id,
         categoryId: this.product.categoryId,
         image: this.product.image,
@@ -104,7 +104,7 @@ export class ProductPageComponent implements OnInit {
     e.preventDefault();
     this.showLoadingOverlay = true;
 
-    const productModel = {
+    let productModel = {
       id: this.product.id,
       categoryId: this.product.categoryId,
       image: this.product.image,

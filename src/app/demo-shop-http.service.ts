@@ -21,14 +21,14 @@ export class DemoShopHttpService {
   }
 
   get (path: string, query?: string): Observable<any> {
-    const reqOpts = this.getReqOptions();
+    var reqOpts = this.getReqOptions();
     return this.http.get(`${this.envUrl}${path}?${query}`, reqOpts)
       .map(this._parseResponse)
       .catch(this._handleError.bind(this));
   }
 
   post (path: string, body: any): Observable<any> {
-    const reqOpts = this.getReqOptions();
+    var reqOpts = this.getReqOptions();
     return this.http.post(`${this.envUrl}${path}`,
       body, reqOpts)
       .map(this._parseResponse)
@@ -36,23 +36,23 @@ export class DemoShopHttpService {
   }
 
   put (path: string, body: any): Observable<any> {
-    const parsedBody = typeof body === 'string' ? body : JSON.stringify(body);
-    const reqOpts = this.getReqOptions();
+    body = typeof body === 'string' ? body : JSON.stringify(body);
+    var reqOpts = this.getReqOptions();
     return this.http.put(`${this.envUrl}${path}`,
-      parsedBody, reqOpts)
+      body, reqOpts)
       .map(this._parseResponse)
       .catch(this._handleError.bind(this));
   }
 
   deleteProduct (path: string) {
-    const reqOpts = this.getReqOptions();
+    var reqOpts = this.getReqOptions();
     return this.http.delete(`${this.envUrl}${path}`, reqOpts);
   }
 
   private getReqOptions (): RequestOptions {
-    const reqOpts = new RequestOptions();
-    const headers = new Headers();
-    const sessionToken = this.localSt.retrieve(this.sessionTokenName);
+    var reqOpts = new RequestOptions();
+    var headers = new Headers();
+    var sessionToken = this.localSt.retrieve(this.sessionTokenName);
     if (sessionToken) {
       headers.append(this.sessionTokenName, sessionToken);
     }
