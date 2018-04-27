@@ -3,6 +3,7 @@ import {Http, RequestOptions, Headers, Response} from "@angular/http";
 import { LocalStorageService } from 'ngx-webstorage';
 import { ActionResultPopupService } from './action-result-popup.service'
 import {Observable} from "rxjs";
+import { AppConfig } from './app.config';
 
 @Injectable()
 export class DemoShopHttpService {
@@ -13,10 +14,10 @@ export class DemoShopHttpService {
     private http: Http,
     private localSt:LocalStorageService,
     private _popupService: ActionResultPopupService,
-    @Inject('ENV_URL') envUrl: string,
+    private _appConfig: AppConfig,
     @Inject('SESSION_TOKEN_KEY') sessionTokenKey: string
   ) {
-    this.envUrl = envUrl;
+    this.envUrl = this._appConfig.getConfig('env_url');
     this.sessionTokenName = sessionTokenKey;
   }
 

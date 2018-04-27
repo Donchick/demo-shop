@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -19,8 +19,11 @@ import { ActionResultPopupService } from './action-result-popup.service';
 import {SharedModule} from './shared/shared.module';
 import { GlobalErrorHandler } from './global-error-handler';
 import { environment } from '../environments/environment';
+import { AppConfig } from './app.config';
 
-
+export function appInitFactory (config: AppConfig) {
+  return () => config.load();
+}
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { environment } from '../environments/environment';
     SharedModule
   ],
   providers: [
-    { provide: 'ENV_URL', useValue: environment.env_url },
+    AppConfig,
+    { provide: APP_INITIALIZER, useFactory: appInitFactory, deps: [AppConfig], multi: true },
     { provide: 'SESSION_TOKEN_KEY', useValue: 'session-token' },
     { provide: 'CURRENT_USER_KEY', useValue: 'current-user' },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
