@@ -13,12 +13,12 @@ import { ProductPageComponent } from '../product-management/product-page/product
 import { ProductTileComponent } from '../product-tile/product-tile.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductListHeaderComponent } from '../product-list/header/header.component';
-import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
+import { EditProductModalComponent } from '../product-management/edit-product-modal/edit-product-modal.component';
 import { AddProductModalComponent } from '../product-management/add-product-modal/add-product-modal.component';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { ModalService } from "../modal.service";
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
-import { ProductFormComponent } from '../product-form/product-form.component';
+import { ProductFormComponent } from '../product-management/product-form/product-form.component';
 import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { InfiniteScrollListComponent } from '../infinite-scroll-list/infinite-scroll-list.component';

@@ -1,17 +1,17 @@
 import { Component, OnInit, Input, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
-import { IProduct } from '../models/product.interface';
+import { IProduct } from '../../models/product.interface';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
-import { ICategory } from '../models/category.interface';
-import { Gender } from '../models/gender';
+import { ICategory } from '../../models/category.interface';
+import { Gender } from '../../models/gender';
 import { Observable } from "rxjs";
-import { imageValidator } from '../validators/image-validator';
+import { imageValidator } from '../../validators/image-validator';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css', '../../assets/styles/components-styles/select-list.css',
-    '../../assets/styles/components-styles/radiobuttons-styles.css',
-    '../../assets/styles/components-styles/checkbox-styles.css'],
+  styleUrls: ['./product-form.component.css', '../../../assets/styles/components-styles/select-list.css',
+    '../../../assets/styles/components-styles/radiobuttons-styles.css',
+    '../../../assets/styles/components-styles/checkbox-styles.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class ProductFormComponent implements OnInit {
