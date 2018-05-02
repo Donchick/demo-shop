@@ -1,0 +1,148 @@
+Searching 137 files for "AddProductM"
+
+/Users/dtravin/demo-shop/src/app/add-product-modal/add-product-modal.component.spec.ts:
+    4  import { DebugElement } from '@angular/core';
+    5  
+    6: import { AddProductModalComponent } from './add-product-modal.component';
+    7  
+    8: describe('AddProductModalComponent', () => {
+    9:   let component: AddProductModalComponent;
+   10:   let fixture: ComponentFixture<AddProductModalComponent>;
+   11  
+   12    beforeEach(async(() => {
+   13      TestBed.configureTestingModule({
+   14:       declarations: [ AddProductModalComponent ]
+   15      })
+   16      .compileComponents();
+   ..
+   18  
+   19    beforeEach(() => {
+   20:     fixture = TestBed.createComponent(AddProductModalComponent);
+   21      component = fixture.componentInstance;
+   22      fixture.detectChanges();
+
+/Users/dtravin/demo-shop/src/app/add-product-modal/add-product-modal.component.ts:
+   14    host: {'class': 'edit-product-modal'}
+   15  })
+   16: export class AddProductModalComponent implements OnInit {
+   17    @Output() modalShouldBeClosed: EventEmitter<any> = new EventEmitter<any>();
+   18    @Output() categories: ICategory[];
+
+/Users/dtravin/demo-shop/src/app/main-layout/main-layout.module.ts:
+   15  import { ProductListHeaderComponent } from '../product-list/header/header.component';
+   16  import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
+   17: import { AddProductModalComponent } from '../add-product-modal/add-product-modal.component';
+   18  import { IonRangeSliderModule } from "ng2-ion-range-slider";
+   19  import { ModalService } from "../modal.service";
+   ..
+   58      ModalDialogComponent,
+   59      ProductFormComponent,
+   60:     AddProductModalComponent,
+   61      ActionResultModalComponent,
+   62      NotFoundComponent,
+   ..
+   77    entryComponents: [
+   78      EditProductModalComponent,
+   79:     AddProductModalComponent,
+   80      ActionResultModalComponent
+   81    ]
+
+/Users/dtravin/demo-shop/src/app/product-list/product-list.component.html:
+    1: <app-product-list-header [productsFilter]="productsFilter" [categories]="categories" (shouldOpenAddingProductForm)="openAddProductModal()" [canManageProducts]=(canManageProducts)></app-product-list-header>
+    2  <app-infinite-scroll-list [loadListElements]=(loadListElements) [listElementsLoaded]="listElementsLoaded" [allListElementsLoaded]="allListElementsLoaded">
+    3    <div class="products-list">
+
+/Users/dtravin/demo-shop/src/app/product-list/product-list.component.ts:
+    7  import { ICategory } from "../models/category.interface";
+    8  import { ModalService } from "../modal.service";
+    9: import { AddProductModalComponent } from '../add-product-modal/add-product-modal.component';
+   10  
+   11  const productsCountStep = 6;
+   ..
+   77    }
+   78  
+   79:   openAddProductModal () {
+   80:     this._modalService.open(AddProductModalComponent, {});
+   81    }
+   82  }
+
+/Users/dtravin/demo-shop/src/app/product-management/add-product-modal/add-product-modal.component.spec.ts:
+    4  import { DebugElement } from '@angular/core';
+    5  
+    6: import { AddProductModalComponent } from './add-product-modal.component';
+    7  
+    8: describe('AddProductModalComponent', () => {
+    9:   let component: AddProductModalComponent;
+   10:   let fixture: ComponentFixture<AddProductModalComponent>;
+   11  
+   12    beforeEach(async(() => {
+   13      TestBed.configureTestingModule({
+   14:       declarations: [ AddProductModalComponent ]
+   15      })
+   16      .compileComponents();
+   ..
+   18  
+   19    beforeEach(() => {
+   20:     fixture = TestBed.createComponent(AddProductModalComponent);
+   21      component = fixture.componentInstance;
+   22      fixture.detectChanges();
+
+/Users/dtravin/demo-shop/src/app/product-management/add-product-modal/add-product-modal.component.ts:
+   14    host: {'class': 'edit-product-modal'}
+   15  })
+   16: export class AddProductModalComponent implements OnInit {
+   17    @Output() modalShouldBeClosed: EventEmitter<any> = new EventEmitter<any>();
+   18    @Output() categories: ICategory[];
+
+21 matches across 7 files
+
+
+Searching 137 files for "add-product-modal"
+
+/Users/dtravin/demo-shop/src/app/add-product-modal/add-product-modal.component.spec.ts:
+    4  import { DebugElement } from '@angular/core';
+    5  
+    6: import { AddProductModalComponent } from './add-product-modal.component';
+    7  
+    8  describe('AddProductModalComponent', () => {
+
+/Users/dtravin/demo-shop/src/app/add-product-modal/add-product-modal.component.ts:
+    6  
+    7  @Component({
+    8:   selector: 'app-add-product-modal',
+    9:   templateUrl: './add-product-modal.component.html',
+   10:   styleUrls: ['./add-product-modal.component.css', '../../assets/styles/components-styles/select-list.css',
+   11      '../../assets/styles/components-styles/radiobuttons-styles.css',
+   12      '../../assets/styles/components-styles/checkbox-styles.css'],
+
+/Users/dtravin/demo-shop/src/app/main-layout/main-layout.module.ts:
+   15  import { ProductListHeaderComponent } from '../product-list/header/header.component';
+   16  import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
+   17: import { AddProductModalComponent } from '../product-management/add-product-modal/add-product-modal.component';
+   18  import { IonRangeSliderModule } from "ng2-ion-range-slider";
+   19  import { ModalService } from "../modal.service";
+
+/Users/dtravin/demo-shop/src/app/product-list/product-list.component.ts:
+    7  import { ICategory } from "../models/category.interface";
+    8  import { ModalService } from "../modal.service";
+    9: import { AddProductModalComponent } from '../add-product-modal/add-product-modal.component';
+   10  
+   11  const productsCountStep = 6;
+
+/Users/dtravin/demo-shop/src/app/product-management/add-product-modal/add-product-modal.component.spec.ts:
+    4  import { DebugElement } from '@angular/core';
+    5  
+    6: import { AddProductModalComponent } from './add-product-modal.component';
+    7  
+    8  describe('AddProductModalComponent', () => {
+
+/Users/dtravin/demo-shop/src/app/product-management/add-product-modal/add-product-modal.component.ts:
+    6  
+    7  @Component({
+    8:   selector: 'app-add-product-modal',
+    9:   templateUrl: './add-product-modal.component.html',
+   10:   styleUrls: ['./add-product-modal.component.css', '../../assets/styles/components-styles/select-list.css',
+   11      '../../assets/styles/components-styles/radiobuttons-styles.css',
+   12      '../../assets/styles/components-styles/checkbox-styles.css'],
+
+12 matches across 6 files

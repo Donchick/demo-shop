@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
-import { IProduct } from '../models/product.interface';
-import { ProductService } from "../product.service";
-import { ICategory } from '../models/category.interface';
+import { IProduct } from '../../models/product.interface';
+import { ProductService } from "../../product.service";
+import { ICategory } from '../../models/category.interface';
 import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-add-product-modal',
-  templateUrl: './add-product-modal.component.html',
-  styleUrls: ['./add-product-modal.component.css', '../../assets/styles/components-styles/select-list.css',
-    '../../assets/styles/components-styles/radiobuttons-styles.css',
-    '../../assets/styles/components-styles/checkbox-styles.css'],
+  templateUrl: '././add-product-modal.component.html',
+  styleUrls: ['././add-product-modal.component.css', '../../../assets/styles/components-styles/select-list.css',
+    '../../../assets/styles/components-styles/radiobuttons-styles.css',
+    '../../../assets/styles/components-styles/checkbox-styles.css'],
   encapsulation: ViewEncapsulation.None,
   host: {'class': 'edit-product-modal'}
 })

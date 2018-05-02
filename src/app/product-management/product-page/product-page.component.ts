@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {IProduct} from "../models/product.interface";
-import {ICategory} from "../models/category.interface";
-import {ProductService} from "../product.service";
-import {ModalService} from "../modal.service";
-import { AuthService } from "../auth.service";
-import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
-import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
-import { Gender } from '../models/gender';
+import {IProduct} from "../../models/product.interface";
+import {ICategory} from "../../models/category.interface";
+import {ProductService} from "../../product.service";
+import {ModalService} from "../../modal.service";
+import { AuthService } from "../../auth.service";
+import { EditProductModalComponent } from '../../edit-product-modal/edit-product-modal.component';
+import { ActionResultModalComponent } from '../../action-result-modal/action-result-modal.component';
+import { Gender } from '../../models/gender';
 import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.css',
-    '../../assets/styles/components-styles/product-image.css']
+    '../../../assets/styles/components-styles/product-image.css']
 })
 export class ProductPageComponent implements OnInit {
   private _id: number;
