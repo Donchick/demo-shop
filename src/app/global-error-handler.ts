@@ -1,5 +1,5 @@
 import { ErrorHandler, Injectable, Injector} from '@angular/core';
-import { ModalService } from './modal.service';
+import { ModalService } from './services/modal/modal.service';
 import { ActionResultModalComponent } from './infrastructure/action-result-modal/action-result-modal.component';
 
 @Injectable()

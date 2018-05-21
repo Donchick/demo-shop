@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {ProductService} from "../../../product.service";
+import {ProductService} from "../../../services/product/product.service";
 import { Subject } from "rxjs";
 import { Gender } from '../../../models/gender';
 import { ICategory } from '../../../models/category.interface';

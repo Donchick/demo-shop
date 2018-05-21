@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { IProduct } from '../../models/product.interface';
-import { ProductService } from "../../product.service";
+import { ProductService } from "../../services/product/product.service";
 import { ICategory } from '../../models/category.interface';
 import { Observable } from "rxjs";
 

@@ -1,8 +1,8 @@
 import {
   Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChild, OnDestroy
 } from '@angular/core';
-import { ModalService } from '../modal.service';
-import { AuthService } from '../auth.service';
+import { ModalService } from '../services/modal/modal.service';
+import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 import {Subscription} from "rxjs";
 

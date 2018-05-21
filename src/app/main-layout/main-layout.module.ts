@@ -8,7 +8,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
-import { ProductService } from "../product.service";
+import { ProductService } from "../services/product/product.service";
 import { ProductPageComponent } from '../product-management/product-page/product-page.component';
 import { ProductTileComponent } from '../products-list/product-tile/product-tile.component';
 import { ProductListComponent } from '../products-list/product-list/product-list.component';
@@ -16,7 +16,7 @@ import { ProductListHeaderComponent } from '../products-list/product-list/header
 import { EditProductModalComponent } from '../product-management/edit-product-modal/edit-product-modal.component';
 import { AddProductModalComponent } from '../product-management/add-product-modal/add-product-modal.component';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
-import { ModalService } from "../modal.service";
+import { ModalService } from "../services/modal/modal.service";
 import { ModalDialogComponent } from '../infrastructure/modal-dialog/modal-dialog.component';
 import { ProductFormComponent } from '../product-management/product-form/product-form.component';
 import { ActionResultModalComponent } from '../infrastructure/action-result-modal/action-result-modal.component';

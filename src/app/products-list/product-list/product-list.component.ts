@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, OnDestroy } from '@angular/core';
 import {Observable, Subject, Subscription} from "rxjs";
 import { IProduct } from "../../models/product.interface";
-import { ProductService } from "../../product.service";
+import { ProductService } from "../../services/product/product.service";
 import { IProductsFilter } from '../../models/products-filter.interface';
-import { AuthService } from "../../auth.service";
+import { AuthService } from "../../services/auth/auth.service";
 import { ICategory } from "../../models/category.interface";
-import { ModalService } from "../../modal.service";
+import { ModalService } from "../../services/modal/modal.service";
 import { AddProductModalComponent } from '../../product-management/add-product-modal/add-product-modal.component';
 
 const productsCountStep = 6;

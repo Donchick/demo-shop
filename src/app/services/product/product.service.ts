@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from "rxjs";
-import {DemoShopHttpService} from "./demo-shop-http.service";
+import {DemoShopHttpService} from "../demo-shop-http/demo-shop-http.service";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/scan';
 import 'rxjs/add/operator/toPromise';
-import { IProduct } from "./models/product.interface";
-import { IProductsFilter } from "./models/products-filter.interface";
-import { Gender } from './models/gender';
-import {ICategory} from "./models/category.interface";
+import { IProduct } from "./../../models/product.interface";
+import { IProductsFilter } from "./../../models/products-filter.interface";
+import { Gender } from './../../models/gender';
+import {ICategory} from "./../../models/category.interface";
 
 
 const filterSubject = function (products: Array<IProduct>, filter: IProductsFilter): Array<IProduct> {

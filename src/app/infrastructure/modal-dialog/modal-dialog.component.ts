@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, EventEmitter, ElementRef, ViewEncapsulation} from '@angular/core';
-import { ModalService } from '../../modal.service'
+import { ModalService } from '../../services/modal/modal.service'
 
 @Component({
   selector: 'app-modal-dialog',

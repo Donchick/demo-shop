@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import {Http, RequestOptions, Headers, Response} from "@angular/http";
 import { LocalStorageService } from 'ngx-webstorage';
-import { ActionResultPopupService } from './action-result-popup.service'
+import { ActionResultPopupService } from '../action-result-popup/action-result-popup.service'
 import {Observable} from "rxjs";
-import { AppConfig } from './app.config';
+import { AppConfig } from './../../app.config';
 
 @Injectable()
 export class DemoShopHttpService {

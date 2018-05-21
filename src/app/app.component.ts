@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import {ActionResultPopupService} from "./action-result-popup.service";
+import {ActionResultPopupService} from "./services/action-result-popup/action-result-popup.service";
 
 @Component({
   selector: 'app-root',
