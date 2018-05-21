@@ -4,10 +4,10 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot, Router
 } from '@angular/router';
-import {AuthService} from './auth.service';
+import {AuthService} from './../auth.service';
 
 @Injectable()
-export class UnAuthGuard implements CanActivate{
+export class LoggedInGuard implements CanActivate{
 
   constructor(
     private _authService: AuthService,
@@ -20,10 +20,10 @@ export class UnAuthGuard implements CanActivate{
   ): boolean {
     const isLoggedIn = this._authService.isLoggedIn();
 
-    if (isLoggedIn) {
-      this._router.navigate(['/main-layout/product-list']);
+    if (!isLoggedIn) {
+      this._router.navigate(['/login']);
     }
 
-    return !isLoggedIn;
+    return isLoggedIn;
   }
 }

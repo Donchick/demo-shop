@@ -6,7 +6,7 @@ import {ProductService} from "../../product.service";
 import {ModalService} from "../../modal.service";
 import { AuthService } from "../../auth.service";
 import { EditProductModalComponent } from '../../product-management/edit-product-modal/edit-product-modal.component';
-import { ActionResultModalComponent } from '../../action-result-modal/action-result-modal.component';
+import { ActionResultModalComponent } from '../../infrastructure/action-result-modal/action-result-modal.component';
 import { Gender } from '../../models/gender';
 import { Observable } from "rxjs";
 

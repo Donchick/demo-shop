@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from "../auth.service";
-import { UserModel } from '../user.model';
+import { UserModel } from '../models/user.model';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Observable} from "rxjs";

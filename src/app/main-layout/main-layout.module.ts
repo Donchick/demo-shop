@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoggedInGuard } from '../logged-in-guard';
+import { LoggedInGuard } from '../guards/logged-in-guard';
 import {
   RouterModule,
   Routes
@@ -10,21 +10,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProductService } from "../product.service";
 import { ProductPageComponent } from '../product-management/product-page/product-page.component';
-import { ProductTileComponent } from '../product-tile/product-tile.component';
-import { ProductListComponent } from '../product-list/product-list.component';
-import { ProductListHeaderComponent } from '../product-list/header/header.component';
+import { ProductTileComponent } from '../products-list/product-tile/product-tile.component';
+import { ProductListComponent } from '../products-list/product-list/product-list.component';
+import { ProductListHeaderComponent } from '../products-list/product-list/header/header.component';
 import { EditProductModalComponent } from '../product-management/edit-product-modal/edit-product-modal.component';
 import { AddProductModalComponent } from '../product-management/add-product-modal/add-product-modal.component';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { ModalService } from "../modal.service";
-import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
+import { ModalDialogComponent } from '../infrastructure/modal-dialog/modal-dialog.component';
 import { ProductFormComponent } from '../product-management/product-form/product-form.component';
-import { ActionResultModalComponent } from '../action-result-modal/action-result-modal.component';
+import { ActionResultModalComponent } from '../infrastructure/action-result-modal/action-result-modal.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
-import { InfiniteScrollListComponent } from '../infinite-scroll-list/infinite-scroll-list.component';
-import {LoadingOverlayComponent} from '../loading-overlay/loading-overlay.component';
+import { InfiniteScrollListComponent } from '../infrastructure/infinite-scroll-list/infinite-scroll-list.component';
+import {LoadingOverlayComponent} from '../infrastructure/loading-overlay/loading-overlay.component';
 import {AppModule} from '../app.module';
-import {SharedModule} from '../shared/shared.module';
+import {SharedModule} from '../infrastructure/shared/shared.module';
 
 export const routes: Routes = [
   {

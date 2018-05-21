@@ -1,17 +1,17 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {ProductService} from "../../product.service";
+import {ProductService} from "../../../product.service";
 import { Subject } from "rxjs";
-import { Gender } from '../../models/gender';
-import { ICategory } from '../../models/category.interface';
-import { IProductsFilter } from '../../models/products-filter.interface';
+import { Gender } from '../../../models/gender';
+import { ICategory } from '../../../models/category.interface';
+import { IProductsFilter } from '../../../models/products-filter.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css', '../../../assets/styles/components-styles/select-list.css',
-    '../../../assets/styles/components-styles/radiobuttons-styles.css',
-    '../../../assets/styles/components-styles/checkbox-styles.css']
+  styleUrls: ['./header.component.css', '../../../../assets/styles/components-styles/select-list.css',
+    '../../../../assets/styles/components-styles/radiobuttons-styles.css',
+    '../../../../assets/styles/components-styles/checkbox-styles.css']
 })
 export class ProductListHeaderComponent implements OnInit {
   @Input() productsFilter: Subject<IProductsFilter>;

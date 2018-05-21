@@ -14,7 +14,7 @@
 }
 
 .modal-body{
-  background: #ecebe9 url('../../assets/images/product-tile-background.png');
+  background: #ecebe9 url('../../../assets/images/product-tile-background.png');
   padding: 50px 30px 30px;
   position: relative;
   border-bottom-right-radius: 10px;

@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { DemoShopHttpService } from './demo-shop-http.service';
-import { UserModel } from './user.model';
+import { UserModel } from './models/user.model';
 import { LocalStorageService } from 'ngx-webstorage';
 import {Response} from "@angular/http";
 import 'rxjs/add/operator/map';

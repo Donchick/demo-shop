@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable, Injector} from '@angular/core';
 import { ModalService } from './modal.service';
-import { ActionResultModalComponent } from './action-result-modal/action-result-modal.component';
+import { ActionResultModalComponent } from './infrastructure/action-result-modal/action-result-modal.component';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {

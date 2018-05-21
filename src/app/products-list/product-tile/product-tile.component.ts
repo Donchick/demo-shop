@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, ViewEncapsulation, HostBinding, EventEmitter} from '@angular/core';
-import { IProduct } from "../models/product.interface";
+import { IProduct } from "../../models/product.interface";
 import { Router } from "@angular/router";
 
 @Component({
